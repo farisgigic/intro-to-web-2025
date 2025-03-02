@@ -1,0 +1,171 @@
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    /* padding-bottom: 100px; */
+}
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::after {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f9f9f9;
+    padding: 0 5px;
+    color: white;
+    font-size: 12px;
+}
+.car-card {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    padding: 90px;
+    overflow: hidden;
+    transition: padding 0.5s ease-out;
+    position: relative; /* Ensures footer stays at the bottom */
+}
+
+.car-header h2 {
+    font-size: 24px;
+    display: inline-block;
+    margin-right: 10px;
+    color: black ;
+    font-weight: bold;
+
+}
+
+.car-header ul {
+    list-style: none;
+    padding-right: 0px;
+    margin: 20px 0;
+}
+
+.car-header ul li {
+    display: block;
+    margin-bottom: 11px;
+    margin-left: 10px;
+    color: grey;
+}
+
+
+.car-header img {
+    float :inline-end;
+    width: 360px;
+    height: 195px;
+    margin-top: -30px;
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+}
+
+.car-details.collapsed  {
+    width: 180px;
+    height: 100px;
+    margin-top: 0;
+}
+
+.car-service table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.car-service table th,
+.car-service table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.car-service .service-type {
+    font-weight: bold;
+}
+.car-service .good {
+    color: #4ca832;
+}
+.car-service .warning {
+    color: #ffc107;
+}
+
+.car-service .danger {
+    color: #dc3545;
+}
+
+.car-service td i {
+    font-size: 20px;
+}
+
+.car-footer {
+    text-align: center;
+    position: absolute;
+    bottom: 20px; /* Adjust based on your padding/margin needs */
+    left: 0;
+    width: 100%;
+}
+
+.details-btn {
+    background: none;
+    border: none;
+    color: #0D9FF2;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-new-car {
+    text-align: right;
+    margin-top: 20px;
+    padding-bottom: 80px;
+}
+
+.add-btn {
+    background-color: #0D9FF2;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn i {
+    margin-right: 5px;
+    /* padding-bottom: 100px; */
+}
+
+.car-header .edit-icon {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.car-header .edit-icon:visited,
+.car-header .edit-icon:active {
+    color: #007bff;
+}
+
+.car-header .edit-icon:hover {
+    color: darkblue;
+}
+
+.car-details {
+    display: block;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+}
+
+.car-details.collapsed {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.details-btn {
+    cursor: pointer;
+}

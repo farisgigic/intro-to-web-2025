@@ -1,0 +1,124 @@
+{
+    "cars": [
+        {
+            "name": "Audi RS6",
+            "year": 2013,
+            "mileage": "210000km",
+            "engine": "4.2 TFSI",
+            "fuel": "Petrol",
+            "image": "img/mycars/audirs6 1.png",
+            "services": [
+                {
+                    "type": "Small service",
+                    "latest": "207000km",
+                    "recommended": "227000km",
+                    "status": "good"
+                },
+                {
+                    "type": "Large service",
+                    "latest": "165000km",
+                    "recommended": "205000km",
+                    "status": "good"
+                },
+                {
+                    "type": "Air filter replacement",
+                    "latest": "207000km",
+                    "recommended": "227000km",
+                    "status": "warning"
+                },
+                {
+                    "type": "Transmission oil change",
+                    "latest": "147000km",
+                    "recommended": "197000km",
+                    "status": "danger"
+                },
+                {
+                    "type": "Tires replacement",
+                    "latest": "Winter",
+                    "recommended": "Winter",
+                    "status": "good"
+                }
+            ]
+        },
+        {
+            "name": "Polo GTI",
+            "year": 2019,
+            "mileage": "76000km",
+            "engine": "2.0 TFSI",
+            "fuel": "Petrol",
+            "image": "img/mycars/polo gti 1.png",
+            "services": [
+                {
+                    "type": "Small service",
+                    "latest": "71000km",
+                    "recommended": "81000km",
+                    "status": "good"
+                },
+                {
+                    "type": "Large service",
+                    "latest": "Never",
+                    "recommended": "100000km",
+                    "status": "good"
+                },
+                {
+                    "type": "Oil filter replacement",
+                    "latest": "61000km",
+                    "recommended": "81000km",
+                    "status": "warning"
+                },
+                {
+                    "type": "Transmission oil change",
+                    "latest": "Never",
+                    "recommended": "90000km",
+                    "status": "warning"
+                },
+                {
+                    "type": "Tires replacement",
+                    "latest": "Winter",
+                    "recommended": "Summer",
+                    "status": "danger"
+                }
+            ]
+        },
+        {
+            "name": "BMW M3",
+            "year": 2012,
+            "mileage": "281000km",
+            "engine": "3.6 V6",
+            "fuel": "Petrol",
+            "image": "img/mycars/bmw m3 1.png",
+            "services": [
+                {
+                    "type": "Small service",
+                    "latest": "260000km",
+                    "recommended": "270000km",
+                    "status": "danger"
+                },
+                {
+                    "type": "Large service",
+                    "latest": "180000km",
+                    "recommended": "280000km",
+                    "status": "danger"
+                },
+                {
+                    "type": "Air filter replacement",
+                    "latest": "240000km",
+                    "recommended": "260000km",
+                    "status": "danger"
+                },
+                {
+                    "type": "Transmission oil change",
+                    "latest": "260000km",
+                    "recommended": "270000km",
+                    "status": "danger"
+                },
+                {
+                    "type": "Tires replacement",
+                    "latest": "Winter",
+                    "recommended": "Winter",
+                    "status": "good"
+                }
+            ]
+        }
+    ]
+}

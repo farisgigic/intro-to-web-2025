@@ -1,0 +1,170 @@
+/* Additional styles for the form section */
+.forum-section {
+    padding: 50px 0;
+    /* background-color: #f0f8ff; */
+    display: flex;
+    justify-content: center;
+}
+
+.forum-section .container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+.forum-section h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.forum-section .form-group label {
+    font-weight: 500;
+}
+/* Adjustments for the forum section form */
+
+
+.forum-section .btn-primary {
+    margin-top: 40px; /* Adds more space above the button */
+    padding: 10px 20px; /* Increases button size */
+    font-size: 18px; /* Larger text inside the button */
+    /* display: flex; Ensures the icon aligns nicely with the text */
+    justify-content: center; /* Centers the text and icon within the button */
+    width: 40%; /* Set a specific width if needed */
+    display: block;
+    margin: 20px auto 0;
+    text-align: center; /* Center-align button text */
+}
+
+
+
+.forum-section .btn-primary img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.footer {
+    margin-top: 50px;
+}
+
+/* Styling for Photo Upload Section */
+.photo-upload-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-upload-box {
+    width: 700px;
+    height: 180px;
+    border: 2px dashed #d3d3d3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+.photo-upload-box p {
+    font-size: 14px;
+    color: #666;
+}
+
+.divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #d3d3d3;
+    margin: 10px 0;
+    position: relative;
+}
+
+.divider::after {
+    content: "or";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f9f9f9;
+    padding: 0 5px;
+    color: #666;
+    font-size: 12px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: #0D9FF2;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload img {
+    height: 18px;
+    width: 18px;
+    margin-right: 8px;
+}
+
+.custom-file-upload:hover {
+    background-color: #007bb5;
+}
+
+#file-upload {
+    display: none;
+}
+
+
+/* New Image Upload Form Styles */
+.upload-container {
+    background-color: #f9f9f9;
+    border: 1px dashed #cccccc;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.upload-info {
+    background-color: #e6f7ff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.upload-box {
+    border: 1px dashed #cccccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.upload-box p {
+    font-size: 16px;
+    color: #777777;
+    margin: 0;
+}
+
+.upload-box span {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #777777;
+}
+
+.upload-box .btn {
+    background-color: #0d9ff2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}

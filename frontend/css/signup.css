@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Adjust spacing around form */
+.signup_container {
+    max-width: 700px;
+    margin: 40px auto; /* More space between header and form */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.separator span {
+    padding: 0 10px;
+    color: #999;
+    background-color: #fff; /* Match the background of the form */
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}
+
+footer {
+    width: 100%; /* Ensure footer spans full width */
+    margin-top: 100px; /* Space between form and footer */
+    padding: 20px 0; /* Only vertical padding */
+    background-color: #1a1a1a; /* Set background color */
+    color: #ffffff; /* Set text color */
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.btn-center {
+    display: block;
+    margin: 20px auto 0;
+}
+

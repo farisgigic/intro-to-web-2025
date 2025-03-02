@@ -1,0 +1,98 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f2f8fc;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 100px;
+}
+
+.form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.form-header h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+}
+
+.form-body label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-area {
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.upload-info {
+    background-color: #e1f3fc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.upload-info i {
+    margin-right: 10px;
+    color: #0d9ff2;
+}
+
+.upload-box p {
+    margin: 0 0 10px;
+}
+
+.upload-box span {
+    display: block;
+    margin: 10px 0;
+}
+
+.upload-button {
+    background-color: #0d9ff2;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.upload-button i {
+    margin-right: 10px;
+}
+
+.side-section {
+    max-width: 30%;
+    padding: 20px;
+    background-color: #f2f8fc;
+}
+
+.side-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.side-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}

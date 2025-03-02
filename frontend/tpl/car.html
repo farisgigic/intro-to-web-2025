@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CarCare </title>
+    <link rel ="icon" type ="imgage/x-icon" href="img/logo-f.png" >
+    <!-- css -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <!-- <link rel="stylesheet" href="css/nice-select.css" type="text/css"> -->
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/spapp.css" type="text/css">
+
+</head>
+<body>
+        <!-- Breadcrumb End -->
+    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>My Garage</h2>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                            <span>My Garage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Begin -->
+
+    <!-- Car Section Begin -->
+    <section class="car spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5">
+                            <div class="car__item">
+                                <div class="car__item__pic__slider owl-carousel">
+                                    <img src="img/cars/audicija/audi1.jpg" alt="">
+                                    <img src="img/cars/audicija/audi2.jpg" alt="">
+                                    <img src="img/cars/audicija/audi3.jpg" alt="">
+                                    <img src="img/cars/audicija/audi4.jpg" alt="">
+                                </div>
+                                <div class="car__item__text">
+                                    <div class="car__item__text__inner">
+                                        <div class="label-date">Registered</div>
+                                        <div class="label-date">No service needed</div>
+                                        <div class="label-date">Winter Tires</div>
+                                        <div class="label-date">2013</div>
+                                        <h5><a href="#">Audi A4</a></h5>
+                                        <ul>
+                                            <li><span>210 000</span> km</li>
+                                            <li>Petrol</li>
+                                            <li><span>4.2 TFSI</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="car__item__price">
+                                        <!-- <span id="see-car-modal" class="car-option">See car</span> -->
+                                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#book-service-modal" style="padding: 5px; margin-left: 180px; align-items: center; width: 120px; margin-bottom: 10px;">Book a Service</button>
+                                        <h6>3 changes<span> / This year</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div class="pagination__option">
+                        <a href="car.html" class="active">1</a>
+                        <a href="car.html" class="inactive">2</a>
+                        <a href="#"><span class="arrow_carrot-2right"></span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- MODAL  -->
+    <div class="modal fade" id="book-service-modal"  tabindex="-1" aria-labelledby="book-service-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <form id="book-service-form">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="book-service-label">Book a Service</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="typeOfService" class="col-form-label">Type of Service :</label>
+                        <input type="text" class="form-control" name="name" id="name"/>
+                    </div>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="mb-3">
+                        <label for="manufacturer" class="col-form-label">Manufacturer</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        name="manufacturer"
+                        id="manufacturer"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="col-form-label"
+                        >Date of manufacturing:</label
+                        >
+                        <input
+                        type="date"
+                        class="form-control"
+                        name="year"
+                        id="year"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="col-form-label">Password:</label>
+                        <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        id="password"
+                        />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="submit" class="btn btn-primary">Add details</button> -->
+                </div>
+            </form>
+            </div>
+        </div>
+      </div>
+    <!-- Car Section End -->
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/jquery.nice-select.min.js"></script> -->
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/jquery.spapp.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <!-- <script src="js/jquery.magnific-popup.min.js"></script> -->
+    <!-- <script src="js/mixitup.min.js"></script> -->
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
