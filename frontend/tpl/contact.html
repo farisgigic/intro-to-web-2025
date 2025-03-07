@@ -30,7 +30,7 @@
                     <div class="breadcrumb__text">
                         <h2>Contact Us</h2>
                         <div class="breadcrumb__links">
-                            <a href="./index.html"><i class="fa fa-home" style="color: #0D9FF2;"></i> Home</a>
+                            <a href="#landing"><i class="fa fa-home" style="color: #0D9FF2;"></i> Home</a>
                             <span>Contact Us</span>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                     <textarea class="form-control" placeholder="Your Message" name="message" id="message" rows="10"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary w-100">Submit Now</button>
+                                    <button type="submit" class="btn btn-outline-primary w-100">Submit Now</button>
                                 </div>
                                 
                             </div>
@@ -85,32 +85,9 @@
         </div>
     </section>
     <!-- Contact Section End -->
-
-    <!-- Js Plugins -->
-    <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
-    <!-- <script src="js/bootstrap.min.js"></script> -->
-    <!-- <script src="js/jquery.nice-select.min.js"></script> -->
-    <!-- <script src="js/jquery-ui.min.js"></script> -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <!-- <script src="js/jquery.slicknav.js"></script> -->
-    <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
-    <script>
-
-    FormValidation.validate("#contact_form", {}, function(data){
-        $.post(Constants.API_BASE_URL + "add_message.php", data)
-        .done(function(data){
-            toastr.success("You have successfully sent your question!");
-            $("#contact_form")[0].reset();
-            // window.location = "";
-        })
-        .fail(function(xhr){
-            toastr.error(error);
-        });
-    });
-    </script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/contact_form_checker.js"></script>
 </body>
 
 </html>
