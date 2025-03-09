@@ -25,7 +25,7 @@
                 <div class="col-lg-9">
                     <div class="car__details__pic">
                         <div class="car__details__pic__large">
-                            <img class="car-big-img" src="img/cars/audicija/audi1.jpg" alt="">
+                            <img class="car-big-img" src="img/cars/audicija/audi1.jpg" alt="Audi">
                         </div>
                         <div class="car-thumbs">
                             <div class="car-thumbs-track car__thumb__slider owl-carousel">
@@ -398,25 +398,21 @@
                     <div class="car__details__sidebar">
                         <div class="car__details__sidebar__model">
                             <ul>
-                                <li>Vin <span>3VWKM245686</span></li>
-                                <li>Year <span>2013</span></li>
-                                <li>Current Mileage <span>220 000 km</span></li>
-                                <li>Engine <span>4.2 TFSI</span></li>
+                                <li>Vin <span>VWZZZZ9800I2</span></li>
+                                <li>Year <span>2018</span></li>
+                                <li>Current Mileage <span>67 000 km</span></li>
+                                <li>Engine <span>2.0 TFSI</span></li>
                                 <li>Fuel <span>Petrol</span></li>
-                                <li>Registered until <span>01/2026</span></li>
+                                <li>Registered until <span>09/2025</span></li>
                             </ul>
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
-                                <li>MSRP <span>$30 000</span></li>
+                                <li>MSRP <span>$25 000</span></li>
                                 <li>Your Discounts <span>$ 500</span></li>
-                                <li>Price <span>$29 500</span></li>
+                                <li>Price <span>$24 500</span></li>
                             </ul>
-                            <!-- <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#add-patient-modal"> Book a Service</button> -->
                             <a class="primary-btn" data-bs-toggle="modal" data-bs-target="#make-service-modal" ><i class="fa fa-sliders"></i> Book a Service</a>
-                            <!-- <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#add-patient-modal">
-                                <i class="fa fa-sliders"></i> Book a Serviceeeee
-                            </a>                             -->
                             <a href="#" class="primary-btn"><i class="fa fa-download"></i> Download a History</a>
                         </div>
                     </div>
@@ -433,25 +429,46 @@
                 <h5 class="modal-title" id="make-service-label">Make a Service</h5>
               </div>
               <div class="modal-body">
-                <input type="hidden" name="id" id="id" />
+                <input type="hidden" name="id" id="id" />    
                 <div class="mb-3">
-                  <label for="first_name" class="col-form-label">First name:</label>
+                    <label for="car_name" class="col-form-label">Car:</label>
+                    <input class="form-control" type="text" placeholder="Polo GTI" aria-label="" disabled>
+                </div>            
+                <div class="mb-3">
+                  <label for="service_type" class="col-form-label">Service Type</label>
                   <input
                     type="text"
                     class="form-control"
-                    name="first_name"
-                    id="first_name"
+                    name="service_type"
+                    id="service_type"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="last_name" class="col-form-label">Last name:</label>
+                    <label for="date_of_service" class="col-form-label">Date</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="date_of_service"
+                      id="date_of_service"
+                    />
+                  </div>
+                <div class="mb-3">
+                  <label for="service_center" class="col-form-label">Service Center</label>
                   <input
                     type="text"
                     class="form-control"
-                    name="last_name"
-                    id="last_name"
+                    name="service_center"
+                    id="service_center"
                   />
                 </div>
+                <br />
+                <div class="mb-3">
+                    <label for="service_center" class="col-form-label">Service Center</label>
+                    <select class="form-select" name="service_center" id="service_center">
+                        <option value="" selected disabled>Select a Service Center</option>
+                    </select>
+                </div>                
+                <hr />
                 <div class="mb-3">
                   <label for="created_at" class="col-form-label"
                     >Date of creation:</label
@@ -464,16 +481,16 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="email" class="col-form-label">Email:</label>
-                  <input type="email" class="form-control" name="email" id="email" />
+                  <label for="location" class="col-form-label">Location:</label>
+                  <input type="text" class="form-control" name="location" id="location" />
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="col-form-label">Password:</label>
+                  <label for="phone" class="col-form-label">Phone number</label>
                   <input
-                    type="password"
+                    type="text"
                     class="form-control"
-                    name="password"
-                    id="password"
+                    name="phone"
+                    id="phone"
                   />
                 </div>
               </div>
@@ -489,4 +506,28 @@
     </section>
     <!-- Car Details Section End -->
     <script src="js/main.js"></script>
+    <script>
+       function updateServiceCenters() {
+        $.get("json/services.json", function (data) {
+        console.log("Service centers loaded:", data); // Check if data is fetched
+
+        let options = `<option value="" selected disabled>Select a Service Center</option>`; 
+
+        data.forEach((instance, index) => {
+            console.log(`Adding: ${instance.service_center}`); // Check each entry
+            options += `<option value="${index}">${instance.service_center}</option>`;
+        });
+
+        $("#service_center").html(options);
+    }).fail(function () {
+        console.error("Failed to load services.json");
+    });
+}
+
+
+    updateServiceCenters();
+
+
+    </script>
+
     

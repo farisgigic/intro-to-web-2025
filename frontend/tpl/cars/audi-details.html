@@ -426,65 +426,78 @@
 
         <!-- Modal part  -->
         <div class="modal fade" id="make-service-modal" tabindex="-1" aria-labelledby="make-service-label" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form id="make-service-form">
-              <div class="modal-header">
-                <h5 class="modal-title" id="make-service-label">Make a Service</h5>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form id="make-service-form">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="make-service-label">Make a Service</h5>
+                  </div>
+                  <div class="modal-body">
+                    <input type="hidden" name="id" id="id" />    
+                    <div class="mb-3">
+                        <label for="car_name" class="col-form-label">Car:</label>
+                        <input class="form-control" type="text" placeholder="Audi A4" aria-label="" disabled>
+                    </div>            
+                    <div class="mb-3">
+                      <label for="service_type" class="col-form-label">Service Type</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="service_type"
+                        id="service_type"
+                      />
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_of_service" class="col-form-label">Date</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          name="date_of_service"
+                          id="date_of_service"
+                        />
+                      </div>
+                    <div class="mb-3">
+                      <label for="service_center" class="col-form-label">Service Center</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="service_center"
+                        id="service_center"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="created_at" class="col-form-label"
+                        >Date of creation:</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="created_at"
+                        id="created_at"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="location" class="col-form-label">Location:</label>
+                      <input type="text" class="form-control" name="location" id="location" />
+                    </div>
+                    <div class="mb-3">
+                      <label for="phone" class="col-form-label">Phone number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="phone"
+                        id="phone"
+                      />
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Make a Service</button>
+                  </div>
+                </form>
               </div>
-              <div class="modal-body">
-                <input type="hidden" name="id" id="id" />
-                <div class="mb-3">
-                  <label for="first_name" class="col-form-label">First name:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="first_name"
-                    id="first_name"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="last_name" class="col-form-label">Last name:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="last_name"
-                    id="last_name"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="created_at" class="col-form-label"
-                    >Date of creation:</label
-                  >
-                  <input
-                    type="date"
-                    class="form-control"
-                    name="created_at"
-                    id="created_at"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="col-form-label">Email:</label>
-                  <input type="email" class="form-control" name="email" id="email" />
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="col-form-label">Password:</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    id="password"
-                  />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-success">Make a Service</button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
       
     </section>
     <!-- Car Details Section End -->
