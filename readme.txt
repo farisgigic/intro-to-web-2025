@@ -1,65 +1,161 @@
 # Web Programming Project - PHP, JS, MySQL
 
-## Project Overview
+## 🌟 Project Overview
 
-This web application will be developed using PHP, JavaScript, and MySQL. The goal of this project is to build a dynamic, interactive, and mobile-friendly web application following modern development practices. The application will utilize the FlightPHP framework for the backend, PHP PDO for database access, and AJAX for dynamic interactions. The project will also implement JWT tokens for secure authentication and role-based authorization.
+Welcome to the Web Programming project! This project aims to build a dynamic, interactive, and mobile-friendly web application using **PHP**, **JavaScript**, and **MySQL**. The backend will use the **FlightPHP** framework, while the frontend will rely on HTML, CSS, JavaScript, and **Bootstrap**.
 
-## Technologies
+### 🎯 Project Goals
+- **Backend**: RESTful API using FlightPHP, with **PHP PDO** for database interactions.
+- **Frontend**: Single Page Application (SPA) with HTML, CSS, and JS.
+- **Authentication**: Implement **JWT** (JSON Web Tokens) for secure login and role-based authorization.
+- **Database**: Use **MySQL** with at least 5 entities for basic CRUD operations.
+- **Documentation**: API documentation using **OpenAPI** and **Swagger**.
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap, Highcharts, DataTables, AJAX
-- **Backend**: PHP, FlightPHP, PDO (for database access)
+The application will be deployed and hosted publicly, ensuring it meets modern standards of web development.
+
+---
+
+## ⚙️ Technologies
+
+- **Frontend**:
+  - HTML, CSS, JavaScript
+  - Bootstrap, Highcharts, DataTables
+  - AJAX for dynamic content
+- **Backend**:
+  - PHP, FlightPHP Framework
+  - PHP PDO for database access
 - **Database**: MySQL
 - **Authentication**: JWT (JSON Web Tokens)
 - **Documentation**: OpenAPI, Swagger
-- **Version Control**: GitHub (repository for monitoring progress)
-- **Hosting**: GitHub Pages (via GitHub Education Pack), or other hosting providers
+- **Version Control**: GitHub
+- **Hosting**: GitHub Pages (via GitHub Education Pack), Heroku, DigitalOcean, AWS
 
-## Project Requirements
+---
 
-- The application should be a single-page application (SPA).
-- It must be mobile-friendly and responsive.
-- At least 5 entities with basic CRUD operations (Users, Products, Orders, Categories, Reviews).
-- Use of FlightPHP framework for the backend and PHP PDO for database access.
-- JWT tokens for authentication and authorization.
-- API must be documented using OpenAPI.
-- The application should be deployed and publicly available.
+## 📝 Project Requirements
 
-## Milestones
+### 🔹 Core Features:
+- **Single Page Application (SPA)**: No full page reloads.
+- **Mobile-Friendly**: Fully responsive design.
+- **CRUD Operations**: Implement CRUD for at least 5 entities (e.g., Users, Products, Orders, Categories, Reviews).
+- **API Documentation**: OpenAPI format with Swagger.
+- **JWT Authentication**: For secure user login and authorization.
+- **Role-Based Access**: Admin and regular user roles.
+- **Public Hosting**: The application must be hosted and accessible via a domain.
 
-### Milestone 1: Initial Setup and Frontend Development
+---
+
+## 🏁 Milestones
+
+### 🛠️ **Milestone 1**: Initial Setup and Frontend Development  
 **Deadline**: End of Week 3 (March 23, 2025)
 
-- **Project Structure**: Set up the project folder structure with frontend and backend directories. Prepare basic folders for backend (routes, services, dao) and frontend (css files, js files, HTML templates - views, static assets).
-- **Static Frontend**: Prepare all pages and components needed for the frontend part of the application. These pages should be static and function as a single-page application (SPA), with no backend connection at this stage. 
-    - Include pages: Register/Login, Dashboard, Profile, Entities, etc.
-    - Use HTML/Bootstrap templates and customize them to fit the needs of the project.
-- **Database Schema (Planning Only)**: Identify at least 5 entities for the application (e.g., Users, Products, Orders, Categories, Reviews).
-    - Submit a draft Entity-Relationship Diagram (ERD) showing relationships among these entities.
+- **Project Structure**:  
+  Set up the folder structure with **frontend** and **backend** directories. Prepare basic folders for backend (routes, services, DAO) and frontend (CSS, JS, HTML templates, static assets).
+  
+- **Static Frontend**:  
+  Prepare all necessary static pages and components. Ensure the application functions as a **Single-Page Application (SPA)** with no backend connection at this stage.
+    - **Pages**: Register/Login, Dashboard, Profile, etc.
+    - Use **HTML/Bootstrap** templates and customize them for the project.
 
-### Milestone 2: Backend Setup and CRUD Operations for Initial Entities
+- **Database Schema Planning**:  
+  Identify at least 5 entities (Users, Products, Orders, Categories, Reviews) and submit a **draft ERD (Entity-Relationship Diagram)**.
+
+---
+
+### 🗂️ **Milestone 2**: Backend Setup and CRUD Operations for Initial Entities  
 **Deadline**: End of Week 5 (April 6, 2025)
 
-- **Database Creation**: Design and document a relational database schema in MySQL with at least 5 entities. Prepare a SQL script for creating the database and tables.
-- **DAO Layer**: Implement the DAO Layer to interact with the database for at least five entities. Provide CRUD functionality (Create, Read, Update, Delete) for these entities.
+- **Database Creation**:  
+  Design a relational database schema in **MySQL** with at least 5 entities. Create a **SQL script** for setting up the database.
 
-### Milestone 3: Full CRUD Implementation for All Entities & Open API
+- **DAO Layer Implementation**:  
+  Implement **DAO** classes for each entity with full **CRUD** functionality (Create, Read, Update, Delete).
+
+---
+
+### 🔧 **Milestone 3**: Full CRUD Implementation for All Entities & Open API  
 **Deadline**: End of Week 9 (May 4, 2025)
 
-- **Business Logic Implementation**: Create services for managing each database entity. Implement application-specific logic and constraints (e.g., validation rules).
-- **Presentation Layer**: Implement the presentation layer to render dynamic content using FlightPHP.
-- **OpenAPI Documentation**: Document available API endpoints using the OpenAPI standard and generate a visual API documentation page (Swagger).
+- **Business Logic Implementation**:  
+  Create services to manage each entity and encapsulate application-specific logic (e.g., validation).
 
-### Milestone 4: Middleware, Authentication, and Authorization
+- **Presentation Layer**:  
+  Implement dynamic rendering of content using **FlightPHP**.
+
+- **OpenAPI Documentation**:  
+  Document API endpoints using **OpenAPI** and generate a **Swagger** visual interface.
+
+---
+
+### 🔐 **Milestone 4**: Middleware, Authentication, and Authorization  
 **Deadline**: End of Week 12 (May 25, 2025)
 
-- **Authentication and Middleware**: Add middleware to handle request validation, error handling, and logging. Implement user authentication with FlightPHP and middleware. Allow users to register and log in, ensuring password hashing for security.
-- **Authorization**: Implement role-based access control (RBAC). Admins should be able to perform CRUD operations for all entities, while regular users have restricted access (view-only for certain entities).
-- **Frontend Updates**: Add dynamic features for authenticated users (e.g., personalized dashboard, admin panel). Ensure UI components reflect role-based access.
+- **Authentication and Middleware**:  
+  Implement middleware for **request validation**, **error handling**, and **logging**. Set up user authentication (registration, login) with **JWT tokens** and secure password hashing.
 
-### Milestone 5: Final Deployment, API Documentation, and CI/CD
+- **Authorization**:  
+  Implement **role-based access control (RBAC)**:
+    - Admin users: Full CRUD access.
+    - Regular users: View-only access to certain entities.
+
+- **Frontend Updates**:  
+  Add dynamic features for authenticated users (e.g., personalized dashboard, admin panel) and adjust the UI to reflect role-based access.
+
+---
+
+### 🚀 **Milestone 5**: Final Deployment, API Documentation, and CI/CD  
 **Deadline**: End of Week 14 (June 8, 2025)
 
-- **Frontend MVC Implementation**: Refactor the frontend to follow the MVC pattern for maintainability and scalability.
-- **Front End Validations and Security Enhancements**: Add client-side and server-side form validations. Ensure the backend is secure against SQL injection and XSS attacks.
-- **Deployment**: Set up and deploy the web application on a hosting platform (e.g., Heroku, DigitalOcean, AWS). Ensure the database is hosted and connected to the deployed backend.
+- **Frontend MVC Implementation**:  
+  Refactor the frontend to follow the **MVC pattern** for better maintainability and scalability.
+
+- **Validation and Security Enhancements**:  
+  Implement **client-side and server-side validations**. Ensure the backend is secure against **SQL injection** and **XSS** attacks.
+
+- **Deployment**:  
+  Deploy the web application to a **hosting platform** (Heroku, DigitalOcean, AWS). Ensure the database is connected to the deployed backend and the application is live.
+
+---
+
+## 📍 Hosting and Repository
+
+- **GitHub Repository**: All code will be version-controlled in a public **GitHub** repository.
+- **Deployment**: The application will be hosted and publicly accessible via a domain. We'll use **GitHub Education Pack** for hosting or other hosting providers as needed.
+
+---
+
+## 💻 Getting Started
+
+1. Clone this repository:
+    ```bash
+    git clone https://github.com/your-username/your-project-name.git
+    ```
+2. Install required dependencies:
+    - For backend: **FlightPHP** framework, **PHP PDO** for MySQL.
+    - For frontend: **Bootstrap**, **Highcharts**, **DataTables**.
+3. Set up the database:
+    - Use the provided **SQL script** to create the necessary tables.
+4. Configure environment:
+    - Set up your local development environment (e.g., using XAMPP, LAMP, or any PHP-compatible server).
+
+---
+
+## 📚 Documentation
+
+- **API Documentation**: Available via Swagger UI (once the backend is set up).
+- **Database Schema**: Available in the database creation scripts.
+
+---
+
+## 🛠️ License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+### 🔗 Links
+
+- **GitHub Repository**: [link to your repository]
+- **Live Application**: [link to the deployed web app]
 
