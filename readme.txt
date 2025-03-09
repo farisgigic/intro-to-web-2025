@@ -158,4 +158,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **GitHub Repository**: [link to your repository]
 - **Live Application**: [link to the deployed web app]
-
