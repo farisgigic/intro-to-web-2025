@@ -1,6 +1,6 @@
 # CarCare Application
 
-CarCare is a web application designed to help users manage their car maintenance and participate in a forum to discuss car-related issues. The application includes features such as viewing and adding cars, participating in forum discussions, and contacting support.
+CarCare is a web application designed to help users manage their car maintenance efficiently while providing a forum for discussions on car-related topics. Users can add and track their vehicles, participate in community discussions, and reach out to support when needed.
 
 ## Table of Contents
 
@@ -13,14 +13,20 @@ CarCare is a web application designed to help users manage their car maintenance
 
 ## Features
 
-- **Home Page**: Overview of the application.
-- **About Us**: Information about the CarCare team.
-- **My Cars**: View and manage your cars.
-- **Forum**: Participate in discussions about car-related issues.
-- **Login/Register**: User authentication.
-- **Contact**: Contact support for assistance.
+- **Home Page**: Overview of the application's functionality.
+- **About Us**: Learn more about the CarCare team.
+- **My Cars**: Add, view, and manage your cars.
+- **Forum**: Engage in discussions on car-related issues.
+- **Login/Register**: User authentication and account management.
+- **Contact Support**: Get assistance from the support team.
 
 ## Installation
+
+### Prerequisites
+- Ensure you have [XAMPP](https://www.apachefriends.org/index.html) installed and running.
+- PHP and MySQL should be properly configured.
+
+### Steps to Install
 
 1. **Clone the repository**:
     ```bash
@@ -32,44 +38,62 @@ CarCare is a web application designed to help users manage their car maintenance
     cd carcare
     ```
 
-3. **Install dependencies**:
-    - Ensure you have [XAMPP](https://www.apachefriends.org/index.html) installed and running.
-    - Place the project files in the `htdocs` directory of your XAMPP installation.
+3. **Move files to the server directory**:
+    - Place the project files inside the `htdocs` directory of your XAMPP installation.
 
-4. **Start the application**:
-    - Open your browser and navigate to `http://localhost/carcare`.
+4. **Set up the database**:
+    - Start Apache and MySQL from XAMPP.
+    - Open [phpMyAdmin](http://localhost/phpmyadmin).
+    - Create a new database named `carcare`.
+    - Import the provided SQL file from the project (`database/carcare.sql`).
+
+5. **Start the application**:
+    - Open your browser and navigate to:
+      ```
+      http://localhost/carcare
+      ```
 
 ## Usage
 
-- **Home Page**: Provides an overview of the application.
-- **About Us**: Learn more about the CarCare team.
-- **My Cars**: Add, view, and manage your cars.
-- **Forum**: Read and participate in discussions about car-related issues.
-- **Login/Register**: Authenticate to access personalized features.
-- **Contact**: Reach out to support for any assistance.
+- **Home Page**: Provides an overview of CarCare’s features.
+- **About Us**: Displays information about the team behind CarCare.
+- **My Cars**: Manage personal vehicle information.
+- **Forum**: Participate in discussions and share experiences.
+- **Login/Register**: Securely access personalized features.
+- **Contact Support**: Reach out for assistance when needed.
 
 ## Technologies Used
 
-- **Frontend**:
-  - HTML
-  - CSS
-  - JavaScript
-  - Bootstrap
-  - jQuery
+### Frontend:
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+- jQuery
 
-- **Backend**:
-  - PHP (handled by XAMPP)
+### Backend:
+- PHP (FlightPHP framework)
+- MySQL (database)
+- XAMPP (local development environment)
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+We welcome contributions from the community! To contribute:
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a pull request.
+1. **Fork the repository**.
+2. **Create a new branch**:
+    ```bash
+    git checkout -b feature-branch
+    ```
+3. **Make changes and commit**:
+    ```bash
+    git commit -m "Add new feature"
+    ```
+4. **Push your changes**:
+    ```bash
+    git push origin feature-branch
+    ```
+5. **Open a pull request** to merge your changes into the main branch.
 
 ## License
 
@@ -77,4 +101,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Feel free to customize this README file as per your requirements.
+Need help? Feel free to open an issue or contact the CarCare support team!
