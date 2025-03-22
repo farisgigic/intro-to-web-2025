@@ -3,7 +3,7 @@
 require "vendor/autoload.php";
 
 Flight::route('/fare', function () {
-    echo 'It works';
+    echo 'Fare care';
 });
 
 Flight::start();
