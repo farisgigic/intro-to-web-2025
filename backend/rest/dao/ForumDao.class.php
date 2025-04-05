@@ -10,6 +10,7 @@ class ForumDao extends BaseDao
     public function getAllForums()
     {
         $query = "SELECT * FROM forum";
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -17,16 +18,18 @@ class ForumDao extends BaseDao
     public function getForumById($id)
     {
         $query = "SELECT * FROM forum WHERE id = :id";
+
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch();
     }
-    public function getForumByName($name)
+    public function getForumByTitle($title)
     {
-        $query = "SELECT * FROM forum WHERE name = :name";
+        $query = "SELECT * FROM forum WHERE title = :title";
+
         $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':name', $title);
         $stmt->execute();
         return $stmt->fetch();
     }
@@ -44,5 +47,10 @@ class ForumDao extends BaseDao
         $stmt->bindParam(':user_id', $forum['user_id']);
         $stmt->bindParam(':forum_id', $forum_id);
         return $stmt->execute();
+    }
+
+    public function partialUpdate($id, $forum)
+    {
+        return $this->update($id, $forum);
     }
 }
