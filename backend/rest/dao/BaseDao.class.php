@@ -30,9 +30,6 @@ class BaseDao
     {
         $stmt = $this->connection->prepare($query);
         $stmt->execute($params);
-
-
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
