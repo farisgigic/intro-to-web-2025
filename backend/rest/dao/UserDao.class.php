@@ -33,7 +33,7 @@ class UserDao extends BaseDao
             ':user_id' => $user_id
         ]);
     }
-    public function editUserById($user_id, $user)
+    public function updateUser($user_id, $user)
     {
         $query = "UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, email = :email, password = :password, address = :address, city = :city, zip_code = :zip_code, birth_date = :birth_date WHERE user_id = :user_id";
         $this->execute($query, [

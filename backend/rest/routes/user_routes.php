@@ -27,9 +27,18 @@ Flight::group("/users", function () {
         Flight::json(["message" => "You have successfully added", "data" => $user, "payload" => $data], 200);
     });
 
-    Flight::route('DELETE /user/@id', function ($user_id) {
+    Flight::route('DELETE /delete_user/@id', function ($user_id) {
         Flight::get("userService")->deleteUser($user_id);
         Flight::json(["message" => "You have successfully deleted"], 200);
+    });
+
+    Flight::route("PUT /edit_user/@id", function ($user_id) {
+
+        $data = Flight::request()->data->getData();
+        error_log(print_r($data, true));
+        $user = Flight::get("userService")->updateUser($user_id, $data);
+
+        Flight::json(["message" => "You have successfully edited user with id: ", $user], 200);
     });
 
 });

@@ -29,7 +29,7 @@ class UserService
 
     public function updateUser($id, $user)
     {
-        return $this->userDao->editUserById($id, $user);
+        return $this->userDao->updateUser($id, $user);
     }
 
     public function deleteUser($id)
