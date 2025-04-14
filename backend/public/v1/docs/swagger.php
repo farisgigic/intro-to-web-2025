@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-define('BASE_URL', 'http://localhost/intro-to-web-2025/backend/rest/');
+define('BASE_URL', 'http://localhost/intro-to-web-2025/backend/');
 
 
 error_reporting(0);
