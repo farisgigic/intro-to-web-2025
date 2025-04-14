@@ -15,12 +15,12 @@ class ForumDao extends BaseDao
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public function getForumById($id)
+    public function getForumById($forum_id)
     {
-        $query = "SELECT * FROM forum WHERE id = :id";
+        $query = "SELECT * FROM forum WHERE forum_id = :forum_id";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':forum_id', $forum_id);
         $stmt->execute();
         return $stmt->fetch();
     }
