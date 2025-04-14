@@ -17,11 +17,11 @@ class CarDao extends BaseDao
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCarById($id)
+    public function getCarById($car_id)
     {
-        $query = "SELECT * FROM cars WHERE id = :id";
+        $query = "SELECT * FROM cars WHERE car_id = :car_id";
         $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':car_id', $car_id);
         $stmt->execute();
         return $stmt->fetch();
     }
@@ -55,11 +55,11 @@ class CarDao extends BaseDao
         return $this->insert('cars', $car);
     }
 
-    public function editCar($id, $car)
+    public function editCar($car_id, $car)
     {
         $query = "UPDATE cars SET manufacturer = :manufacturer, model = :model, year = :year, mileage = :mileage, 
                     engine = :engine, registered_until = :registered_until, vin = :vin, fuel_type = :fuel_type, transmission = :transmission, 
-                    drivetrain = :drivetrain,   tires = :tires WHERE id = :id";
+                    drivetrain = :drivetrain, tires = :tires ,user_id = :user_id WHERE car_id = :car_id";
         $this->execute($query, [
             'manufacturer' => $car['manufacturer'],
             'model' => $car['model'],
@@ -72,19 +72,20 @@ class CarDao extends BaseDao
             'transmission' => $car['transmission'],
             'drivetrain' => $car['drivetrain'],
             'tires' => $car['tires'],
-            'id' => $id
+            'user_id' => $car['user_id'],
+            'car_id' => $car_id
         ]);
     }
 
-    public function deleteCar($id)
+    public function deleteCar($car_id)
     {
-        $query = "DELETE FROM cars WHERE id = :id";
+        $query = "DELETE FROM cars WHERE car_id = :car_id";
         // $stmt = $this->connection->prepare($query);
         // $stmt->bindParam(':id', $id);
         // return $stmt->execute();
 
         $this->execute($query, [
-            'id' => $id
+            'car_id' => $car_id
         ]);
     }
 }
