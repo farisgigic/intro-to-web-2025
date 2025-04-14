@@ -20,7 +20,7 @@ Flight::group("/users", function () {
         }
     });
 
-    Flight::route('POST /user', function () {
+    Flight::route('POST /add_user', function () {
         $data = Flight::request()->data->getData();
 
         $user = Flight::get("userService")->createUser($data);

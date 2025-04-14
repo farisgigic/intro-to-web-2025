@@ -54,4 +54,12 @@ class ForumDao extends BaseDao
     {
         return $this->update($id, $forum);
     }
+    public function deleteForum($forum_id)
+    {
+        $query = "DELETE FROM forum WHERE forum_id = :forum_id";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':forum_id', $forum_id);
+        return $stmt->execute();
+    }
 }
