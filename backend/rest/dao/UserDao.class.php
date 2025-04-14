@@ -49,4 +49,8 @@ class UserDao extends BaseDao
             ':user_id' => $user_id
         ]);
     }
+    public function createUser($user)
+    {
+        return $this->insert("users", $user);
+    }
 }

@@ -2,8 +2,7 @@
 
 require "vendor/autoload.php";
 
-Flight::route('/fare', function () {
-    echo 'Fare care';
-});
+require "rest/routes/user_routes.php";
+
 
 Flight::start();

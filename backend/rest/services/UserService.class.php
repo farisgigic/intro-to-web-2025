@@ -2,9 +2,10 @@
 
 require_once __DIR__ . '/../dao/UserDao.class.php';
 
-class UserService {
-    
-    private $userDao;
+class UserService
+{
+
+    protected $userDao;
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class UserService {
 
     public function updateUser($id, $user)
     {
-        return $this->userDao->updateUser($id, $user);
+        return $this->userDao->editUserById($id, $user);
     }
 
     public function deleteUser($id)
