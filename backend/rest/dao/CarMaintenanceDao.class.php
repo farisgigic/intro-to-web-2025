@@ -8,6 +8,13 @@ class CarMaintenanceDao extends BaseDao
     {
         parent::__construct('car_maintenance');
     }
+    public function getAllCarMaintenances()
+    {
+        $query = "SELECT * FROM car_maintenance";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getCarMaintenanceByCarId($car_id)
     {
         $query = "SELECT * FROM car_maintenance WHERE car_id = :car_id";
