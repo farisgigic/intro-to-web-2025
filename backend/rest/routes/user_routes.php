@@ -69,7 +69,10 @@ Flight::group("/users", function () {
      */
     Flight::route('POST /add_user', function () {
         $data = Flight::request()->data->getData();
-
+        if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            Flight::json(["error" => "Invalid email format."], 400);
+            return;
+        }
         $user = Flight::get("userService")->createUser($data);
         Flight::json(["message" => "You have successfully added", "data" => $user, "payload" => $data], 200);
     });

@@ -73,6 +73,14 @@ Flight::group("/forums", function () {
      */
     Flight::route("POST /add_forum", function () {
         $data = Flight::request()->data->getData();
+
+        $required_fields = ["title", "description", "user_id"];
+        foreach ($required_fields as $field) {
+            if (!isset($data[$field]) || empty(trim($data[$field]))) {
+                Flight::json(["error" => "Field '$field' is required and cannot be empty."], 400);
+                return;
+            }
+        }
         $forum = Flight::get("forumService")->addForum($data);
         Flight::json(["message" => "You have successfully added", "data" => $forum, "payload" => $data], 200);
     });
