@@ -43,6 +43,10 @@ Flight::group("/cars", function () {
      */
     Flight::route("GET /car/@car_id", function ($car_id) {
         $car = Flight::get("carService")->getCarById($car_id);
+        if (!$car) {
+            Flight::json(["message" => "Car not found"], 404);
+            return;
+        }
         Flight::json($car, 200);
     });
 
