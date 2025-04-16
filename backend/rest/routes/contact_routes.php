@@ -44,11 +44,11 @@ Flight::group("/contacts", function () {
      * )
      */
     Flight::route("GET /contact/@contact_id", function ($contact_id) {
-        $data = Flight::get("contactService")->getContactById($contact_id);
-        if ($data) {
+        try {
+            $data = Flight::get("contactService")->getContactById($contact_id);
             Flight::json($data, 200);
-        } else {
-            Flight::json(["message" => "Contact not found"], 404);
+        } catch (Exception $e) {
+            Flight::json(["message" => "Contact with this ID does not exist."], 404);
         }
     });
     /**
@@ -74,8 +74,12 @@ Flight::group("/contacts", function () {
      */
     Flight::route("POST /add_contact", function () {
         $data = Flight::request()->data->getData();
-        $contact = Flight::get("contactService")->addContact($data);
-        Flight::json(["message" => "You have successfully added", "data" => $contact, "payload" => $data], 200);
+        try {
+            $contact = Flight::get("contactService")->addContact($data);
+            Flight::json(["message" => "You have successfully added", "data" => $contact, "payload" => $data], 200);
+        } catch (Exception $e) {
+            Flight::json(["error" => $e->getMessage()], 500);
+        }
     });
 
     /**
@@ -131,7 +135,11 @@ Flight::group("/contacts", function () {
      */
     Flight::route("PUT /edit_contact/@contact_id", function ($contact_id) {
         $data = Flight::request()->data->getData();
-        $contact = Flight::get("contactService")->editContact($contact_id, $data);
-        Flight::json(["message" => "You have successfully edited contact with id: ", $contact], 200);
+        try {
+            $contact = Flight::get("contactService")->editContact($contact_id, $data);
+            Flight::json(["message" => "You have successfully edited contact with id: ", $contact], 200);
+        } catch (Exception $e) {
+            Flight::json(["error" => $e->getMessage()], 500);
+        }
     });
 });
