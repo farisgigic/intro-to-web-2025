@@ -42,12 +42,13 @@ Flight::group("/cars", function () {
      * )
      */
     Flight::route("GET /car/@car_id", function ($car_id) {
-        $car = Flight::get("carService")->getCarById($car_id);
-        if (!$car) {
-            Flight::json(["message" => "Car not found"], 404);
-            return;
+
+        try {
+            $car = Flight::get("carService")->getCarById($car_id);
+            Flight::json($car, 200);
+        } catch (Exception $e) {
+            Flight::json(["message" => "Car with this ID does not exist."], 404);
         }
-        Flight::json($car, 200);
     });
 
 
@@ -87,8 +88,12 @@ Flight::group("/cars", function () {
 
     Flight::route("POST /add_car", function () {
         $data = Flight::request()->data->getData();
-        $car = Flight::get("carService")->addCar($data);
-        Flight::json(["message" => "You have successfully added", "data" => $car, "payload" => $data], 200);
+        try {
+            $car = Flight::get("carService")->addCar($data);
+            Flight::json(["message" => "Car successfully added.", "data" => $data], 200);
+        } catch (Exception $e) {
+            Flight::json(["error" => $e->getMessage()], 500);
+        }
     });
 
     /**
@@ -157,7 +162,11 @@ Flight::group("/cars", function () {
 
     Flight::route("PUT /edit_car/@car_id", function ($car_id) {
         $data = Flight::request()->data->getData();
-        $car = Flight::get("carService")->editCar($car_id, $data);
-        Flight::json(["message" => "You have successfully edited car with id: ", $car_id], 200);
+        try {
+            $car = Flight::get("carService")->editCar($car_id, $data);
+            Flight::json(["message" => "You have successfully edited car with id: ", $car_id], 200);
+        } catch (Exception $e) {
+            Flight::json(["message" => $e->getMessage()], 404);
+        }
     });
 });
