@@ -17,20 +17,35 @@ class ForumService
 
     public function getForumById($forum_id)
     {
-        return $this->forumDao->getForumById($forum_id);
+        $forum = $this->forumDao->getForumById($forum_id);
+        if (!$forum) {
+            throw new Exception("Forum with ID $forum_id does not exist.");
+        }
+        return $forum;
     }
     public function getForumByTitle($title)
     {
         return $this->forumDao->getForumByTitle($title);
     }
 
-    public function addForum($forum)
+    public function addForum($forumData)
     {
-        return $this->forumDao->addForum($forum);
+        // Validate required fields
+        $requiredFields = ['title', 'description', 'user_id'];
+        foreach ($requiredFields as $field) {
+            if (!isset($forumData[$field]) || empty(trim($forumData[$field]))) {
+                throw new Exception("Field '$field' is required and cannot be empty.");
+            }
+        }
+        return $this->forumDao->addForum($forumData);
     }
 
     public function editForum($id, $forum)
     {
+        $existingID = $this->forumDao->getForumById($id);
+        if (!$existingID) {
+            throw new Exception("Forum with this ID does not exist.");
+        }
         return $this->forumDao->editForum($id, $forum);
     }
 

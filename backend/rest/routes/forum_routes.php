@@ -43,13 +43,14 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("GET /forum/@forum_id", function ($forum_id) {
-        $data = Flight::get('forumService')->getForumById($forum_id);
-        if ($data) {
+        try {
+            $data = Flight::get('forumService')->getForumById($forum_id);
             Flight::json($data, 200);
-        } else {
-            Flight::json(['message' => 'Forum not found'], 404);
+        } catch (Exception $e) {
+            Flight::json(['message' => 'Forum with this ID does not exist.'], 404);
         }
     });
+
 
     /**
      * @OA\Post(
@@ -72,6 +73,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("POST /add_forum", function () {
+
         $data = Flight::request()->data->getData();
 
         $required_fields = ["title", "description", "user_id"];
@@ -81,9 +83,18 @@ Flight::group("/forums", function () {
                 return;
             }
         }
-        $forum = Flight::get("forumService")->addForum($data);
-        Flight::json(["message" => "You have successfully added", "data" => $forum, "payload" => $data], 200);
+
+        try {
+
+            $forum = Flight::get("forumService")->addForum($data);
+
+
+            Flight::json(["message" => "Forum post successfully added.", "data" => $forum], 200);
+        } catch (Exception $e) {
+            Flight::json(["error" => $e->getMessage()], 500);
+        }
     });
+
 
     /**
      * @OA\Delete(
@@ -137,7 +148,13 @@ Flight::group("/forums", function () {
     Flight::route("PUT /edit_forum/@forum_id", function ($forum_id) {
         $data = Flight::request()->data->getData();
         error_log(print_r($data, true));
-        $forum = Flight::get("forumService")->editForum($forum_id, $data);
-        Flight::json(["message" => "You have successfully edited forum with id: ", $forum_id], 200);
+
+        try {
+            $forum = Flight::get("forumService")->editForum($forum_id, $data);
+            Flight::json(["message" => "Forum with ID $forum_id has been successfully updated."], 200);
+        } catch (Exception $e) {
+            Flight::json(["message" => "An error occurred: " . $e->getMessage()], 500);
+        }
     });
+
 });

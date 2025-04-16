@@ -17,7 +17,10 @@ class UserDao extends BaseDao
     public function getUserByEmail($email)
     {
         $query = "SELECT * FROM users WHERE email = :email";
-        return $this->query_unique($query, [':email' => $email]);
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getUserById($user_id)
