@@ -14,6 +14,12 @@ class UserDao extends BaseDao
         $query = "SELECT * FROM users";
         return $this->query($query, []);
     }
+    public function getUserByEmail($email)
+    {
+        $query = "SELECT * FROM users WHERE email = :email";
+        return $this->query_unique($query, [':email' => $email]);
+    }
+
     public function getUserById($user_id)
     {
         $query = "SELECT * FROM users WHERE user_id = :user_id";
@@ -35,20 +41,34 @@ class UserDao extends BaseDao
     }
     public function updateUser($user_id, $user)
     {
-        $query = "UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, email = :email, password = :password, address = :address, city = :city, zip_code = :zip_code, birth_date = :birth_date WHERE user_id = :user_id";
+        $query = "UPDATE users SET 
+                first_name = :first_name, 
+                last_name = :last_name, 
+                username = :username, 
+                email = :email, 
+                password = :password, 
+                address = :address, 
+                city = :city, 
+                zip_code = :zip_code, 
+                birth_date = :birth_date 
+              WHERE user_id = :user_id";
+
         $this->execute($query, [
-            ':first_name' => $user['first_name'],
-            ':last_name' => $user['last_name'],
-            ':username' => $user['username'],
-            ':email' => $user['email'],
-            ':password' => $user['password'],
-            ':address' => $user['address'],
-            ':city' => $user['city'],
-            ':zip_code' => $user['zip_code'],
-            ':birth_date' => $user['birth_date'],
+            ':first_name' => $user['first_name'] ?? null,
+            ':last_name' => $user['last_name'] ?? null,
+            ':username' => $user['username'] ?? null,
+            ':email' => $user['email'] ?? null,
+            ':password' => $user['password'] ?? null,
+            ':address' => $user['address'] ?? null,
+            ':city' => $user['city'] ?? null,
+            ':zip_code' => $user['zip_code'] ?? null,
+            ':birth_date' => $user['birth_date'] ?? null,
             ':user_id' => $user_id
         ]);
+
+        return $this->getUserById($user_id);
     }
+
     public function createUser($user)
     {
         return $this->insert("users", $user);

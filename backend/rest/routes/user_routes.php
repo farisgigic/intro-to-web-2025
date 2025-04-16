@@ -69,13 +69,26 @@ Flight::group("/users", function () {
      */
     Flight::route('POST /add_user', function () {
         $data = Flight::request()->data->getData();
+
+        // Validate email format
         if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             Flight::json(["error" => "Invalid email format."], 400);
             return;
         }
-        $user = Flight::get("userService")->createUser($data);
-        Flight::json(["message" => "You have successfully added", "data" => $user, "payload" => $data], 200);
+
+        try {
+            $user = Flight::get("userService")->createUser($data);
+            Flight::json([
+                "message" => "You have successfully added",
+                "data" => $user,
+                "payload" => $data
+            ], 200);
+        } catch (Exception $e) {
+            // Catch and return a clean error message
+            Flight::json(["error" => $e->getMessage()], 400);
+        }
     });
+
     /**
      * @OA\Delete(
      *      path="/users/delete_user/{id}",
@@ -128,12 +141,26 @@ Flight::group("/users", function () {
      */
 
     Flight::route("PUT /edit_user/@id", function ($user_id) {
-
         $data = Flight::request()->data->getData();
-        error_log(print_r($data, true));
-        $user = Flight::get("userService")->updateUser($user_id, $data);
 
-        Flight::json(["message" => "You have successfully edited user with id: ", $user], 200);
+        try {
+            // Validate input on the route level (optional but helpful)
+            if (isset($data['email']) && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                Flight::json(["error" => "Invalid email format."], 400);
+                return;
+            }
+
+            if (isset($data['password']) && strlen($data['password']) < 6) {
+                Flight::json(["error" => "Password must be at least 6 characters."], 400);
+                return;
+            }
+
+            $user = Flight::get("userService")->updateUser($user_id, $data);
+            Flight::json(["message" => "You have successfully edited user.", "data" => $user], 200);
+
+        } catch (Exception $e) {
+            Flight::json(["error" => $e->getMessage()], 400);
+        }
     });
 
 });
