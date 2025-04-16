@@ -101,8 +101,12 @@ Flight::group("/contacts", function () {
      * )
      */
     Flight::route("DELETE /delete_contact/@contact_id", function ($contact_id) {
-        Flight::get("contactService")->deleteContact($contact_id);
-        Flight::json(["message" => "You have successfully deleted"], 200);
+        try {
+            Flight::get("contactService")->deleteContact($contact_id);
+            Flight::json(["message" => "You have successfully deleted"], 200);
+        } catch (Exception $e) {
+            Flight::json(["message" => "Contact message with this ID does not exist."]);
+        }
     });
 
     /**

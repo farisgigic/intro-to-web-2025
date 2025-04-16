@@ -103,8 +103,13 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('DELETE /delete_user/@id', function ($user_id) {
-        Flight::get("userService")->deleteUser($user_id);
-        Flight::json(["message" => "You have successfully deleted"], 200);
+        try {
+            Flight::get("userService")->deleteUser($user_id);
+            Flight::json(["message" => "You have successfully deleted"], 200);
+        } catch (Exception $e) {
+            Flight::json(["error" => "User with this ID does not exist."], 400);
+
+        }
     });
     /**
      * @OA\Put(

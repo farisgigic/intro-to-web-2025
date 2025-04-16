@@ -52,6 +52,10 @@ class CarService
     }
     public function deleteCar($car_id)
     {
+        $existingCar = $this->carDao->getCarById($car_id);
+        if (!$existingCar) {
+            throw new Exception("Car with this ID does not exist.");
+        }
         return $this->carDao->deleteCar($car_id);
     }
 }

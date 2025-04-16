@@ -51,6 +51,10 @@ class ForumService
 
     public function deleteForum($forum_id)
     {
+        $existingForum = $this->forumDao->getForumById($forum_id);
+        if (!$existingForum) {
+            throw new Exception("Forum with this ID does not exist.");
+        }
         return $this->forumDao->deleteForum($forum_id);
     }
 }

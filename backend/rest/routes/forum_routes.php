@@ -115,8 +115,13 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("DELETE /delete_forum/@forum_id", function ($forum_id) {
-        Flight::get("forumService")->deleteForum($forum_id);
-        Flight::json(["message" => "You have successfully deleted"], 200);
+        try {
+            Flight::get("forumService")->deleteForum($forum_id);
+            Flight::json(["message" => "You have successfully deleted"], 200);
+
+        } catch (Exception $e) {
+            Flight::json(["error" => "Forum with this ID does not exist."], 400);
+        }
     });
 
     /**

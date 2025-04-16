@@ -52,6 +52,10 @@ class UserService
 
     public function deleteUser($id)
     {
+        $existingUser = $this->userDao->getUserById($id);
+        if (!$existingUser) {
+            throw new Exception("User with this ID does not exist.");
+        }
         return $this->userDao->deleteUser($id);
     }
 }

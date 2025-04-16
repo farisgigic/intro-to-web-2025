@@ -44,6 +44,10 @@ class ContactService
     }
     public function deleteContact($contact_id)
     {
+        $existingContact = $this->contactDao->getContactById($contact_id);
+        if (!$existingContact) {
+            throw new Exception("Contact with this ID does not exist.");
+        }
         return $this->contactDao->deleteContact($contact_id);
     }
 }

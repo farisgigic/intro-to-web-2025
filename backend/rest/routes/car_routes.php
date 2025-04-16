@@ -76,7 +76,7 @@ Flight::group("/cars", function () {
      *             @OA\Property(property="transmission", type="string", example="Automatic"),
      *             @OA\Property(property="drivetrain", type="string", example="AWD"),
      *             @OA\Property(property="tires", type="string", example="Michelin Primacy 4"),
-     *             @OA\Property(property="user_id", type="integer", example=2)
+     *             @OA\Property(property="user_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(
@@ -115,8 +115,12 @@ Flight::group("/cars", function () {
      * )
      */
     Flight::route("DELETE /delete_car/@id", function ($car_id) {
-        $data = Flight::get("carService")->deleteCar($car_id);
-        Flight::json(["message" => "You have successfully deleted", "data" => $data], 200);
+        try {
+            Flight::get("carService")->deleteCar($car_id);
+            Flight::json(["message" => "You have successfully deleted"], 200);
+        } catch (Exception $e) {
+            Flight::json(["message" => "Car with this ID does not exist."], 404);
+        }
     });
 
 
