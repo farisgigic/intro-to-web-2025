@@ -11,8 +11,7 @@ class UserDao extends BaseDao
     }
     public function getAllUsers()
     {
-        $query = "SELECT * FROM users";
-        return $this->query($query, []);
+        return $this->get_all();
     }
     public function getUserByEmail($email)
     {
@@ -25,8 +24,10 @@ class UserDao extends BaseDao
 
     public function getUserById($user_id)
     {
-        $query = "SELECT * FROM users WHERE user_id = :user_id";
-        return $this->query_unique($query, [':user_id' => $user_id]);
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getUserByUsername($username)
@@ -38,9 +39,7 @@ class UserDao extends BaseDao
     public function deleteUser($user_id)
     {
         $query = "DELETE FROM users WHERE user_id = :user_id";
-        $this->execute($query, [
-            ':user_id' => $user_id
-        ]);
+        return $this->query_unique($query, [':user_id' => $user_id]);
     }
     public function updateUser($user_id, $user)
     {

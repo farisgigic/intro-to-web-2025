@@ -89,4 +89,12 @@ class BaseDao
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    public function get_all()
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM " . $this->table);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
