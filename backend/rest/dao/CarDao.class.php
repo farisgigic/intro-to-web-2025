@@ -8,23 +8,6 @@ class CarDao extends BaseDao
     {
         parent::__construct('cars');
     }
-
-    public function getAllCars()
-    {
-        $query = "SELECT * FROM cars";
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getCarById($car_id)
-    {
-        $query = "SELECT * FROM cars WHERE car_id = :car_id";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':car_id', $car_id);
-        $stmt->execute();
-        return $stmt->fetch();
-    }
     public function getCarByName($name)
     {
         $query = "SELECT * FROM cars WHERE name = :name";
@@ -55,11 +38,11 @@ class CarDao extends BaseDao
         return $this->insert('cars', $car);
     }
 
-    public function editCar($car_id, $car)
+    public function editCar($id, $car)
     {
         $query = "UPDATE cars SET manufacturer = :manufacturer, model = :model, year = :year, mileage = :mileage, 
                     engine = :engine, registered_until = :registered_until, vin = :vin, fuel_type = :fuel_type, transmission = :transmission, 
-                    drivetrain = :drivetrain, tires = :tires ,user_id = :user_id WHERE car_id = :car_id";
+                    drivetrain = :drivetrain, tires = :tires ,user_id = :user_id WHERE id = :id";
         $this->execute($query, [
             'manufacturer' => $car['manufacturer'],
             'model' => $car['model'],
@@ -73,19 +56,7 @@ class CarDao extends BaseDao
             'drivetrain' => $car['drivetrain'],
             'tires' => $car['tires'],
             'user_id' => $car['user_id'],
-            'car_id' => $car_id
-        ]);
-    }
-
-    public function deleteCar($car_id)
-    {
-        $query = "DELETE FROM cars WHERE car_id = :car_id";
-        // $stmt = $this->connection->prepare($query);
-        // $stmt->bindParam(':id', $id);
-        // return $stmt->execute();
-
-        $this->execute($query, [
-            'car_id' => $car_id
+            'id' => $id
         ]);
     }
 }

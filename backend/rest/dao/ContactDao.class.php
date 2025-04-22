@@ -9,18 +9,6 @@ class ContactDao extends BaseDao
     {
         parent::__construct('contacts');
     }
-    public function getALlContacts()
-    {
-        $query = "SELECT * FROM contacts";
-        return $this->query($query, []);
-    }
-    public function getContactById($contact_id)
-    {
-        $query = "SELECT * FROM contacts WHERE contact_id = :contact_id";
-        return $this->query_unique($query, [
-            ':contact_id' => $contact_id
-        ]);
-    }
     public function getContactByEmail($email)
     {
         $query = "SELECT * FROM contacts WHERE email = :email";
@@ -33,23 +21,15 @@ class ContactDao extends BaseDao
     {
         return $this->insert('contacts', $contact);
     }
-    public function editContact($contact_id, $contact)
+    public function editContact($id, $contact)
     {
-        $query = "UPDATE contacts SET full_name = :full_name, email = :email, subject = :subject, message = :message WHERE contact_id = :contact_id";
+        $query = "UPDATE contacts SET full_name = :full_name, email = :email, subject = :subject, message = :message WHERE id = :id";
         $this->execute($query, [
             ':full_name' => $contact['full_name'],
             ':email' => $contact['email'],
             ':subject' => $contact['subject'],
             ':message' => $contact['message'],
-            ':contact_id' => $contact_id
-        ]);
-    }
-
-    public function deleteContact($contact_id)
-    {
-        $query = "DELETE FROM contacts WHERE contact_id = :contact_id";
-        $this->execute($query, [
-            ':contact_id' => $contact_id
+            ':id' => $id
         ]);
     }
     public function partialUpdate($id, $contact)

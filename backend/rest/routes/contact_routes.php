@@ -141,7 +141,7 @@ Flight::group("/contacts", function () {
         $data = Flight::request()->data->getData();
         try {
             $contact = Flight::get("contactService")->editContact($contact_id, $data);
-            Flight::json(["message" => "You have successfully edited contact with id: ", $contact], 200);
+            Flight::json(["message" => "You have successfully edited contact with id: ", $contact_id], 200);
         } catch (Exception $e) {
             Flight::json(["error" => $e->getMessage()], 500);
         }

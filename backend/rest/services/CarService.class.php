@@ -1,18 +1,18 @@
 <?php
 require_once __DIR__ . '/../dao/CarDao.class.php';
+require_once __DIR__ . '/BaseService.class.php';
 
-class CarService
+class CarService extends BaseService
 {
-    protected $carDao;
 
     public function __construct()
     {
-        $this->carDao = new CarDao();
+        parent::__construct(new CarDao());
     }
     public function getCarById($car_id)
     {
 
-        $car = $this->carDao->getCarById($car_id);
+        $car = $this->dao->get_by_id($car_id);
         if (!$car) {
             throw new Exception("Car with ID $car_id does not exist.");
         }
@@ -20,7 +20,7 @@ class CarService
     }
     public function getAllCars()
     {
-        return $this->carDao->getAllCars();
+        return $this->dao->get_all();
     }
     public function addCar($car)
     {
@@ -39,23 +39,23 @@ class CarService
                 return;
             }
         }
-        return $this->carDao->addCar($car);
+        return $this->dao->addCar($car);
 
     }
     public function editCar($id, $car)
     {
-        $existingID = $this->carDao->getCarById($id);
+        $existingID = $this->dao->get_by_id($id);
         if (!$existingID) {
             throw new Exception("Car with this ID does not exist.");
         }
-        return $this->carDao->editCar($id, $car);
+        return $this->dao->editCar($id, $car);
     }
     public function deleteCar($car_id)
     {
-        $existingCar = $this->carDao->getCarById($car_id);
+        $existingCar = $this->dao->get_by_id($car_id);
         if (!$existingCar) {
             throw new Exception("Car with this ID does not exist.");
         }
-        return $this->carDao->deleteCar($car_id);
+        return $this->dao->delete($car_id);
     }
 }

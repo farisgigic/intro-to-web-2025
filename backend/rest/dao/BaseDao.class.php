@@ -95,6 +95,12 @@ class BaseDao
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function get_by_id($id)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM $this->table WHERE id=:id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 }

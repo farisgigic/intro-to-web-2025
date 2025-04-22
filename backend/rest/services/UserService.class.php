@@ -1,53 +1,52 @@
 <?php
 
 require_once __DIR__ . '/../dao/UserDao.class.php';
-//require_once __DIR__ . '/BaseService.class.php';
-class UserService
+require_once __DIR__ . '/BaseService.class.php';
+class UserService extends BaseService
 {
-    protected $userDao;
     public function __construct()
     {
-        $this->userDao = new UserDao();
+        parent::__construct(new UserDao());
     }
     public function getAllUsers()
     {
 
-        return $this->userDao->getAllUsers(); // UserDao method
+        return $this->dao->get_all();
     }
     public function getUserById($user_id)
     {
-        return $this->userDao->getUserById($user_id); // UserDao method
+        return $this->dao->get_by_id($user_id);
     }
     public function createUser($user)
     {
-        $existingUser = $this->userDao->getUserByEmail($user['email']);
+        $existingUser = $this->dao->getUserByEmail($user['email']);
         if ($existingUser) {
             throw new Exception("User with this email already exists.");
         }
-        return $this->userDao->createUser($user);
+        return $this->dao->createUser($user);
     }
 
     public function updateUser($id, $user)
     {
-        $existingID = $this->userDao->getUserById($id);
+        $existingID = $this->dao->get_by_id($id);
         if (!$existingID) {
             throw new Exception("User with this ID does not exist.");
         }
         if (isset($user['email'])) {
-            $existingUser = $this->userDao->getUserByEmail($user['email']);
+            $existingUser = $this->dao->getUserByEmail($user['email']);
             if ($existingUser && $existingUser['user_id'] != $id) {
                 throw new Exception("Another user with this email already exists.");
             }
         }
-        return $this->userDao->updateUser($id, $user);
+        return $this->dao->updateUser($id, $user);
     }
 
     public function deleteUser($id)
     {
-        $user = $this->userDao->getUserById($id);
+        $user = $this->dao->get_by_id($id);
         if (!$user) {
             throw new Exception("User not found.");
         }
-        return $this->userDao->deleteUser($id); // BaseService method
+        return $this->dao->delete($id);
     }
 }

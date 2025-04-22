@@ -1,18 +1,17 @@
 <?php
 
 require_once __DIR__ . "/../dao/ContactDao.class.php";
+require_once __DIR__ . "/BaseService.class.php";
 
-class ContactService
+class ContactService extends BaseService
 {
-    protected $contactDao;
-
     public function __construct()
     {
-        $this->contactDao = new ContactDao();
+        parent::__construct(new ContactDao());
     }
     public function getContactById($id)
     {
-        $contact = $this->contactDao->getContactById($id);
+        $contact = $this->dao->get_by_id($id);
         if (!$contact) {
             throw new Exception("Contact with ID $id does not exist.");
         }
@@ -20,7 +19,7 @@ class ContactService
     }
     public function getAllContacts()
     {
-        return $this->contactDao->getAllContacts();
+        return $this->dao->get_all();
     }
     public function addContact($contact)
     {
@@ -31,23 +30,23 @@ class ContactService
                 throw new Exception("Field '$field' is required and cannot be empty.");
             }
         }
-        return $this->contactDao->addContact($contact);
+        return $this->dao->addContact($contact);
 
     }
     public function editContact($id, $contact)
     {
-        $existingID = $this->contactDao->getContactById($id);
+        $existingID = $this->dao->get_by_id($id);
         if (!$existingID) {
             throw new Exception("Contact message with this ID does not exist.");
         }
-        return $this->contactDao->editContact($id, $contact);
+        return $this->dao->editContact($id, $contact);
     }
     public function deleteContact($contact_id)
     {
-        $existingContact = $this->contactDao->getContactById($contact_id);
+        $existingContact = $this->dao->get_by_id($contact_id);
         if (!$existingContact) {
             throw new Exception("Contact with this ID does not exist.");
         }
-        return $this->contactDao->deleteContact($contact_id);
+        return $this->dao->delete($contact_id);
     }
 }

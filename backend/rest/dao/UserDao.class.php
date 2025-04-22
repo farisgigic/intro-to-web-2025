@@ -9,10 +9,6 @@ class UserDao extends BaseDao
     {
         parent::__construct('users');
     }
-    public function getAllUsers()
-    {
-        return $this->get_all();
-    }
     public function getUserByEmail($email)
     {
         $query = "SELECT * FROM users WHERE email = :email";
@@ -22,26 +18,12 @@ class UserDao extends BaseDao
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getUserById($user_id)
-    {
-        $stmt = $this->connection->prepare("SELECT * FROM users WHERE user_id = :user_id");
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function getUserByUsername($username)
     {
         $query = "SELECT * FROM users WHERE username = :username";
         return $this->query_unique($query, [':username' => $username]);
     }
-
-    public function deleteUser($user_id)
-    {
-        $query = "DELETE FROM users WHERE user_id = :user_id";
-        return $this->query_unique($query, [':user_id' => $user_id]);
-    }
-    public function updateUser($user_id, $user)
+    public function updateUser($id, $user)
     {
         $query = "UPDATE users SET 
                 first_name = :first_name, 
@@ -53,7 +35,7 @@ class UserDao extends BaseDao
                 city = :city, 
                 zip_code = :zip_code, 
                 birth_date = :birth_date 
-              WHERE user_id = :user_id";
+              WHERE id = :id";
 
         $this->execute($query, [
             ':first_name' => $user['first_name'] ?? null,
@@ -65,10 +47,10 @@ class UserDao extends BaseDao
             ':city' => $user['city'] ?? null,
             ':zip_code' => $user['zip_code'] ?? null,
             ':birth_date' => $user['birth_date'] ?? null,
-            ':user_id' => $user_id
+            ':id' => $id
         ]);
 
-        return $this->getUserById($user_id);
+        return $this->get_by_id($id);
     }
 
     public function createUser($user)

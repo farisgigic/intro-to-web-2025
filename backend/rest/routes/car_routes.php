@@ -154,7 +154,7 @@ Flight::group("/cars", function () {
      *             @OA\Property(property="transmission", type="string", example="Manual"),
      *             @OA\Property(property="drivetrain", type="string", example="AWD"),
      *             @OA\Property(property="tires", type="string", example="Bridgestone Potenza"),
-     *             @OA\Property(property="user_id", type="integer", example=3)
+     *             @OA\Property(property="user_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(

@@ -1,23 +1,22 @@
 <?php
+require_once __DIR__ . "/BaseService.class.php";
 require_once __DIR__ . "/../dao/ForumDao.class.php";
 
-class ForumService
+class ForumService extends BaseService
 {
-    protected $forumDao;
-
     public function __construct()
     {
-        $this->forumDao = new ForumDao();
+        parent::__construct(new ForumDao());
     }
 
     public function getAllForums()
     {
-        return $this->forumDao->getAllForums();
+        return $this->dao->get_all();
     }
 
     public function getForumById($forum_id)
     {
-        $forum = $this->forumDao->getForumById($forum_id);
+        $forum = $this->dao->get_by_id($forum_id);
         if (!$forum) {
             throw new Exception("Forum with ID $forum_id does not exist.");
         }
@@ -25,7 +24,7 @@ class ForumService
     }
     public function getForumByTitle($title)
     {
-        return $this->forumDao->getForumByTitle($title);
+        return $this->dao->getForumByTitle($title);
     }
 
     public function addForum($forumData)
@@ -37,24 +36,24 @@ class ForumService
                 throw new Exception("Field '$field' is required and cannot be empty.");
             }
         }
-        return $this->forumDao->addForum($forumData);
+        return $this->dao->addForum($forumData);
     }
 
     public function editForum($id, $forum)
     {
-        $existingID = $this->forumDao->getForumById($id);
+        $existingID = $this->dao->get_by_id($id);
         if (!$existingID) {
             throw new Exception("Forum with this ID does not exist.");
         }
-        return $this->forumDao->editForum($id, $forum);
+        return $this->dao->editForum($id, $forum);
     }
 
     public function deleteForum($forum_id)
     {
-        $existingForum = $this->forumDao->getForumById($forum_id);
+        $existingForum = $this->dao->get_by_id($forum_id);
         if (!$existingForum) {
             throw new Exception("Forum with this ID does not exist.");
         }
-        return $this->forumDao->deleteForum($forum_id);
+        return $this->dao->deleteForum($forum_id);
     }
 }
