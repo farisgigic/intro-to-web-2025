@@ -52,22 +52,22 @@ class BaseDao
         return $prepared_statement;
     }
 
-    public function insert($table, $entity)
+    public function add($entity)
     {
-        $query = "INSERT INTO {$table} (";
-        foreach ($entity as $column => $value) {
-            $query .= $column . ", ";
+        $query = "INSERT INTO $this->table (";
+        foreach ($entity as $key => $value) {
+            $query .= $key . ", ";
         }
         $query = substr($query, 0, -2);
         $query .= ") VALUES (";
-        foreach ($entity as $column => $value) {
-            $query .= ":" . $column . ", ";
+        foreach ($entity as $key => $value) {
+            $query .= ":" . $key . ", ";
         }
         $query = substr($query, 0, -2);
         $query .= ")";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute($entity); // SQL injection prevention
+        $stmt->execute($entity);
         $entity['id'] = $this->connection->lastInsertId();
         return $entity;
     }

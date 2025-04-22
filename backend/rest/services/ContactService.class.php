@@ -30,7 +30,7 @@ class ContactService extends BaseService
                 throw new Exception("Field '$field' is required and cannot be empty.");
             }
         }
-        return $this->dao->addContact($contact);
+        return $this->dao->add($contact);
 
     }
     public function editContact($id, $contact)

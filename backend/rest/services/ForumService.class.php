@@ -36,7 +36,7 @@ class ForumService extends BaseService
                 throw new Exception("Field '$field' is required and cannot be empty.");
             }
         }
-        return $this->dao->addForum($forumData);
+        return $this->dao->add($forumData);
     }
 
     public function editForum($id, $forum)
@@ -45,7 +45,7 @@ class ForumService extends BaseService
         if (!$existingID) {
             throw new Exception("Forum with this ID does not exist.");
         }
-        return $this->dao->editForum($id, $forum);
+        return $this->dao->update($id, $forum);
     }
 
     public function deleteForum($forum_id)
@@ -54,6 +54,6 @@ class ForumService extends BaseService
         if (!$existingForum) {
             throw new Exception("Forum with this ID does not exist.");
         }
-        return $this->dao->deleteForum($forum_id);
+        return $this->dao->delete($forum_id);
     }
 }

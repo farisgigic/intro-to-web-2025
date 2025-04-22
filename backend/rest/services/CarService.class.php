@@ -39,7 +39,7 @@ class CarService extends BaseService
                 return;
             }
         }
-        return $this->dao->addCar($car);
+        return $this->dao->add($car);
 
     }
     public function editCar($id, $car)

@@ -23,7 +23,7 @@ class UserService extends BaseService
         if ($existingUser) {
             throw new Exception("User with this email already exists.");
         }
-        return $this->dao->createUser($user);
+        return $this->dao->add($user);
     }
 
     public function updateUser($id, $user)
@@ -38,7 +38,7 @@ class UserService extends BaseService
                 throw new Exception("Another user with this email already exists.");
             }
         }
-        return $this->dao->updateUser($id, $user);
+        return $this->dao->update($id, $user);
     }
 
     public function deleteUser($id)

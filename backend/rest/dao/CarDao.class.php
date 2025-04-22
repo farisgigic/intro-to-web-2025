@@ -16,27 +16,6 @@ class CarDao extends BaseDao
         $stmt->execute();
         return $stmt->fetch();
     }
-    public function addCar($car)
-    {
-        // $query = "INSERT INTO cars (manufacturer, model, year, mileage, engine, registered_until, vin, fuel_type, transmission, drivetrain, tires, user_id) 
-        //             VALUES (:manufacturer, :model, :year, :mileage, :engine, :registered_until, :vin, :fuel_type, :transmission, :drivetrain, :tires, :user_id)";
-        // $stmt = $this->connection->prepare($query);
-
-        // $stmt->bindParam(':name', $car['name']);
-        // $stmt->bindParam(':model', $car['model']);
-        // $stmt->bindParam(':year', $car['year']);
-        // $stmt->bindParam(':mileage', $car['mileage']);
-        // $stmt->bindParam(':engine', $car['engine']);
-        // $stmt->bindParam(':registered_until', $car['registered_until']);
-        // $stmt->bindParam(':vin', $car['vin']);
-        // $stmt->bindParam(':fuel_type', $car['fuel_type']);
-        // $stmt->bindParam(':transmission', $car['transmission']);
-        // $stmt->bindParam(':drivetrain', $car['drivetrain']);
-        // $stmt->bindParam(':tires', $car['tires']);
-        // $stmt->bindParam(':user_id', $car['user_id']);
-        // return $stmt->execute();
-        return $this->insert('cars', $car);
-    }
 
     public function editCar($id, $car)
     {

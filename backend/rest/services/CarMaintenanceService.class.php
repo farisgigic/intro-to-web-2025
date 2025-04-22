@@ -28,7 +28,7 @@ class CarMaintenanceService extends BaseService
 
     public function editCarMaintenance($id, $car_maintenance)
     {
-        return $this->dao->editCarMaintenance($id, $car_maintenance);
+        return $this->dao->update($id, $car_maintenance);
     }
 
     public function deleteCarMaintenance($car_maintenance_id)
