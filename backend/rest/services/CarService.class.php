@@ -42,14 +42,6 @@ class CarService extends BaseService
         return $this->dao->add($car);
 
     }
-    public function editCar($id, $car)
-    {
-        $existingID = $this->dao->get_by_id($id);
-        if (!$existingID) {
-            throw new Exception("Car with this ID does not exist.");
-        }
-        return $this->dao->editCar($id, $car);
-    }
     public function deleteCar($car_id)
     {
         $existingCar = $this->dao->get_by_id($car_id);
@@ -57,5 +49,14 @@ class CarService extends BaseService
             throw new Exception("Car with this ID does not exist.");
         }
         return $this->dao->delete($car_id);
+    }
+
+    public function editCar($car_id, $car)
+    {
+        $existingID = $this->dao->get_by_id($car_id);
+        if (!$existingID) {
+            throw new Exception("Car with this ID does not exist.");
+        }
+        return $this->dao->update($car_id, $car);
     }
 }

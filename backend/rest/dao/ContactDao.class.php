@@ -16,17 +16,6 @@ class ContactDao extends BaseDao
             ':email' => $email
         ]);
     }
-    public function editContact($id, $contact)
-    {
-        $query = "UPDATE contacts SET full_name = :full_name, email = :email, subject = :subject, message = :message WHERE id = :id";
-        $this->execute($query, [
-            ':full_name' => $contact['full_name'],
-            ':email' => $contact['email'],
-            ':subject' => $contact['subject'],
-            ':message' => $contact['message'],
-            ':id' => $id
-        ]);
-    }
     public function partialUpdate($id, $contact)
     {
         return $this->update($id, $contact);

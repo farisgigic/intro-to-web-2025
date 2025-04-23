@@ -39,7 +39,7 @@ class ContactService extends BaseService
         if (!$existingID) {
             throw new Exception("Contact message with this ID does not exist.");
         }
-        return $this->dao->editContact($id, $contact);
+        return $this->dao->update($id, $contact);
     }
     public function deleteContact($contact_id)
     {
