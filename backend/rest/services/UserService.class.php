@@ -1,38 +1,52 @@
 <?php
 
 require_once __DIR__ . '/../dao/UserDao.class.php';
-
-class UserService {
-    
-    private $userDao;
-
+require_once __DIR__ . '/BaseService.class.php';
+class UserService extends BaseService
+{
     public function __construct()
     {
-        $this->userDao = new UserDao();
+        parent::__construct(new UserDao());
     }
-
-    public function getUserById($id)
-    {
-        return $this->userDao->getUserById($id);
-    }
-
     public function getAllUsers()
     {
-        return $this->userDao->getAllUsers();
-    }
 
+        return $this->dao->get_all();
+    }
+    public function getUserById($user_id)
+    {
+        return $this->dao->get_by_id($user_id);
+    }
     public function createUser($user)
     {
-        return $this->userDao->createUser($user);
+        $existingUser = $this->dao->getUserByEmail($user['email']);
+        if ($existingUser) {
+            throw new Exception("User with this email already exists.");
+        }
+        return $this->dao->add($user);
     }
 
     public function updateUser($id, $user)
     {
-        return $this->userDao->updateUser($id, $user);
+        $existingID = $this->dao->get_by_id($id);
+        if (!$existingID) {
+            throw new Exception("User with this ID does not exist.");
+        }
+        if (isset($user['email'])) {
+            $existingUser = $this->dao->getUserByEmail($user['email']);
+            if ($existingUser && $existingUser['user_id'] != $id) {
+                throw new Exception("Another user with this email already exists.");
+            }
+        }
+        return $this->dao->update($id, $user);
     }
 
     public function deleteUser($id)
     {
-        return $this->userDao->deleteUser($id);
+        $user = $this->dao->get_by_id($id);
+        if (!$user) {
+            throw new Exception("User not found.");
+        }
+        return $this->dao->delete($id);
     }
 }

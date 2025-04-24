@@ -7,23 +7,6 @@ class ForumDao extends BaseDao
     {
         parent::__construct('forum');
     }
-    public function getAllForums()
-    {
-        $query = "SELECT * FROM forum";
-
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-    public function getForumById($id)
-    {
-        $query = "SELECT * FROM forum WHERE id = :id";
-
-        $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetch();
-    }
     public function getForumByTitle($title)
     {
         $query = "SELECT * FROM forum WHERE title = :title";
@@ -33,25 +16,5 @@ class ForumDao extends BaseDao
         $stmt->execute();
         return $stmt->fetch();
     }
-    public function addForum($forum)
-    {
-        return $this->insert('forum', $forum);
-    }
-    public function editForum($forum_id, $forum)
-    {
-        $query = "  UPDATE forum 
-                    SET title = :title, description = :description, created_at = :created_at
-                    WHERE forum_id = :forum_id";
-        $stmt = $this->connection->prepare($query);
-        $stmt->bindParam(':title', $forum['title']);
-        $stmt->bindParam(':description', $forum['description']);
-        $stmt->bindParam(':created_at', $forum['created_at']);
-        $stmt->bindParam(':forum_id', $forum_id);
-        return $stmt->execute();
-    }
 
-    public function partialUpdate($id, $forum)
-    {
-        return $this->update($id, $forum);
-    }
 }
