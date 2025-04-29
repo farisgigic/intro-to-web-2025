@@ -63,7 +63,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="#landing"><img src="img/logo.png" alt="CarCare logo"></a>
-                    </div>
+                    </div>  
                 </div>
                 <div class="col-lg-10">
                     <div class="header__nav">
@@ -75,15 +75,19 @@
                                 <li><a href="#forum">Forum</a></li>
                             </ul>
                         </nav>
-                        <div class="header__nav__widget">
-                            <div class="header__nav__widget__btn">
-                                <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-                            </div>
-                            <a href="#login" class="primary-btn">
-                                <img src="img/icons/login-icon.png">
-                                Login</a>
-                                
+                        <div class="header__nav__widget dropdown">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="user-name">User</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><h6 class="dropdown-header" id="dropdown-fullname">Full Name</h6></li>
+                                <li><a class="dropdown-item" href="#" onclick="Utils.logout()">
+                                    <img src="img/icons/login-icon.png" style="width: 16px; margin-right: 6px;">
+                                    Logout
+                                </a></li>
+                            </ul>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -224,14 +228,23 @@
     <script src="js/toastr.min.js"></script>
     <!-- <script src="js/form_checker.js"></script> -->
     <script>
-        let app = $.spapp({
-        templateDir: "./tpl/",
-        defaultView: "#landing",
-      });
+        if(Utils.get_from_localstorage("user")){
+            Utils.init_spapp();
+        } else{
+            window.location = "login";
 
-        app.run();
+        }
+        
+     </script>
+     <script>
+        const user = Utils.get_from_localstorage("user");
+    
+        if (user) {
+            const fullName = `${user.first_name} ${user.last_name}`;
+            document.getElementById("user-name").textContent = fullName;
+        }
     </script>
-
+    
     <script src="js/services/car-service.js"></script>
     <script src="js/services/user-service.js"></script>
     <script src="js/contact_form_checker.js"></script>

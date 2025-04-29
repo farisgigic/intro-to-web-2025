@@ -10,6 +10,7 @@ h4{
 }
 /* Adjust spacing around form */
 .login_container {
+    
     max-width: 500px;
     margin: 40px auto; /* More space between header and form */
     padding: 20px;
