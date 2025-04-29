@@ -7,6 +7,28 @@ Flight::set("carService", new CarService());
 
 Flight::group("/cars", function () {
 
+    Flight::route('GET /', function () {
+        $payload = Flight::request()->query;
+
+        $params = [
+            'start' => (int) $payload['start'],
+            'search' => $payload['search']['value'],
+            'draw' => $payload['draw'],
+            'limit' => (int) $payload['length'],
+            'order_column' => $payload['order'][0]['name'],
+            'order_direction' => $payload['order'][0]['dir'],
+        ];
+
+        $data = Flight::get('carService')->get_cars_paginated($params['start'], $params['limit'], $params['search'], $params['order_column'], $params['order_direction']);
+
+        echo json_encode([
+            'draw' => $params['draw'],
+            'data' => $data['data'],
+            'recordsFiltered' => $data['count'],
+            'recordsTotal' => $data['count'],
+            'end' => $data['count']
+        ]);
+    });
     /**
      * @OA\Get(
      *     path="/cars/all",

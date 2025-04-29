@@ -1,18 +1,18 @@
 var CarService = {
     reload_cars_datatable: function () {
         Utils.get_datatable(
-            "tbl_cars", "",
+            "tbl_cars", "http://localhost/intro-to-web-2025/backend/cars/",
             [
-                { data: "id" },
-                { data: "first_name" },
-                { data: "last_name" },
-                { data: "semester" },
-                { data: "id_number" },
-                { data: "id_user" },
+                { data: "number" },
+                { data: "manufacturer" },
+                { data: "model" },
+                { data: "year" },
+                { data: "engine" },
                 { data: "actions" },
+                // { data: "actions" },
 
             ], null, function () {
-                console.log("avshbjdk");
+                console.log("Datatable works");
             }
         );
     }

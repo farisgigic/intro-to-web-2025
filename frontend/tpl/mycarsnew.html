@@ -21,37 +21,100 @@
         </div>
     </div>
     <!-- Breadcrumb Begin -->
-    <div id="layoutSidenav_content">
+    <div id="layoutSidenav_content" style="margin-top: 50px;">
         <main>
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-6">
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         My Cars
                     </div>
                     <div class="card-body">
-                        <table id="tbl_cars">
+                        <table class="table table-striped table-bordered table-hover table-responsive"  id="tbl_cars">
                             <thead>
                                 <tr>
-                                    <th data-name ="id">ID</th>
-                                    <th data-name ="first_name" >First Name</th>
-                                    <th data-name ="last_name" >Last Name</th>
-                                    <th data-name ="semester">Semester</th>
-                                    <th data-name ="id_number">ID num</th>
-                                    <th data-name ="id_user">ID user</th>
+                                    <th data-name ="number">No</th>
+                                    <th data-name ="manufacturer" >Manufacturer</th>
+                                    <th data-name ="model" >Model</th>
+                                    <th data-name ="year">Year</th>
+                                    <th data-name ="engine">Engine</th>
                                     <th data-name ="actions">Actions</th>
+                                    <!-- <th data-name ="id_user">ID user</th>
+                                    <th data-name ="actions">Actions</th> -->
                                 </tr>
                             </thead>
                         </table>
                     </div>
                 </div>
             </div>
-            
+            <div
+            class="modal fade"
+            id="edit-car-modal"
+            tabindex="-1"
+            aria-labelledby="edit-car-label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form id="edit-car-form">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="edit-car-label">Edit Car</h5>
+                  </div>
+                  <div class="modal-body">
+                    <input type="hidden" name="id" id="id" />
+                    <div class="mb-3">
+                      <label for="manufacturer" class="col-form-label">Manufacturer:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="manufacturer"
+                        id="manufacturer"
+                      />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Model" class="col-form-label">Model:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="model"
+                          id="model"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="Model" class="col-form-label">Year:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="year"
+                          id="year"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="Model" class="col-form-label">Engine:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="engine"
+                          id="engine"
+                        />
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="cancel"
+                      class="btn btn-outline-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button  class="btn btn-success">Complete edit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </main>
     <script src="js/main.js"></script>
-    <script>
-        let table = new DataTable('#carTable');
-    </script>
     <script src="js/datatables.min.js"></script>
     <script>
         CarService.reload_cars_datatable();

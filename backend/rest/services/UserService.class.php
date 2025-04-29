@@ -49,4 +49,24 @@ class UserService extends BaseService
         }
         return $this->dao->delete($id);
     }
+    public function get_users_paginated($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_users_paginated($search)['count'];
+        $rows = $this->dao->get_users_paginated($offset, $limit, $search, $order_column, $order_direction);
+
+
+        foreach ($rows as $id => $car) {
+
+            $rows[$id]['actions'] = '<div class="btn-group" role="group" aria-label="Actions"> ' .
+                ' <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-car-modal">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
+                '</div>';
+        }
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
+        // onclick="PatientService.open_edit_patient_modal('. $car['id'] .')"
+        // onclick="PatientService.delete_patient('. $car['id'] .')"
+    }
 }
