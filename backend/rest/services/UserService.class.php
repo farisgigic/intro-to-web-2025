@@ -23,6 +23,7 @@ class UserService extends BaseService
         if ($existingUser) {
             throw new Exception("User with this email already exists.");
         }
+        $user["password"] = password_hash($user["password"], PASSWORD_BCRYPT);
         return $this->dao->add($user);
     }
 
