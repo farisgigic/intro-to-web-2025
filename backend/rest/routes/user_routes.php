@@ -1,24 +1,32 @@
 <?php
 require_once __DIR__ . '/../services/UserService.class.php';
+require_once __DIR__ . '/../../data/roles.php';
 
 Flight::set('userService', new UserService());
-
 
 Flight::group("/users", function () {
 
     Flight::route('GET /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $payload = Flight::request()->query;
 
+        // Set default values for missing parameters
         $params = [
-            'start' => (int) $payload['start'],
-            'search' => $payload['search']['value'],
-            'draw' => $payload['draw'],
-            'limit' => (int) $payload['length'],
-            'order_column' => $payload['order'][0]['name'],
-            'order_direction' => $payload['order'][0]['dir'],
+            'start' => isset($payload['start']) ? (int) $payload['start'] : 0,
+            'search' => isset($payload['search']['value']) ? $payload['search']['value'] : '',
+            'draw' => isset($payload['draw']) ? (int) $payload['draw'] : 1,
+            'limit' => isset($payload['length']) ? (int) $payload['length'] : 10,
+            'order_column' => isset($payload['order'][0]['name']) ? $payload['order'][0]['name'] : 'username',
+            'order_direction' => isset($payload['order'][0]['dir']) ? $payload['order'][0]['dir'] : 'asc',
         ];
 
-        $data = Flight::get('userService')->get_users_paginated($params['start'], $params['limit'], $params['search'], $params['order_column'], $params['order_direction']);
+        $data = Flight::get('userService')->get_users_paginated(
+            $params['start'],
+            $params['limit'],
+            $params['search'],
+            $params['order_column'],
+            $params['order_direction']
+        );
 
         echo json_encode([
             'draw' => $params['draw'],
@@ -28,6 +36,8 @@ Flight::group("/users", function () {
             'end' => $data['count']
         ]);
     });
+
+
     /**
      * @OA\Get(
      *      path="/users/all",
@@ -40,6 +50,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('GET /all', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN); // Only admins can see all users
         $data = Flight::get('userService')->getAllUsers();
         Flight::json($data, 200);
     });
@@ -57,6 +68,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('GET /user/@id', function ($id) {
+        //Flight::auth_middleware()->authorizeRole("user"); // Users can get their own data or admin can access others
         $data = Flight::get('userService')->getUserById($id);
         if ($data) {
             Flight::json($data, 200);
@@ -64,6 +76,7 @@ Flight::group("/users", function () {
             Flight::json(['message' => 'User not found'], 404);
         }
     });
+
     /**
      * @OA\Post(
      *      path="/users/add_user",
@@ -91,6 +104,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('POST /add_user', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::request()->data->getData();
 
         // Validate email format
@@ -122,18 +136,18 @@ Flight::group("/users", function () {
      *           description="Deleted user data with provided id "
      *      ),
      *      @OA\Parameter(@OA\Schema(type="number"), in="path", name="id", example="1", description="User ID")
-
      * )
      */
     Flight::route('DELETE /delete_user/@id', function ($user_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN); // Only admin can delete users
         try {
             Flight::get("userService")->deleteUser($user_id);
             Flight::json(["message" => "You have successfully deleted"], 200);
         } catch (Exception $e) {
             Flight::json(["error" => "User with this ID does not exist."], 400);
-
         }
     });
+
     /**
      * @OA\Put(
      *     path="/users/edit_user/{id}",
@@ -167,8 +181,8 @@ Flight::group("/users", function () {
      *     )
      * )
      */
-
     Flight::route("PUT /edit_user/@id", function ($user_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::USER); // Users can edit their own data
         $data = Flight::request()->data->getData();
 
         try {

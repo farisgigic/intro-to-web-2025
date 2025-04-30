@@ -79,13 +79,17 @@
                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span id="user-name">User</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" id="user-dropdown-menu">
                                 <li><h6 class="dropdown-header" id="dropdown-fullname">Full Name</h6></li>
+                                <!-- Dashboard will be injected here if admin -->
+                                <li id="dashboard-item" style="display: none;">
+                                    <a class="dropdown-item" href="#admin">Dashboard</a>
+                                </li>
                                 <li><a class="dropdown-item" href="#" onclick="Utils.logout()">
                                     <img src="img/icons/login-icon.png" style="width: 16px; margin-right: 6px;">
                                     Logout
                                 </a></li>
-                            </ul>
+                            </ul>                            
                         </div>
                         
                     </div>
@@ -101,7 +105,7 @@
     <main id="spapp" role="main">
         <section id="landing" data-load = "landing.html"></section>
         <section id="about" data-load="about.html"></section>
-        <section id="cars" data-load="mycars.html"></section>
+        <section id="mycars" data-load="mycars.html"></section>
         <section id="forum" data-load="forum.html"></section>
         <section id="login" data-load="login.html"></section>
         <section id="register" data-load="signup.html"></section>
@@ -111,7 +115,7 @@
         <section id="audi-details" data-load="cars/audi-details.html"></section>
         <section id="polo-details" data-load="cars/polo-details.html"></section>
         <section id="car" data-load="car.html"></section>
-        <section id="mycars" data-load="mycarsnew.html"></section>
+        <section id="cars" data-load="mycarsnew.html"></section>
         <section id="admin" data-load="admin.html"></section>
     </main>
 
@@ -226,6 +230,8 @@
     <script src="utils/utils.js"></script>
 
     <script src="js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
     <!-- <script src="js/form_checker.js"></script> -->
     <script>
         if(Utils.get_from_localstorage("user")){
@@ -242,9 +248,12 @@
         if (user) {
             const fullName = `${user.first_name} ${user.last_name}`;
             document.getElementById("user-name").textContent = fullName;
+            if (user.role === "admin") {
+                const dashboardItem = document.getElementById("dashboard-item");
+                dashboardItem.style.display = "block"; // Show the dashboard option
+            }
         }
     </script>
-    
     <script src="js/services/car-service.js"></script>
     <script src="js/services/user-service.js"></script>
     <script src="js/contact_form_checker.js"></script>

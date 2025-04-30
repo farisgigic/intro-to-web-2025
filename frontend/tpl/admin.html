@@ -52,6 +52,9 @@
     <script src="js/main.js"></script>
     <script src="js/datatables.min.js"></script>
     <script>
+        const user = Utils.get_from_localstorage("user");
+        console.log(user);
+        // Flight::response()->header('Authentication', $token);
         UserService.reload_users_datatable();
     </script>
 </body>

@@ -151,19 +151,19 @@
         FormValidation.validate("#login_form", {}, function (data) {
         //   Utils.block_ui("#form-container");
   
-          RestClient.post(
-            "auth/login",
-            data,
-            function (response) {
-            //   Utils.unblock_ui("#form-container");
-              Utils.set_to_localstorage("user", response);
-              window.location = "../";
-            },
-            function (xhr) {
-            //   Utils.unblock_ui("#login_container");
-              toastr.error(xhr.responseText);
-            }
-          );
+        RestClient.post(
+  "auth/login",
+  data,
+  function (response) {
+    Utils.set_to_localstorage("user", response);
+    Utils.set_to_localstorage("token", response.token); 
+    window.location = "../";
+  },
+  function (xhr) {
+    toastr.error(xhr.responseText);
+  }
+);
+
         });
       </script>
 </body>

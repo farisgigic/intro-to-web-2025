@@ -29,15 +29,15 @@ Flight::group("/auth", function () {
     Flight::route("POST /login", function () {
         $payload = Flight::request()->data->getData();
 
-        $patient = Flight::get('auth_service')->get_user_by_email($payload['email']);
+        $user = Flight::get('auth_service')->get_user_by_email($payload['email']);
 
-        if (!$patient || !password_verify($payload['password'], $patient['password']))
-            Flight::halt(500, "Invalid username or password");
+        if (!$user || !password_verify($payload['password'], $user['password']))
+            Flight::halt(401, "Invalid username or password");
 
-        unset($patient['password']);
+        unset($user['password']);
 
         $jwt_payload = [
-            'user' => $patient,
+            'user' => $user,
             'iat' => time(),
             'exp' => time() + (60 * 60 * 24) // valid for day
         ];
@@ -47,9 +47,9 @@ Flight::group("/auth", function () {
             JWT_SECRET,
             'HS256'
         );
-
+        Flight::response()->header('Authentication', $token);
         Flight::json(
-            array_merge($patient, ['token' => $token])
+            array_merge($user, ['token' => $token])
         );
     });
 
