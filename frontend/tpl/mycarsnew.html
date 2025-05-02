@@ -29,8 +29,9 @@
                         <i class="fas fa-table me-1"></i>
                         My Cars
                     </div>
-                    <div class="card-body">
-                        <table class="table table-striped table-bordered table-hover table-responsive"  id="tbl_cars">
+                    <div class ="card-body p-2">
+                      <div class="table-responsive">
+                        <table class="table table-sm table-striped table-bordered table-hover"  id="tbl_cars">
                             <thead>
                                 <tr>
                                     <th data-name ="number">No</th>
@@ -39,11 +40,13 @@
                                     <th data-name ="year">Year</th>
                                     <th data-name ="engine">Engine</th>
                                     <th data-name ="actions">Actions</th>
+                                    
                                     <!-- <th data-name ="id_user">ID user</th>
                                     <th data-name ="actions">Actions</th> -->
                                 </tr>
                             </thead>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -117,6 +120,8 @@
     <script src="js/main.js"></script>
     <script src="js/datatables.min.js"></script>
     <script>
+        const user = Utils.get_from_localstorage("user");
+          //console.log(user);
         CarService.reload_cars_datatable();
     </script>
 </body>

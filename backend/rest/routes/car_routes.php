@@ -2,14 +2,19 @@
 
 
 require_once __DIR__ . "/../services/CarService.class.php";
+require_once __DIR__ . '/../../data/roles.php';
+
 
 Flight::set("carService", new CarService());
 
 Flight::group("/cars", function () {
 
     Flight::route('GET /', function () {
+        // Flight::auth_middleware()->authorizeRole(Roles::USER);
+        $user = Flight::get("user");
         $payload = Flight::request()->query;
 
+        // Prepare parameters for the carService method
         $params = [
             'start' => (int) $payload['start'],
             'search' => $payload['search']['value'],
@@ -19,16 +24,31 @@ Flight::group("/cars", function () {
             'order_direction' => $payload['order'][0]['dir'],
         ];
 
-        $data = Flight::get('carService')->get_cars_paginated($params['start'], $params['limit'], $params['search'], $params['order_column'], $params['order_direction']);
+        // Get the paginated car data from the service
+        $data = Flight::get('carService')->get_cars_paginated(
+            $user->id,
+            $params['start'],
+            $params['limit'],
+            $params['search'],
+            $params['order_column'],
+            $params['order_direction']
+        );
 
-        echo json_encode([
+        // Prepare the response structure
+        $response = [
             'draw' => $params['draw'],
             'data' => $data['data'],
-            'recordsFiltered' => $data['count'],
-            'recordsTotal' => $data['count'],
-            'end' => $data['count']
-        ]);
+            'recordsFiltered' => $data['count'], // Ensure 'count' exists
+            'recordsTotal' => $data['count'], // Same as 'count' for total records
+            'end' => $data['count'],// Optional; you can remove this if not needed
+            "user" => $user->id
+        ];
+
+        // Send the JSON response
+        Flight::json($response);
     });
+
+
     /**
      * @OA\Get(
      *     path="/cars/all",
@@ -109,6 +129,8 @@ Flight::group("/cars", function () {
      */
 
     Flight::route("POST /add_car", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
+
         $data = Flight::request()->data->getData();
         try {
             $car = Flight::get("carService")->addCar($data);
