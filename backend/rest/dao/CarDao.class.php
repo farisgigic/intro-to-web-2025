@@ -45,4 +45,20 @@ class CarDao extends BaseDao
             "user_id" => $user_id
         ]);
     }
+
+    public function get_cars_paginated_admin($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $query =
+            "   SELECT manufacturer, model, year, engine, user_id
+                FROM cars 
+                WHERE (LOWER(manufacturer) LIKE CONCAT('%', :search, '%') OR 
+                LOWER(model) LIKE CONCAT('%', :search, '%') OR
+                LOWER(year) LIKE CONCAT('%', :search, '%'))
+         ORDER BY $order_column $order_direction
+         LIMIT $offset, $limit;";
+
+        return $this->query($query, [
+            'search' => $search
+        ]);
+    }
 }

@@ -18,7 +18,22 @@ var UserService = {
                 // { data: "actions" },
 
             ], null, function () {
-                console.log("Datatable works");
+                console.log("Datatable for users works");
+            }
+        );
+    },
+    reload_cars_datatable_admin: function () {
+        Utils.get_datatable(
+            "admin_cars", "http://localhost/intro-to-web-2025/backend/cars/all/admin",
+            [
+                { data: "manufacturer" },
+                { data: "model" },
+                { data: "year" },
+                { data: "engine" },
+                { data: "user_id" },
+                { data: "actions" },
+            ], null, function () {
+                console.log("Datatable for cars works");
             }
         );
     }

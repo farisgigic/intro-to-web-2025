@@ -10,7 +10,7 @@ Flight::set("carService", new CarService());
 Flight::group("/cars", function () {
 
     Flight::route('GET /', function () {
-        // Flight::auth_middleware()->authorizeRole(Roles::USER);
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $user = Flight::get("user");
         $payload = Flight::request()->query;
 
@@ -48,7 +48,38 @@ Flight::group("/cars", function () {
         Flight::json($response);
     });
 
+    Flight::route("GET /all/admin", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $payload = Flight::request()->query;
 
+        // Prepare parameters for the carService method
+        $params = [
+            'start' => (int) $payload['start'],
+            'search' => $payload['search']['value'],
+            'draw' => $payload['draw'],
+            'limit' => (int) $payload['length'],
+            'order_column' => $payload['order'][0]['name'],
+            'order_direction' => $payload['order'][0]['dir'],
+        ];
+
+
+        $data = Flight::get('carService')->get_cars_paginated_admin(
+            $params['start'],
+            $params['limit'],
+            $params['search'],
+            $params['order_column'],
+            $params['order_direction']
+        );
+        $response = [
+            'draw' => $params['draw'],
+            'data' => $data['data'],
+            'recordsFiltered' => $data['count'],
+            'recordsTotal' => $data['count'],
+            'end' => $data['count']
+        ];
+
+        Flight::json($response);
+    });
     /**
      * @OA\Get(
      *     path="/cars/all",
@@ -61,6 +92,7 @@ Flight::group("/cars", function () {
      * )
      */
     Flight::route("GET /all", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::get("carService")->getAllCars();
         Flight::json([$data], 200);
     });
