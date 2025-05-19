@@ -144,7 +144,7 @@ Flight::group("/users", function () {
             Flight::get("userService")->deleteUser($user_id);
             Flight::json(["message" => "You have successfully deleted"], 200);
         } catch (Exception $e) {
-            Flight::json(["error" => "User with this ID does not exist."], 400);
+            Flight::json(["error" => "User with this ID does not exist." . $e], 400);
         }
     });
 

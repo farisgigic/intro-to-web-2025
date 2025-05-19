@@ -56,11 +56,11 @@ class UserService extends BaseService
         $rows = $this->dao->get_users_paginated($offset, $limit, $search, $order_column, $order_direction);
 
 
-        foreach ($rows as $id => $car) {
+        foreach ($rows as $id => $user) {
 
             $rows[$id]['actions'] = '<div class="btn-group" role="group" aria-label="Actions"> ' .
                 ' <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-car-modal">Edit</button> ' .
-                ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_user_admin(' . $user['id'] . ')">Delete</button> ' .
                 '</div>';
         }
         return [

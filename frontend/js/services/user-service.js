@@ -36,5 +36,20 @@ var UserService = {
                 console.log("Datatable for cars works");
             }
         );
+    },
+    delete_user_admin: function (user_id) {
+        if (
+            confirm(
+                "Do you want to delete car?"
+            ) == true
+        ) {
+            RestClient.delete(
+                "users/delete_user/" + user_id,
+                {},
+                function (data) {
+                    UserService.reload_users_datatable();
+                }
+            );
+        }
     }
 }

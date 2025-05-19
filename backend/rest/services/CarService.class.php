@@ -91,7 +91,6 @@ class CarService extends BaseService
                 ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
                 '</div>';
         }
-
         return [
             'count' => $count,
             'data' => $rows
