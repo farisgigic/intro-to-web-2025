@@ -10,7 +10,7 @@ Flight::set("carService", new CarService());
 Flight::group("/cars", function () {
 
     Flight::route('GET /', function () {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::USER);
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $user = Flight::get("user");
         $payload = Flight::request()->query;
 
@@ -34,13 +34,13 @@ Flight::group("/cars", function () {
         $response = [
             'draw' => $params['draw'],
             'data' => $data['data'],
-            'recordsFiltered' => $data['count'], // Ensure 'count' exists
-            'recordsTotal' => $data['count'], // Same as 'count' for total records
-            'end' => $data['count'],// Optional; you can remove this if not needed
+            'recordsFiltered' => $data['count'],
+            'recordsTotal' => $data['count'],
+            'end' => $data['count'],
             "user" => $user->id
         ];
 
-        // Send the JSON response
+
         Flight::json($response);
     });
 
@@ -110,7 +110,7 @@ Flight::group("/cars", function () {
      * )
      */
     Flight::route("GET /car/@car_id", function ($car_id) {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         try {
             $car = Flight::get("carService")->getCarById($car_id);
             Flight::json($car, 200);
@@ -155,7 +155,7 @@ Flight::group("/cars", function () {
      */
 
     Flight::route("POST /add_car", function () {
-        Flight::auth_middleware()->authorizeRole(Roles::USER, Roles::ADMIN);
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::request()->data->getData();
         try {
             $car = Flight::get("carService")->addCar($data);
@@ -184,7 +184,7 @@ Flight::group("/cars", function () {
      * )
      */
     Flight::route("DELETE /delete_car/@id", function ($car_id) {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         try {
             Flight::get("carService")->deleteCar($car_id);
             Flight::json(["message" => "You have successfully deleted"], 200);
@@ -235,7 +235,7 @@ Flight::group("/cars", function () {
      */
 
     Flight::route("PUT /edit_car/@car_id", function ($car_id) {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::USER);
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $data = Flight::request()->data->getData();
         try {
             $car = Flight::get("carService")->editCar($car_id, $data);

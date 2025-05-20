@@ -37,6 +37,21 @@ var UserService = {
             }
         );
     },
+    reload_contacts_datatable_admin: function () {
+        Utils.get_datatable(
+            "admin_contacts", "http://localhost/intro-to-web-2025/backend/contacts/all/admin",
+            [
+                { data: "id" },
+                { data: "full_name" },
+                { data: "email" },
+                { data: "subject" },
+                { data: "message" },
+                { data: "actions" },
+            ], null, function () {
+                console.log("Datatable for contacts works");
+            }
+        );
+    },
     delete_user_admin: function (user_id) {
         if (
             confirm(
@@ -51,5 +66,31 @@ var UserService = {
                 }
             );
         }
-    }
+    },
+    open_edit_contact_modal: function (contact_id) {
+        RestClient.get("contacts/contact/" + contact_id, function (data) {
+            const contact = data[0];
+            $("#contact-modal").modal("show");
+            $("#contact-form input[name='full_name']").val(contact.full_name);
+            $("#contact-form input[name='email']").val(contact.email);
+            $("#contact-form input[name='subject']").val(contact.subject);
+            $("#contact-form input[name='message']").val(contact.message);
+        });
+
+    },
+    delete_contact_admin: function (contact_id) {
+        if (
+            confirm(
+                "Do you want to delete contact message?"
+            ) == true
+        ) {
+            RestClient.delete(
+                "contacts/delete_contact/" + contact_id,
+                {},
+                function () {
+                    UserService.reload_contacts_datatable_admin();
+                }
+            );
+        }
+    },
 }

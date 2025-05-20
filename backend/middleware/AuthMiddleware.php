@@ -9,7 +9,7 @@ class AuthMiddleware
     {
 
         if (!$token)
-            Flight::halt(401, "Missing authentication header");
+            Flight::halt(401, "Missing authentication header!!");
 
         $decoded_token = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
 

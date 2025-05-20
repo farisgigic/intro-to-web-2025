@@ -23,5 +23,18 @@ var CarService = {
 
             }
         );
-    }
+    },
+
+    open_edit_car_modal: function (car_id) {
+        RestClient.get("cars/car/" + car_id, function (data) {
+            const car = data[0];
+            $("#edit-car-modal").modal("show");
+            $("#edit-car-form input[name='id']").val(car.id);
+            $("#edit-car-form input[name='manufacturer']").val(car.manufacturer);
+            $("#edit-car-form input[name='model']").val(car.model);
+            $("#edit-car-form input[name='year']").val(car.year);
+            $("#edit-car-form input[name='engine']").val(car.engine);
+        });
+
+    },
 }

@@ -10,7 +10,6 @@ Flight::group("/users", function () {
         Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $payload = Flight::request()->query;
 
-        // Set default values for missing parameters
         $params = [
             'start' => isset($payload['start']) ? (int) $payload['start'] : 0,
             'search' => isset($payload['search']['value']) ? $payload['search']['value'] : '',
@@ -50,7 +49,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('GET /all', function () {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN); // Only admins can see all users
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::get('userService')->getAllUsers();
         Flight::json($data, 200);
     });
@@ -68,7 +67,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('GET /user/@id', function ($id) {
-        //Flight::auth_middleware()->authorizeRole("user"); // Users can get their own data or admin can access others
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::get('userService')->getUserById($id);
         if ($data) {
             Flight::json($data, 200);
@@ -104,7 +103,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('POST /add_user', function () {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        //Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::request()->data->getData();
 
         // Validate email format
@@ -139,7 +138,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('DELETE /delete_user/@id', function ($user_id) {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN); // Only admin can delete users
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         try {
             Flight::get("userService")->deleteUser($user_id);
             Flight::json(["message" => "You have successfully deleted"], 200);
@@ -182,11 +181,10 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route("PUT /edit_user/@id", function ($user_id) {
-        Flight::auth_middleware()->authorizeRole(Roles::USER); // Users can edit their own data
+        Flight::auth_middleware()->authorizeRoles(Roles::USER, Roles::ADMIN);
         $data = Flight::request()->data->getData();
 
         try {
-            // Validate input on the route level (optional but helpful)
             if (isset($data['email']) && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 Flight::json(["error" => "Invalid email format."], 400);
                 return;

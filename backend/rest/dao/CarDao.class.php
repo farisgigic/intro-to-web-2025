@@ -30,7 +30,7 @@ class CarDao extends BaseDao
     public function get_cars_paginated($user_id, $offset, $limit, $search, $order_column, $order_direction)
     {
         $query =
-            "   SELECT c.manufacturer, c.model, c.year, c.engine, c.user_id
+            "   SELECT c.id, c.manufacturer, c.model, c.year, c.engine, c.user_id
                 FROM cars c
                 JOIN users u ON c.user_id = u.id
                 WHERE (LOWER(c.manufacturer) LIKE CONCAT('%', :search, '%') OR 

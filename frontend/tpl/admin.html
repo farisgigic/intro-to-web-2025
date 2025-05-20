@@ -77,15 +77,75 @@
                     </div>
                 </div>
             </div>
+            <div class="container-fluid px-6">
+                <h4>Modify contact messages</h4>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Messages
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered table-hover" id="admin_contacts">
+                                <thead>
+                                    <tr>
+                                        <th data-name="full_name">Full name</th>
+                                        <th data-name="email">Email</th>
+                                        <th data-name="subject">Subject</th>
+                                        <th data-name="message">Message</th>
+                                        <th data-name="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="contact-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="contact-label">Contact info </h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="full_name" class="col-form-label">Full Name:</label>
+                                    <input type="text" class="form-control" name="full_name" id="full_name" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="text" class="form-control" name="email" id="email" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="col-form-label">Subject:</label>
+                                    <input type="text" class="form-control" name="subject" id="subject" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="col-form-label">Message:</label>
+                                    <input type="text" class="form-control" name="message" id="message" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Complete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="js/main.js"></script>
     <script src="js/datatables.min.js"></script>
+    <script src="js/services/car-service.js"></script>
     <script>
         const user = Utils.get_from_localstorage("user");
         console.log(user);
         // Flight::response()->header('Authentication', $token);
         UserService.reload_users_datatable();
         UserService.reload_cars_datatable_admin();
+        UserService.reload_contacts_datatable_admin();
     </script>
 </body>

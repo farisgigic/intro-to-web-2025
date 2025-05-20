@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>CarCare </title>
-        <link rel="icon" type="image/x-icon" href="../img/logo-f.png">
-        <link rel="stylesheet" href="../css/login.css" type="text/css">
-        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/toastr.min.css" type="text/css">
-        
-    </head>
-<body>    
+
+<head>
+    <meta charset="UTF-8">
+    <title>CarCare </title>
+    <link rel="icon" type="image/x-icon" href="../img/logo-f.png">
+    <link rel="stylesheet" href="../css/login.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/toastr.min.css" type="text/css">
+
+</head>
+
+<body>
     <!-- Form Section Begin -->
     <section class="form-section">
         <div class="container">
-            <div id ="login_container" class="login_container">
-                <form id="login_form" >
-                    <div class ="mb-3">
+            <div id="login_container" class="login_container">
+                <form id="login_form">
+                    <div class="mb-3">
                         <h4>Login</h4>
                     </div>
                     <div class="mb-3">
                         <div class="form-group col-md-12">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name ="email" id="email" placeholder="Your Email">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Your Email">
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="form-group col-md-12">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Your Password">
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="Your Password">
                         </div>
                     </div>
                     <div class="col-12">
@@ -41,8 +44,9 @@
                     <div class="separator1"></div>
                     <div class="col-12">
                         <button class="btn btn-outline-info btn-block btn-custom" type="submit">
-                        <img src="../img/icons/icon-arrow-right 1.png" alt="Icon" style="width: 20px; height: 20px; margin-right: 5px;">
-                        Login</button>
+                            <img src="../img/icons/icon-arrow-right 1.png" alt="Icon"
+                                style="width: 20px; height: 20px; margin-right: 5px;">
+                            Login</button>
 
                     </div>
                     <div class="separator1"></div>
@@ -50,83 +54,21 @@
                         <span>or</span>
                     </div>
                     <div class="col-12">
-                        <a href="#register">
+                        <a href="./signup.html">
                             <button class="btn btn-info btn-block btn-custom" type="button">
-                                <img src="../img/icons/signup.png" alt="Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+                                <img src="../img/icons/signup.png" alt="Icon"
+                                    style="width: 20px; height: 20px; margin-right: 5px;">
                                 Register
                             </button>
                         </a>
                     </div>
-                    
                     <div class="separator1"></div>
                 </form>
             </div>
         </div>
     </section>
-<!-- Form Section End -->
- <!-- Footer Section Begin -->
- <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
-    <div class="container">
-        <div class="footer__contact">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="footer__contact__title">
-                        <h2>Contact Us Now!</h2>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="footer__contact__option">
-                        <div class="option__item" style="background-color: #0D9FF2;"><i class="fa fa-phone"></i> (+387) 61 387 071</div>
-                        <div class="option__item email"><i class="fa fa-envelope-o" style="color: #0D9FF2;"></i> info@carcare.ba</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <div class="footer__about">
-                    <div class="footer__logo">
-                        <a href="#landing"><img src="../img/logo-f.png" alt="logo"></a>
-                    </div>
-                    <p>Any questions?<br> Let us know, call us on (+387) 61 387 071 !</p>
-                    <div class="footer__social">
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="google"><i class="fa fa-google"></i></a>
-                        <a href="#" class="skype"><i class="fa fa-skype"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-3">
-                <div class="footer__widget">
-                    <h5>Useful links</h5>
-                    <ul>
-                        <li><a href="#landing"><i class="fa fa-angle-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fa fa-angle-right"></i> About Us</a></li>
-                        <li><a href="#cars"><i class="fa fa-angle-right"></i> My Cars</a></li>
-                        <li><a href="#forum"><i class="fa fa-angle-right"></i> Forum</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="footer__brand">
-                    <h5>Contact Us</h5>
-                    <ul>
-                        <li><a> Sarajevo, Trg Solidarnosti Alipašino, Bosnia and Herzegovina</a></li>
-                        <li><a> Contact Number :<br> (+387) 61 387 071 </a></li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-       
-        <div class="footer__copyright__text">
-            <p>Copyright &copy;CarCare <script>document.write(new Date().getFullYear());</script> All rights reserved</a></p>
-        </div>
-        
-    </div>
-</footer>
-<!-- Footer Section End -->
+    <!-- Form Section End -->
+
 
     <script src="../js/jquery-3.7.1.js"></script>
     <script src="../js/toastr.min.js"></script>
@@ -134,37 +76,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/bootstrap.min.js"></script>
-    <!-- <script src="js/bootstrap.bundle.js"></script> -->
-
-   
-
-    <script src = "../js/form-validate.js"></script>
+    <script src="../js/form-validate.js"></script>
     <script src="../utils/constants.js"></script>
     <script src="../utils/rest_client.js"></script>
     <script src="../utils/utils.js"></script>
 
     <script>
         if (Utils.get_from_localstorage("user")) {
-          window.location = "../";
+            window.location = "../";
         }
-  
+
         FormValidation.validate("#login_form", {}, function (data) {
-        //   Utils.block_ui("#form-container");
-  
-        RestClient.post(
-  "auth/login",
-  data,
-  function (response) {
-    Utils.set_to_localstorage("user", response);
-    Utils.set_to_localstorage("token", response.token); 
-    window.location = "../";
-  },
-  function (xhr) {
-    toastr.error(xhr.responseText);
-  }
-);
+            //   Utils.block_ui("#form-container");
+
+            RestClient.post(
+                "auth/login",
+                data,
+                function (response) {
+                    Utils.set_to_localstorage("user", response);
+                    Utils.set_to_localstorage("token", response.token);
+                    window.location = "../";
+                },
+                function (xhr) {
+                    toastr.error(xhr.responseText);
+                }
+            );
 
         });
-      </script>
+    </script>
 </body>
+
 </html>

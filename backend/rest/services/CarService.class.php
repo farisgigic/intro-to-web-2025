@@ -69,7 +69,7 @@ class CarService extends BaseService
         foreach ($rows as $id => $car) {
             $rows[$id]['number'] = $no++;
             $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
-                ' <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-car-modal">Edit</button> ' .
+                ' <button type="button" class="btn btn-warning" onclick="CarService.open_edit_car_modal(' . $car['id'] . ')">Edit</button> ' .
                 ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
                 '</div>';
         }
@@ -87,7 +87,7 @@ class CarService extends BaseService
 
         foreach ($rows as $id => $car) {
             $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
-                ' <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-car-modal">Edit</button> ' .
+                ' <button type="button" class="btn btn-warning">Edit</button> ' .
                 ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
                 '</div>';
         }
