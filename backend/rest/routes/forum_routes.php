@@ -16,6 +16,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("GET /all", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::get('forumService')->getAllForums();
         Flight::json($data, 200);
     });
@@ -43,6 +44,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("GET /forum/@forum_id", function ($forum_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         try {
             $data = Flight::get('forumService')->getForumById($forum_id);
             Flight::json($data, 200);
@@ -73,7 +75,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("POST /add_forum", function () {
-
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $data = Flight::request()->data->getData();
 
         $required_fields = ["title", "description", "user_id"];
@@ -115,6 +117,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("DELETE /delete_forum/@forum_id", function ($forum_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         try {
             Flight::get("forumService")->deleteForum($forum_id);
             Flight::json(["message" => "You have successfully deleted"], 200);
@@ -151,6 +154,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("PUT /edit_forum/@forum_id", function ($forum_id) {
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::request()->data->getData();
         error_log(print_r($data, true));
 

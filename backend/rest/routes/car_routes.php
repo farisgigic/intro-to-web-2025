@@ -156,7 +156,11 @@ Flight::group("/cars", function () {
 
     Flight::route("POST /add_car", function () {
         Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
-        $data = Flight::request()->data->getData();
+        $user = Flight::get("user");
+        $data = (array) Flight::request()->data->getData();
+
+        $data['user_id'] = $user->id;
+
         try {
             $car = Flight::get("carService")->addCar($data);
             Flight::json(["message" => "Car successfully added.", "data" => $data], 200);
@@ -164,6 +168,9 @@ Flight::group("/cars", function () {
             Flight::json(["error" => $e->getMessage()], 500);
         }
     });
+
+
+
 
     /**
      * @OA\Delete(

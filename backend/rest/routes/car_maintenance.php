@@ -18,6 +18,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("GET /all", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $car_maintenance = Flight::get("carMaintenanceService")->getAllCarMaintenances();
         Flight::json($car_maintenance);
     });
@@ -40,6 +41,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("GET /@car_id", function ($car_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $car_maintenance = Flight::get("carMaintenanceService")->getCarMaintenanceByCarId($car_id);
         Flight::json($car_maintenance);
     });
@@ -73,6 +75,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("POST /add_maintenance", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $car_maintenance = Flight::request()->data->getData();
         $result = Flight::get("carMaintenanceService")->addCarMaintenance($car_maintenance);
         Flight::json(["message" => "You have successfully added a car maintenance"]);
@@ -96,6 +99,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("DELETE /delete_maintenance/@id", function ($car_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $result = Flight::get("carMaintenanceService")->deleteCarMaintenance($car_id);
         Flight::json(["message" => "You have successfully deleted a car maintenance"]);
     });
@@ -134,6 +138,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("PUT /edit_maintenance/@car_id", function ($car_id) {
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $car_maintenance = Flight::request()->data->getData();
         $result = Flight::get("carMaintenanceService")->editCarMaintenance($car_id, $car_maintenance);
         Flight::json(["message" => "You have successfully edited car maintenance"]);

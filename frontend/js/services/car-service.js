@@ -37,4 +37,20 @@ var CarService = {
         });
 
     },
+
+    delete_car: function (car_id) {
+        if (
+            confirm(
+                "Do you want to delete contact car?"
+            ) == true
+        ) {
+            RestClient.delete(
+                "cars/delete_car/" + car_id,
+                {},
+                function () {
+                    CarService.reload_cars_datatable();
+                }
+            );
+        }
+    },
 }

@@ -103,7 +103,6 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('POST /add_user', function () {
-        //Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::request()->data->getData();
 
         // Validate email format
@@ -121,7 +120,7 @@ Flight::group("/users", function () {
             ], 200);
         } catch (Exception $e) {
             // Catch and return a clean error message
-            Flight::json(["error" => $e->getMessage()], 400);
+            Flight::json(["errorddd" => $e->getMessage()], 400);
         }
     });
 

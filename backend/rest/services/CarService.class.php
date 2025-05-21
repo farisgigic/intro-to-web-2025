@@ -70,7 +70,7 @@ class CarService extends BaseService
             $rows[$id]['number'] = $no++;
             $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
                 ' <button type="button" class="btn btn-warning" onclick="CarService.open_edit_car_modal(' . $car['id'] . ')">Edit</button> ' .
-                ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="CarService.delete_car(' . $car['id'] . ')">Delete</button> ' .
                 '</div>';
         }
 
