@@ -87,8 +87,8 @@ class CarService extends BaseService
 
         foreach ($rows as $id => $car) {
             $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
-                ' <button type="button" class="btn btn-warning">Edit</button> ' .
-                ' <button type="button" class="btn btn-outline-danger">Delete</button> ' .
+                ' <button type="button" class="btn btn-warning" onclick="UserService.open_edit_car_modal_admin(' . $car['id'] . ')">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_car_admin(' . $car['id'] . ')">Delete</button> ' .
                 '</div>';
         }
         return [

@@ -135,6 +135,47 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="edit-car-modal" tabindex="-1" aria-labelledby="edit-car-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="edit-car-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit-car-label">Edit Car</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="manufacturer" class="col-form-label">Manufacturer:</label>
+                                    <input type="text" class="form-control" name="manufacturer" id="manufacturer" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Model:</label>
+                                    <input type="text" class="form-control" name="model" id="model" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Year:</label>
+                                    <input type="text" class="form-control" name="year" id="year" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Engine:</label>
+                                    <input type="text" class="form-control" name="engine" id="engine" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_id" class="col-form-label">User ID:</label>
+                                    <input type="text" class="form-control" name="user_id" id="user_id" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button class="btn btn-success">Complete edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="js/main.js"></script>
@@ -147,5 +188,25 @@
         UserService.reload_users_datatable();
         UserService.reload_cars_datatable_admin();
         UserService.reload_contacts_datatable_admin();
+    </script>
+    <script>
+        $("#edit-car-form").submit(function (e) {
+            e.preventDefault();
+
+            const carData = {
+                id: $("#edit-car-form input[name='id']").val(),
+                manufacturer: $("#edit-car-form input[name='manufacturer']").val(),
+                model: $("#edit-car-form input[name='model']").val(),
+                year: $("#edit-car-form input[name='year']").val(),
+                engine: $("#edit-car-form input[name='engine']").val(),
+                user_id: $("#edit-car-form input[name='user_id']").val()
+            };
+
+            RestClient.put("cars/edit_car/" + carData.id, carData, function () {
+                $("#edit-car-modal").modal("toggle");
+                UserService.reload_cars_datatable_admin();
+                toastr.success("Car updated successfully");
+            });
+        })
     </script>
 </body>

@@ -75,7 +75,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("POST /add_forum", function () {
-        Flight::auth_middleware()->authorizeRole(Roles::USER);
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $data = Flight::request()->data->getData();
 
         $required_fields = ["title", "description", "user_id"];
@@ -85,12 +85,8 @@ Flight::group("/forums", function () {
                 return;
             }
         }
-
         try {
-
             $forum = Flight::get("forumService")->addForum($data);
-
-
             Flight::json(["message" => "Forum post successfully added.", "data" => $forum], 200);
         } catch (Exception $e) {
             Flight::json(["error" => $e->getMessage()], 500);

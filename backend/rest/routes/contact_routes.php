@@ -18,6 +18,7 @@ Flight::group("/contacts", function () {
      * )
      */
     Flight::route("GET /all", function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::get("contactService")->getAllContacts();
         Flight::json($data, 200);
     });
@@ -74,7 +75,7 @@ Flight::group("/contacts", function () {
      * )
      */
     Flight::route("POST /add_contact", function () {
-        Flight::auth_middleware()->authorizeRole(Roles::USER);
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $data = Flight::request()->data->getData();
         try {
             $contact = Flight::get("contactService")->addContact($data);

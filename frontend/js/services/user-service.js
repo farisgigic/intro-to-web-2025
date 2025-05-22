@@ -31,6 +31,7 @@ var UserService = {
                 { data: "year" },
                 { data: "engine" },
                 { data: "user_id" },
+                { data: "user_id" },
                 { data: "actions" },
             ], null, function () {
                 console.log("Datatable for cars works");
@@ -93,4 +94,33 @@ var UserService = {
             );
         }
     },
+    open_edit_car_modal_admin: function (car_id) {
+        RestClient.get("cars/car/" + car_id, function (data) {
+            const car = data[0];
+            $("#edit-car-modal").modal("show");
+            $("#edit-car-form input[name='id']").val(car.id);
+            $("#edit-car-form input[name='manufacturer']").val(car.manufacturer);
+            $("#edit-car-form input[name='model']").val(car.model);
+            $("#edit-car-form input[name='year']").val(car.year);
+            $("#edit-car-form input[name='engine']").val(car.engine);
+            $("#edit-car-form input[name='user_id']").val(car.user_id);
+        });
+
+    },
+    delete_car_admin: function (car_id) {
+        if (
+            confirm(
+                "Do you want to delete car?"
+            ) == true
+        ) {
+            RestClient.delete(
+                "cars/delete_car/" + car_id,
+                {},
+                function () {
+                    UserService.reload_cars_datatable_admin();
+                }
+            );
+        }
+    },
+
 }

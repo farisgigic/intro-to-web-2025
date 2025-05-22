@@ -114,7 +114,10 @@
                     window.location = "../";
                 })
                 .fail(function (xhr) {
-                    toastr.error("ne valja");
+                    const errorMessage = xhr.responseJSON && xhr.responseJSON.message
+                        ? xhr.responseJSON.message
+                        : "An unknown error occurred. Please try again.";
+                    toastr.error(errorMessage);
                 });
         });
     </script>

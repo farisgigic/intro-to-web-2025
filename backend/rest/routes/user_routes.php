@@ -120,7 +120,7 @@ Flight::group("/users", function () {
             ], 200);
         } catch (Exception $e) {
             // Catch and return a clean error message
-            Flight::json(["errorddd" => $e->getMessage()], 400);
+            Flight::json(["message" => $e->getMessage()], 400);
         }
     });
 
