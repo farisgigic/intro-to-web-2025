@@ -39,7 +39,7 @@ Welcome to **CarCare**, a web application built to help car owners manage their 
 We’ve integrated **Swagger UI** to make our API easy to explore and test.
 
 🔗 **Access the documentation at:**  
-[http://localhost/carcare/docs/swagger](http://localhost/carcare/docs/swagger) *(update this with your actual local or deployed URL)*
+[http://localhost/intro-to-web-2025/backend/public/v1/docs/](http://localhost/intro-to-web-2025/backend/public/v1/docs/) 
 
 With Swagger, you can:
 - View all available API endpoints
@@ -61,4 +61,4 @@ With Swagger, you can:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/carcare.git
+   git clone https://github.com/farisgigic/intro-to-web-2025.git
