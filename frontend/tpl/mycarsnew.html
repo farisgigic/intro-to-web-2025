@@ -83,10 +83,6 @@
                     <label for="Model" class="col-form-label">Engine:</label>
                     <input type="text" class="form-control" name="engine" id="engine" />
                   </div>
-                  <div class="mb-3">
-                    <label for="user_id" class="col-form-label">User ID:</label>
-                    <input type="text" class="form-control" name="user_id" id="user_id" />
-                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -106,6 +102,65 @@
               <form id="info-car-form">
                 <div class="modal-header">
                   <h5 class="modal-title" id="info-car-label">Info about Car</h5>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" id="id" />
+                  <input type="hidden" name="car_id" id="car_id" />
+                  <div class="mb-3">
+                    <label for="service" class="col-form-label">Service:</label>
+                    <input type="date" class="form-control" name="service" id="service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="large_service" class="col-form-label">Large Service:</label>
+                    <input type="date" class="form-control" name="large_service" id="large_service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="front_disc_pads" class="col-form-label">Front Disc Pads:</label>
+                    <input type="date" class="form-control" name="front_disc_pads" id="front_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="rear_disc_pads" class="col-form-label">Rear Disc Pads:</label>
+                    <input type="date" class="form-control" name="rear_disc_pads" id="rear_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="air_oil_filter" class="col-form-label">Air & Oil Filter:</label>
+                    <input type="date" class="form-control" name="air_oil_filter" id="air_oil_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="transmission_oil" class="col-form-label">Transmission Oil:</label>
+                    <input type="date" class="form-control" name="transmission_oil" id="transmission_oil" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="cabin_air_filter" class="col-form-label"> Cabin Air Filter:</label>
+                    <input type="date" class="form-control" name="cabin_air_filter" id="cabin_air_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="inspection" class="col-form-label"> Inspection:</label>
+                    <input type="date" class="form-control" name="inspection" id="inspection" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="deep_cleaning" class="col-form-label"> Deep cleaning:</label>
+                    <input type="date" class="form-control" name="deep_cleaning" id="deep_cleaning" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button class="btn btn-success">Complete edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Add maintenance -->
+        <div class="modal fade" id="maintenance-car-modal" tabindex="-1" aria-labelledby="maintenance-car-label"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form id="maintenance-car-form">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="maintenance-car-label">Add car maintenance</h5>
                 </div>
                 <div class="modal-body">
                   <input type="hidden" name="id" id="id" />
@@ -200,10 +255,35 @@
           inspection: $("#info-car-form input[name='inspection']").val(),
           deep_cleaning: $("#info-car-form input[name='deep_cleaning']").val()
         };
+
         RestClient.put("car_maintenance/edit_maintenance/" + carMData.car_id, carMData, function () {
           $("#info-car-modal").modal("toggle");
           CarService.reload_cars_datatable();
           toastr.success("Car updated successfully");
+        });
+      })
+    </script>
+    <script>
+      $("#maintenance-car-form").submit(function (e) {
+        e.preventDefault();
+
+        const carPData = {
+          car_id: $("#maintenance-car-form input[name='car_id']").val(),
+          service: $("#maintenance-car-form input[name='service']").val(),
+          large_service: $("#maintenance-car-form input[name='large_service']").val(),
+          front_disc_pads: $("#maintenance-car-form input[name='front_disc_pads']").val(),
+          rear_disc_pads: $("#maintenance-car-form input[name='rear_disc_pads']").val(),
+          air_oil_filter: $("#maintenance-car-form input[name='air_oil_filter']").val(),
+          transmission_oil: $("#maintenance-car-form input[name='transmission_oil']").val(),
+          cabin_air_filter: $("#maintenance-car-form input[name='cabin_air_filter']").val(),
+          inspection: $("#maintenance-car-form input[name='inspection']").val(),
+          deep_cleaning: $("#maintenance-car-form input[name='deep_cleaning']").val()
+        };
+
+        RestClient.post("car_maintenance/add_maintenance/" + carPData, function () {
+          $("#maintenance-car-modal").modal("toggle");
+          CarService.reload_cars_datatable();
+          toastr.success("Car Maintenance added successfully");
         });
       })
     </script>

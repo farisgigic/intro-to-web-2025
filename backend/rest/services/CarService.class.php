@@ -72,6 +72,7 @@ class CarService extends BaseService
                 ' <button type="button" class="btn btn-warning" onclick="CarService.open_edit_car_modal(' . $car['id'] . ')">Edit</button> ' .
                 ' <button type="button" class="btn btn-outline-danger" onclick="CarService.delete_car(' . $car['id'] . ')">Delete</button> ' .
                 ' <button type="button" class="btn btn-info" onclick="CarService.open_info_modal(' . $car['id'] . ')">See info</button> ' .
+                ' <button type="button" class="btn btn-outline-success" onclick="CarService.add_maintenance(' . $car['id'] . ')">Add maintenance</button> ' .
                 '</div>';
         }
 

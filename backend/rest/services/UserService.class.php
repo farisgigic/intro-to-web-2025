@@ -67,7 +67,5 @@ class UserService extends BaseService
             'count' => $count,
             'data' => $rows
         ];
-        // onclick="PatientService.open_edit_patient_modal('. $car['id'] .')"
-        // onclick="PatientService.delete_patient('. $car['id'] .')"
     }
 }

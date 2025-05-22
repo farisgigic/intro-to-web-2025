@@ -3,25 +3,23 @@ body {
     background-color: #f4f4f4;
 
 }
-h4{
-    font-family:sans-serif;
+
+h4 {
+    font-family: sans-serif;
     text-align: left;
     justify-content: flex-start;
 }
-/* Adjust spacing around form */
+
 .login_container {
-    
     max-width: 500px;
-    margin: 40px auto; /* More space between header and form */
-    padding: 20px;
+    margin: 100px auto;
+    padding: 50px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center-align text and form elements */
-    
-} 
+    text-align: center;
+}
 
-/* Ensure the container aligns to the left */
 .form-check {
     text-align: left;
     justify-content: flex-start;
@@ -30,19 +28,25 @@ h4{
 /* Button */
 .primary-btn {
     display: inline-block;
-    font-size: 16px; /* Smaller text size */
-    padding: 10px 20px; /* Adjusted padding */
-    color: #333; /* Darker text for contrast */
+    font-size: 16px;
+    /* Smaller text size */
+    padding: 10px 20px;
+    /* Adjusted padding */
+    color: #333;
+    /* Darker text for contrast */
     font-weight: 600;
-    background: #f7f7f7; /* White background */
-    border: 0.5px solid #333; /* More visible border */
+    background: #f7f7f7;
+    /* White background */
+    border: 0.5px solid #333;
+    /* More visible border */
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .primary-btn:hover {
     background: #0dbdf2;
-    color: #fff; /* Text color change on hover */
+    color: #fff;
+    /* Text color nchange on hover */
 }
 
 /*---------------------
@@ -59,7 +63,8 @@ h4{
 .separator span {
     padding: 0 60px;
     color: #999;
-    background-color: #fff; /* Match the background of the form */
+    background-color: #fff;
+    /* Match the background of the form */
 }
 
 .separator::before,
@@ -69,6 +74,7 @@ h4{
     height: 1px;
     background-color: #ccc;
 }
+
 .separator1 {
     display: flex;
     align-items: center;
@@ -79,7 +85,8 @@ h4{
 .separator1 span {
     padding: 0 60px;
     color: #ffff;
-    background-color: #fff; /* Match the background of the form */
+    background-color: #fff;
+    /* Match the background of the form */
 }
 
 .separator1::before,
@@ -92,15 +99,21 @@ h4{
 
 .login_container .form-group {
     width: 100%;
-    text-align: left; /* Left-align labels and inputs */
+    text-align: left;
+    /* Left-align labels and inputs */
 }
 
 footer {
-    width: 100%; /* Ensure footer spans full width */
-    margin-top: 100px; /* Space between form and footer */
-    padding: 20px 0; /* Only vertical padding */
-    background-color: #1a1a1a; /* Set background color */
-    color: #ffffff; /* Set text color */
+    width: 100%;
+    /* Ensure footer spans full width */
+    margin-top: 100px;
+    /* Space between form and footer */
+    padding: 20px 0;
+    /* Only vertical padding */
+    background-color: #1a1a1a;
+    /* Set background color */
+    color: #ffffff;
+    /* Set text color */
     position: relative;
     left: 0;
     right: 0;
@@ -111,5 +124,6 @@ footer {
 .btn-center {
     display: block;
     margin: 20px auto 0;
-    text-align: center; /* Center-align button text */
+    text-align: center;
+    /* Center-align button text */
 }

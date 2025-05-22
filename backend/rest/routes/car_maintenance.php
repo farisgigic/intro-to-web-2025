@@ -40,7 +40,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("GET /@car_id", function ($car_id) {
-        // Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $car_maintenance = Flight::get("carMaintenanceService")->getCarMaintenanceByCarId($car_id);
         Flight::json($car_maintenance);
     });

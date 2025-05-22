@@ -56,8 +56,6 @@ var CarService = {
 
     open_info_modal: function (car_id) {
         RestClient.get("car_maintenance/" + car_id, function (data) {
-            console.log("car_maintenance response:", data);
-
             const car = data;
 
             if (!car) {
@@ -78,9 +76,52 @@ var CarService = {
             $("#info-car-form input[name='deep_cleaning']").val(formatDate(car.deep_cleaning));
 
         });
+    },
 
-        console.log("farecare", car_id);
+    add_maintenance: function (carId) {
+        $("#car_id").val(carId);
+
+        const today = new Date().toISOString().split('T')[0];
+        // set default dates (optional)
+        $("#service").val(today);
+        $("#large_service").val(today);
+        $("#front_disc_pads").val(today);
+        $("#rear_disc_pads").val(today);
+        $("#air_oil_filter").val(today);
+        $("#transmission_oil").val(today);
+        $("#cabin_air_filter").val(today);
+        $("#inspection").val(today);
+        $("#deep_cleaning").val(today);
+
+        $("#maintenance-car-modal").modal("show");
+
+        $("#maintenance-car-form").off("submit").submit(function (e) {
+            e.preventDefault();
+
+            const carPData = {
+                car_id: $("#car_id").val(),
+                service: $("#service").val(),
+                large_service: $("#large_service").val(),
+                front_disc_pads: $("#front_disc_pads").val(),
+                rear_disc_pads: $("#rear_disc_pads").val(),
+                air_oil_filter: $("#air_oil_filter").val(),
+                transmission_oil: $("#transmission_oil").val(),
+                cabin_air_filter: $("#cabin_air_filter").val(),
+                inspection: $("#inspection").val(),
+                deep_cleaning: $("#deep_cleaning").val()
+            };
+
+            console.log(carPData);
+
+            RestClient.post("car_maintenance/add_maintenance/", carPData, function () {
+                $("#maintenance-car-modal").modal("toggle");
+                CarService.reload_cars_datatable();
+                toastr.success("Car Maintenance added successfully");
+            });
+        });
     }
+
+
 }
 
 function formatDate(datetimeStr) {
