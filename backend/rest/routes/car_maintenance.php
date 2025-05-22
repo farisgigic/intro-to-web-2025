@@ -3,9 +3,8 @@
 require_once __DIR__ . "/../services/CarMaintenanceService.class.php";
 
 Flight::set("carMaintenanceService", new CarMaintenanceService());
+
 Flight::group("/car_maintenance", function () {
-
-
     /**
      * @OA\Get(
      *     path="/car_maintenance/all",
@@ -41,7 +40,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("GET /@car_id", function ($car_id) {
-        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
+        // Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $car_maintenance = Flight::get("carMaintenanceService")->getCarMaintenanceByCarId($car_id);
         Flight::json($car_maintenance);
     });
@@ -138,7 +137,7 @@ Flight::group("/car_maintenance", function () {
      * )
      */
     Flight::route("PUT /edit_maintenance/@car_id", function ($car_id) {
-        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
+        Flight::auth_middleware()->authorizeRole(Roles::USER);
         $car_maintenance = Flight::request()->data->getData();
         $result = Flight::get("carMaintenanceService")->editCarMaintenance($car_id, $car_maintenance);
         Flight::json(["message" => "You have successfully edited car maintenance"]);

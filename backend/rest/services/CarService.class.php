@@ -71,6 +71,7 @@ class CarService extends BaseService
             $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
                 ' <button type="button" class="btn btn-warning" onclick="CarService.open_edit_car_modal(' . $car['id'] . ')">Edit</button> ' .
                 ' <button type="button" class="btn btn-outline-danger" onclick="CarService.delete_car(' . $car['id'] . ')">Delete</button> ' .
+                ' <button type="button" class="btn btn-info" onclick="CarService.open_info_modal(' . $car['id'] . ')">See info</button> ' .
                 '</div>';
         }
 

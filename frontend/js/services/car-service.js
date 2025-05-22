@@ -53,4 +53,36 @@ var CarService = {
             );
         }
     },
+
+    open_info_modal: function (car_id) {
+        RestClient.get("car_maintenance/" + car_id, function (data) {
+            console.log("car_maintenance response:", data);
+
+            const car = data;
+
+            if (!car) {
+                toastr.warning("No maintenance data found for this car.");
+                return;
+            }
+
+            $("#info-car-modal").modal("show");
+            $("#info-car-form input[name='car_id']").val(car_id);
+            $("#info-car-form input[name='service']").val(formatDate(car.service));
+            $("#info-car-form input[name='large_service']").val(formatDate(car.large_service));
+            $("#info-car-form input[name='front_disc_pads']").val(formatDate(car.front_disc_pads));
+            $("#info-car-form input[name='rear_disc_pads']").val(formatDate(car.rear_disc_pads));
+            $("#info-car-form input[name='air_oil_filter']").val(formatDate(car.air_oil_filter));
+            $("#info-car-form input[name='transmission_oil']").val(formatDate(car.transmission_oil));
+            $("#info-car-form input[name='cabin_air_filter']").val(formatDate(car.cabin_air_filter));
+            $("#info-car-form input[name='inspection']").val(formatDate(car.inspection));
+            $("#info-car-form input[name='deep_cleaning']").val(formatDate(car.deep_cleaning));
+
+        });
+
+        console.log("farecare", car_id);
+    }
+}
+
+function formatDate(datetimeStr) {
+    return datetimeStr ? datetimeStr.split(' ')[0] : '';
 }
