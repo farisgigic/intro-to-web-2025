@@ -4,11 +4,11 @@ require_once __DIR__ . "/BaseService.class.php";
 
 class CarMaintenanceService extends BaseService
 {
-
+    protected $dao;
 
     public function __construct()
     {
-        parent::__construct(new CarMaintenanceDao());
+        $this->dao = new CarMaintenanceDao();
     }
 
     public function getCarMaintenanceByCarId($car_maintenance_id)
@@ -23,12 +23,12 @@ class CarMaintenanceService extends BaseService
 
     public function addCarMaintenance($car_maintenance)
     {
-        return $this->dao->add($car_maintenance);
+        return $this->dao->addMaintenance($car_maintenance);
     }
 
     public function editCarMaintenance($id, $car_maintenance)
     {
-        return $this->dao->update($id, $car_maintenance);
+        return $this->dao->editCarMaintenance($id, $car_maintenance);
     }
 
     public function deleteCarMaintenance($car_maintenance_id)

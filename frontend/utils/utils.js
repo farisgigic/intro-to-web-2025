@@ -6,18 +6,21 @@ var Utils = {
         });
 
         app.run();
-
     },
+
     set_to_localstorage: function (key, value) {
         window.localStorage.setItem(key, JSON.stringify(value));
     },
+
     get_from_localstorage: function (key) {
         return JSON.parse(window.localStorage.getItem(key));
     },
+
     logout: function () {
         window.localStorage.clear();
         window.location = "login";
     },
+
     block_ui: function (element) {
         $(element).block({
             message: '<div class="spinner-border text-primary" role="status"></div>',
@@ -31,9 +34,11 @@ var Utils = {
             },
         });
     },
+
     unblock_ui: function (element) {
         $(element).unblock({});
     },
+
     get_datatable: function (
         table_id,
         url,
@@ -48,11 +53,13 @@ var Utils = {
     ) {
         if ($.fn.dataTable.isDataTable("#" + table_id)) {
             details_callback = false;
-            $("#" + table_id)
-                .DataTable()
-                .destroy();
+            $("#" + table_id).DataTable().destroy();
         }
-        var table = $("#" + table_id).DataTable({
+
+        // Get the token only (not user object!)
+        const token = Utils.get_from_localstorage("token");
+
+        const table = $("#" + table_id).DataTable({
             order: [
                 sort_column == null ? 1 : sort_column,
                 sort_order == null ? "desc" : sort_order,
@@ -65,8 +72,10 @@ var Utils = {
             ajax: {
                 url: url,
                 type: "GET",
-                headers: {
-                    "Authentication": Utils.get_from_localstorage("User").token
+                beforeSend: function (xhr) {
+                    if (token) {
+                        xhr.setRequestHeader("Authentication", token);
+                    }
                 }
             },
             lengthMenu: [

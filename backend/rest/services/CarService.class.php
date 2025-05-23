@@ -59,4 +59,45 @@ class CarService extends BaseService
         }
         return $this->dao->update($car_id, $car);
     }
+
+    public function get_cars_paginated($user_id, $offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_cars_paginated($search)['count'];
+        $rows = $this->dao->get_cars_paginated($user_id, $offset, $limit, $search, $order_column, $order_direction);
+        $no = $offset + 1;
+
+        foreach ($rows as $id => $car) {
+            $rows[$id]['number'] = $no++;
+            $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
+                ' <button type="button" class="btn btn-warning" onclick="CarService.open_edit_car_modal(' . $car['id'] . ')">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="CarService.delete_car(' . $car['id'] . ')">Delete</button> ' .
+                ' <button type="button" class="btn btn-info" onclick="CarService.open_info_modal(' . $car['id'] . ')">See info</button> ' .
+                ' <button type="button" class="btn btn-outline-success" onclick="CarService.add_maintenance(' . $car['id'] . ')">Add maintenance</button> ' .
+                '</div>';
+        }
+
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
+    }
+    public function get_cars_paginated_admin($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_cars_paginated($search)['count'];
+        $rows = $this->dao->get_cars_paginated_admin($offset, $limit, $search, $order_column, $order_direction);
+
+
+        foreach ($rows as $id => $car) {
+            $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
+                ' <button type="button" class="btn btn-warning" onclick="UserService.open_edit_car_modal_admin(' . $car['id'] . ')">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_car_admin(' . $car['id'] . ')">Delete</button> ' .
+                '</div>';
+        }
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
+    }
+
+
 }

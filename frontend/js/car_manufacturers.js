@@ -2,14 +2,6 @@
 
 let dataFetched = []; // where we will store our data fetched from .json file (all manufacturer names will be here)
 
-$(document).ready(() => {
-    getManufacturers("json/car_brands.json"); // Calling function for getting manfuacturers
-});
-
-const storeId = (id) => {
-    localStorage.setItem("manufacturer", id); // finding element in our add-new-car.html with id "manufacturer" and set that value to "id" which is parameter to out method
-};
-
 const getManufacturers = (dataUrl) => {
     $.get(dataUrl, (data) => { // with $.get we are accepting our data fetched from our .json file
         console.log(data); // writing to console all files that we got just to make sure everything works as a charm
@@ -27,6 +19,15 @@ const renderItems = (itemsArray) => {
         // using this instance.city we are getting every instance of itemsArray and store it in dataList in index.html file
     });
 };
+$(document).ready(() => {
+    getManufacturers("json/car_brands.json"); // Calling function for getting manfuacturers
+});
+
+const storeId = (id) => {
+    localStorage.setItem("manufacturer", id); // finding element in our add-new-car.html with id "manufacturer" and set that value to "id" which is parameter to out method
+};
+
+
 
 
 // MANDATORY FILES

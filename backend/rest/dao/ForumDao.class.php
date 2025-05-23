@@ -16,5 +16,28 @@ class ForumDao extends BaseDao
         $stmt->execute();
         return $stmt->fetch();
     }
+    public function count_forums_paginated($search)
+    {
+        $query = "SELECT COUNT(*) AS count 
+                    FROM forum
+                    WHERE LOWER(title) LIKE CONCAT('%', :search, '%') OR
+                    LOWER(description) LIKE CONCAT('%', :search, '%');";
+        return $this->query_unique($query, [
+            'search' => $search
+        ]);
+    }
+    public function get_forums_paginated($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $query = "SELECT *
+                  FROM forum
+                  WHERE LOWER(title) LIKE CONCAT('%', :search, '%') OR 
+                        LOWER(description) LIKE CONCAT('%', :search, '%') 
+                  ORDER BY {$order_column} {$order_direction}
+                  LIMIT {$offset}, {$limit}";
+
+        return $this->query($query, [
+            'search' => $search
+        ]);
+    }
 
 }

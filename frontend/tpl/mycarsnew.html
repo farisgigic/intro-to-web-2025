@@ -1,60 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="stylesheet" href="css/datatables.min.css" type="text/css">
+  <link rel="stylesheet" href="css/datatables.min.css" type="text/css">
 </head>
+
 <body>
-    <!-- Breadcrumb End -->
-    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>My Cars</h2>
-                        <div class="breadcrumb__links">
-                            <a href="#landing"><i class="fa fa-home"></i> Home</a>
-                            <span>My Cars</span>
-                        </div>
-                    </div>
-                </div>
+  <!-- Breadcrumb End -->
+  <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb-bg.jpg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="breadcrumb__text">
+            <h2>My Cars</h2>
+            <div class="breadcrumb__links">
+              <a href="#landing"><i class="fa fa-home"></i> Home</a>
+              <span>My Cars</span>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Breadcrumb Begin -->
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        My Cars
-                    </div>
-                    <div class="card-body">
-                        <table id="tbl_cars">
-                            <thead>
-                                <tr>
-                                    <th data-name ="id">ID</th>
-                                    <th data-name ="first_name" >First Name</th>
-                                    <th data-name ="last_name" >Last Name</th>
-                                    <th data-name ="semester">Semester</th>
-                                    <th data-name ="id_number">ID num</th>
-                                    <th data-name ="id_user">ID user</th>
-                                    <th data-name ="actions">Actions</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
+  </div>
+  <!-- Breadcrumb Begin -->
+  <div id="layoutSidenav_content" style="margin-top: 50px;">
+    <main>
+      <div class="container-fluid px-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            My Cars
+          </div>
+          <div class="card-body p-2">
+            <div class="table-responsive">
+              <table class="table table-sm table-striped table-bordered table-hover" id="tbl_cars">
+                <thead>
+                  <tr>
+                    <th data-name="number">No</th>
+                    <th data-name="manufacturer">Manufacturer</th>
+                    <th data-name="model">Model</th>
+                    <th data-name="year">Year</th>
+                    <th data-name="engine">Engine</th>
+                    <th data-name="actions">Actions</th>
+
+                    <!-- <th data-name ="id_user">ID user</th>
+                                    <th data-name ="actions">Actions</th> -->
+                  </tr>
+                </thead>
+              </table>
             </div>
-            
-        </main>
+          </div>
+          <div class="add-new-car">
+            <a href="#add_new_car">
+              <button class="add-btn" style="float: right; margin-bottom: 10px; margin-right: 10px;">
+                <i class="fa fa-plus"></i> Add new car
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="modal fade" id="edit-car-modal" tabindex="-1" aria-labelledby="edit-car-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form id="edit-car-form">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="edit-car-label">Edit Car</h5>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" id="id" />
+                  <div class="mb-3">
+                    <label for="manufacturer" class="col-form-label">Manufacturer:</label>
+                    <input type="text" class="form-control" name="manufacturer" id="manufacturer" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="Model" class="col-form-label">Model:</label>
+                    <input type="text" class="form-control" name="model" id="model" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="Model" class="col-form-label">Year:</label>
+                    <input type="text" class="form-control" name="year" id="year" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="Model" class="col-form-label">Engine:</label>
+                    <input type="text" class="form-control" name="engine" id="engine" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button class="btn btn-success">Complete edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info  -->
+        <div class="modal fade" id="info-car-modal" tabindex="-1" aria-labelledby="info-car-label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form id="info-car-form">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="info-car-label">Info about Car</h5>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" id="id" />
+                  <input type="hidden" name="car_id" id="car_id" />
+                  <div class="mb-3">
+                    <label for="service" class="col-form-label">Service:</label>
+                    <input type="date" class="form-control" name="service" id="service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="large_service" class="col-form-label">Large Service:</label>
+                    <input type="date" class="form-control" name="large_service" id="large_service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="front_disc_pads" class="col-form-label">Front Disc Pads:</label>
+                    <input type="date" class="form-control" name="front_disc_pads" id="front_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="rear_disc_pads" class="col-form-label">Rear Disc Pads:</label>
+                    <input type="date" class="form-control" name="rear_disc_pads" id="rear_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="air_oil_filter" class="col-form-label">Air & Oil Filter:</label>
+                    <input type="date" class="form-control" name="air_oil_filter" id="air_oil_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="transmission_oil" class="col-form-label">Transmission Oil:</label>
+                    <input type="date" class="form-control" name="transmission_oil" id="transmission_oil" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="cabin_air_filter" class="col-form-label"> Cabin Air Filter:</label>
+                    <input type="date" class="form-control" name="cabin_air_filter" id="cabin_air_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="inspection" class="col-form-label"> Inspection:</label>
+                    <input type="date" class="form-control" name="inspection" id="inspection" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="deep_cleaning" class="col-form-label"> Deep cleaning:</label>
+                    <input type="date" class="form-control" name="deep_cleaning" id="deep_cleaning" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button class="btn btn-success">Complete edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Add maintenance -->
+        <div class="modal fade" id="maintenance-car-modal" tabindex="-1" aria-labelledby="maintenance-car-label"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form id="maintenance-car-form">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="maintenance-car-label">Add car maintenance</h5>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" id="id" />
+                  <input type="hidden" name="car_id" id="car_id" />
+                  <div class="mb-3">
+                    <label for="service" class="col-form-label">Service:</label>
+                    <input type="date" class="form-control" name="service" id="service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="large_service" class="col-form-label">Large Service:</label>
+                    <input type="date" class="form-control" name="large_service" id="large_service" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="front_disc_pads" class="col-form-label">Front Disc Pads:</label>
+                    <input type="date" class="form-control" name="front_disc_pads" id="front_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="rear_disc_pads" class="col-form-label">Rear Disc Pads:</label>
+                    <input type="date" class="form-control" name="rear_disc_pads" id="rear_disc_pads" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="air_oil_filter" class="col-form-label">Air & Oil Filter:</label>
+                    <input type="date" class="form-control" name="air_oil_filter" id="air_oil_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="transmission_oil" class="col-form-label">Transmission Oil:</label>
+                    <input type="date" class="form-control" name="transmission_oil" id="transmission_oil" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="cabin_air_filter" class="col-form-label"> Cabin Air Filter:</label>
+                    <input type="date" class="form-control" name="cabin_air_filter" id="cabin_air_filter" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="inspection" class="col-form-label"> Inspection:</label>
+                    <input type="date" class="form-control" name="inspection" id="inspection" />
+                  </div>
+                  <div class="mb-3">
+                    <label for="deep_cleaning" class="col-form-label"> Deep cleaning:</label>
+                    <input type="date" class="form-control" name="deep_cleaning" id="deep_cleaning" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button class="btn btn-success">Complete edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </main>
     <script src="js/main.js"></script>
-    <script>
-        let table = new DataTable('#carTable');
-    </script>
     <script src="js/datatables.min.js"></script>
     <script>
-        CarService.reload_cars_datatable();
+      const user = Utils.get_from_localstorage("user");
+      //console.log(user);
+      CarService.reload_cars_datatable();
+    </script>
+    <script>
+      $("#edit-car-form").submit(function (e) {
+        e.preventDefault();
+
+        const carData = {
+          id: $("#edit-car-form input[name='id']").val(),
+          manufacturer: $("#edit-car-form input[name='manufacturer']").val(),
+          model: $("#edit-car-form input[name='model']").val(),
+          year: $("#edit-car-form input[name='year']").val(),
+          engine: $("#edit-car-form input[name='engine']").val()
+        };
+
+        RestClient.put("cars/edit_car/" + carData.id, carData, function () {
+          $("#edit-car-modal").modal("toggle");
+          CarService.reload_cars_datatable();
+          toastr.success("Car updated successfully");
+        });
+      });
+    </script>
+    <script>
+      $("#info-car-form").submit(function (e) {
+        e.preventDefault();
+
+        const carMData = {
+          car_id: $("#info-car-form input[name='car_id']").val(),
+          service: $("#info-car-form input[name='service']").val(),
+          large_service: $("#info-car-form input[name='large_service']").val(),
+          front_disc_pads: $("#info-car-form input[name='front_disc_pads']").val(),
+          rear_disc_pads: $("#info-car-form input[name='rear_disc_pads']").val(),
+          air_oil_filter: $("#info-car-form input[name='air_oil_filter']").val(),
+          transmission_oil: $("#info-car-form input[name='transmission_oil']").val(),
+          cabin_air_filter: $("#info-car-form input[name='cabin_air_filter']").val(),
+          inspection: $("#info-car-form input[name='inspection']").val(),
+          deep_cleaning: $("#info-car-form input[name='deep_cleaning']").val()
+        };
+
+        RestClient.put("car_maintenance/edit_maintenance/" + carMData.car_id, carMData, function () {
+          $("#info-car-modal").modal("toggle");
+          CarService.reload_cars_datatable();
+          toastr.success("Car updated successfully");
+        });
+      })
+    </script>
+    <script>
+      $("#maintenance-car-form").submit(function (e) {
+        e.preventDefault();
+
+        const carPData = {
+          car_id: $("#maintenance-car-form input[name='car_id']").val(),
+          service: $("#maintenance-car-form input[name='service']").val(),
+          large_service: $("#maintenance-car-form input[name='large_service']").val(),
+          front_disc_pads: $("#maintenance-car-form input[name='front_disc_pads']").val(),
+          rear_disc_pads: $("#maintenance-car-form input[name='rear_disc_pads']").val(),
+          air_oil_filter: $("#maintenance-car-form input[name='air_oil_filter']").val(),
+          transmission_oil: $("#maintenance-car-form input[name='transmission_oil']").val(),
+          cabin_air_filter: $("#maintenance-car-form input[name='cabin_air_filter']").val(),
+          inspection: $("#maintenance-car-form input[name='inspection']").val(),
+          deep_cleaning: $("#maintenance-car-form input[name='deep_cleaning']").val()
+        };
+
+        RestClient.post("car_maintenance/add_maintenance/" + carPData, function () {
+          $("#maintenance-car-modal").modal("toggle");
+          CarService.reload_cars_datatable();
+          toastr.success("Car Maintenance added successfully");
+        });
+      })
     </script>
 </body>
+
 </html>

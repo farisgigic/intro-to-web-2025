@@ -102,5 +102,24 @@ class BaseDao
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function insert($table, $entity)
+    {
+        $query = "INSERT INTO {$table} (";
+        foreach ($entity as $column => $value) {
+            $query .= $column . ", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= ") VALUES (";
+        foreach ($entity as $column => $value) {
+            $query .= ":" . $column . ", ";
+        }
+        $query = substr($query, 0, -2);
+        $query .= ")";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($entity); // SQL injection prevention
+        $entity['id'] = $this->connection->lastInsertId();
+        return $entity;
+    }
 
 }
