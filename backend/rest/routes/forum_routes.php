@@ -4,6 +4,35 @@ require_once __DIR__ . '/../services/ForumService.class.php';
 Flight::set('forumService', new ForumService());
 
 Flight::group("/forums", function () {
+    Flight::route('GET /', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        $payload = Flight::request()->query;
+
+        $params = [
+            'start' => isset($payload['start']) ? (int) $payload['start'] : 0,
+            'search' => isset($payload['search']['value']) ? $payload['search']['value'] : '',
+            'draw' => isset($payload['draw']) ? (int) $payload['draw'] : 1,
+            'limit' => isset($payload['length']) ? (int) $payload['length'] : 10,
+            'order_column' => isset($payload['order'][0]['name']) ? $payload['order'][0]['name'] : 'username',
+            'order_direction' => isset($payload['order'][0]['dir']) ? $payload['order'][0]['dir'] : 'asc',
+        ];
+
+        $data = Flight::get('forumService')->get_forums_paginated(
+            $params['start'],
+            $params['limit'],
+            $params['search'],
+            $params['order_column'],
+            $params['order_direction']
+        );
+
+        echo json_encode([
+            'draw' => $params['draw'],
+            'data' => $data['data'],
+            'recordsFiltered' => $data['count'],
+            'recordsTotal' => $data['count'],
+            'end' => $data['count']
+        ]);
+    });
     /**
      * @OA\Get(
      *     path="/forums/all",
@@ -81,7 +110,7 @@ Flight::group("/forums", function () {
         $required_fields = ["title", "description", "user_id"];
         foreach ($required_fields as $field) {
             if (!isset($data[$field]) || empty(trim($data[$field]))) {
-                Flight::json(["error" => "Field '$field' is required and cannot be empty."], 400);
+                Flight::json(["message" => "Field '$field' is required and cannot be empty."], 400);
                 return;
             }
         }
@@ -89,7 +118,7 @@ Flight::group("/forums", function () {
             $forum = Flight::get("forumService")->addForum($data);
             Flight::json(["message" => "Forum post successfully added.", "data" => $forum], 200);
         } catch (Exception $e) {
-            Flight::json(["error" => $e->getMessage()], 500);
+            Flight::json(["message" => $e->getMessage()], 500);
         }
     });
 
@@ -119,7 +148,7 @@ Flight::group("/forums", function () {
             Flight::json(["message" => "You have successfully deleted"], 200);
 
         } catch (Exception $e) {
-            Flight::json(["error" => "Forum with this ID does not exist."], 400);
+            Flight::json(["message" => "Forum with this ID does not exist."], 400);
         }
     });
 

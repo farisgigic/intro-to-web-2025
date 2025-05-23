@@ -122,5 +122,64 @@ var UserService = {
             );
         }
     },
+    open_edit_user_modal_admin: function (user_id) {
+        RestClient.get("users/user/" + user_id, function (data) {
+            const user = data[0];
+            $("#edit-user-modal").modal("show");
+            $("#edit-user-form input[name='id']").val(user.id);
+            $("#edit-user-form input[name='first_name']").val(user.first_name);
+            $("#edit-user-form input[name='last_name']").val(user.last_name);
+            $("#edit-user-form input[name='username']").val(user.username);
+            $("#edit-user-form input[name='email']").val(user.email);
+            $("#edit-user-form input[name='address']").val(user.address);
+            $("#edit-user-form input[name='city']").val(user.city);
+            $("#edit-user-form input[name='zip_code']").val(user.zip_code);
+            $("#edit-user-form input[name='birth_date']").val(user.birth_date);
+            $("#edit-user-form input[name='role']").val(user.role);
+        });
+
+    },
+    reload_forums_datatable_admin: function () {
+        Utils.get_datatable(
+            "admin_forums", "http://localhost/intro-to-web-2025/backend/forums/",
+            [
+                { data: "id" },
+                { data: "title" },
+                { data: "description" },
+                { data: "created_at" },
+                { data: "user_id" },
+                { data: "actions" },
+            ], null, function () {
+                console.log("Datatable for forums works");
+            }
+        );
+    },
+    open_edit_forum_modal: function (forum_id) {
+        RestClient.get("forums/forum/" + forum_id, function (data) {
+            const forum = data[0];
+            $("#edit-forum-modal").modal("show");
+            $("#edit-forum-form input[name='id']").val(forum.id);
+            $("#edit-forum-form input[name='title']").val(forum.title);
+            $("#edit-forum-form input[name='description']").val(forum.description);
+            $("#edit-forum-form input[name='created_at']").val(forum.created_at);
+            $("#edit-forum-form input[name='user_id']").val(forum.user_id);
+        });
+
+    },
+    delete_car_admin: function (forum_id) {
+        if (
+            confirm(
+                "Do you want to delete forum?"
+            ) == true
+        ) {
+            RestClient.delete(
+                "forums/delete_forum/" + forum_id,
+                {},
+                function () {
+                    UserService.reload_forums_datatable_admin();
+                }
+            );
+        }
+    },
 
 }

@@ -35,7 +35,7 @@ class UserService extends BaseService
         }
         if (isset($user['email'])) {
             $existingUser = $this->dao->getUserByEmail($user['email']);
-            if ($existingUser && $existingUser['user_id'] != $id) {
+            if ($existingUser && $existingUser['id'] != $id) {
                 throw new Exception("Another user with this email already exists.");
             }
         }
@@ -59,7 +59,7 @@ class UserService extends BaseService
         foreach ($rows as $id => $user) {
 
             $rows[$id]['actions'] = '<div class="btn-group" role="group" aria-label="Actions"> ' .
-                ' <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-car-modal">Edit</button> ' .
+                ' <button type="button" class="btn btn-warning" onclick="UserService.open_edit_user_modal_admin(' . $user['id'] . ')">Edit</button> ' .
                 ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_user_admin(' . $user['id'] . ')">Delete</button> ' .
                 '</div>';
         }

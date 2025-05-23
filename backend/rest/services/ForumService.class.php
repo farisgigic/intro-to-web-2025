@@ -56,4 +56,22 @@ class ForumService extends BaseService
         }
         return $this->dao->delete($forum_id);
     }
+    public function get_forums_paginated($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_forums_paginated($search)['count'];
+        $rows = $this->dao->get_forums_paginated($offset, $limit, $search, $order_column, $order_direction);
+
+
+        foreach ($rows as $id => $forum) {
+
+            $rows[$id]['actions'] = '<div class="btn-group" role="group" aria-label="Actions"> ' .
+                ' <button type="button" class="btn btn-warning" onclick="UserService.open_edit_forum_modal(' . $forum['id'] . ')">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_car_admin(' . $forum['id'] . ')">Delete</button> ' .
+                '</div>';
+        }
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
+    }
 }

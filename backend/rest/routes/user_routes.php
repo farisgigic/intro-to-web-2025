@@ -103,6 +103,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route('POST /add_user', function () {
+        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
         $data = Flight::request()->data->getData();
 
         // Validate email format
@@ -180,7 +181,7 @@ Flight::group("/users", function () {
      * )
      */
     Flight::route("PUT /edit_user/@id", function ($user_id) {
-        Flight::auth_middleware()->authorizeRoles(Roles::USER, Roles::ADMIN);
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::request()->data->getData();
 
         try {
@@ -193,12 +194,11 @@ Flight::group("/users", function () {
                 Flight::json(["error" => "Password must be at least 6 characters."], 400);
                 return;
             }
-
             $user = Flight::get("userService")->updateUser($user_id, $data);
             Flight::json(["message" => "You have successfully edited user.", "data" => $user], 200);
 
         } catch (Exception $e) {
-            Flight::json(["error" => $e->getMessage()], 400);
+            Flight::json(["errorfare" => $e->getMessage()], 400);
         }
     });
 
