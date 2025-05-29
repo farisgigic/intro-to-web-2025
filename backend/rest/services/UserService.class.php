@@ -23,6 +23,7 @@ class UserService extends BaseService
         if ($existingUser) {
             throw new Exception("User with this email already exists.");
         }
+        $user["password"] = password_hash($user["password"], PASSWORD_BCRYPT);
         return $this->dao->add($user);
     }
 
@@ -34,7 +35,7 @@ class UserService extends BaseService
         }
         if (isset($user['email'])) {
             $existingUser = $this->dao->getUserByEmail($user['email']);
-            if ($existingUser && $existingUser['user_id'] != $id) {
+            if ($existingUser && $existingUser['id'] != $id) {
                 throw new Exception("Another user with this email already exists.");
             }
         }
@@ -48,5 +49,23 @@ class UserService extends BaseService
             throw new Exception("User not found.");
         }
         return $this->dao->delete($id);
+    }
+    public function get_users_paginated($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_users_paginated($search)['count'];
+        $rows = $this->dao->get_users_paginated($offset, $limit, $search, $order_column, $order_direction);
+
+
+        foreach ($rows as $id => $user) {
+
+            $rows[$id]['actions'] = '<div class="btn-group" role="group" aria-label="Actions"> ' .
+                ' <button type="button" class="btn btn-warning" onclick="UserService.open_edit_user_modal_admin(' . $user['id'] . ')">Edit</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_user_admin(' . $user['id'] . ')">Delete</button> ' .
+                '</div>';
+        }
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
     }
 }

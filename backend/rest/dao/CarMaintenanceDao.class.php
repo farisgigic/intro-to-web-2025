@@ -15,7 +15,11 @@ class CarMaintenanceDao extends BaseDao
             ':car_id' => $car_id
         ]);
     }
-    
+    public function addMaintenance($carMaintenance)
+    {
+        return $this->insert('car_maintenance', $carMaintenance);
+    }
+
     public function editCarMaintenance($car_id, $carMaintenance)
     {
         $query = "  UPDATE car_maintenance 

@@ -1,14 +1,14 @@
 var RestClient = {
     get: function (url, callback, error_callback) {
         $.ajax({
-            url: "http://localhost/carcare/backend/" + url,
+            url: "http://localhost/intro-to-web-2025/backend/" + url,
             type: "GET",
             beforeSend: function (xhr) {
-                console.log(Utils.get_from_localstorage("User").token);
-                if (Utils.get_from_localstorage("User")) {
+                console.log(Utils.get_from_localstorage("user").token);
+                if (Utils.get_from_localstorage("user")) {
                     xhr.setRequestHeader(
                         "Authentication",
-                        Utils.get_from_localstorage("User").token
+                        Utils.get_from_localstorage("user").token
 
                     );
                 }
@@ -23,14 +23,14 @@ var RestClient = {
     },
     request: function (url, method, data, callback, error_callback) {
         $.ajax({
-            url: "http://localhost/carcare/backend/" + url,
+            url: "http://localhost/intro-to-web-2025/backend/" + url,
             type: method,
             data: data,
             beforeSend: function (xhr) {
-                if (Utils.get_from_localstorage("User")) {
+                if (Utils.get_from_localstorage("user")) {
                     xhr.setRequestHeader(
                         "Authentication",
-                        Utils.get_from_localstorage("User").token
+                        Utils.get_from_localstorage("user").token
                     );
                 }
             },

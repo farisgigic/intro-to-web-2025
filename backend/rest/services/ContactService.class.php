@@ -49,4 +49,21 @@ class ContactService extends BaseService
         }
         return $this->dao->delete($contact_id);
     }
+    public function get_contacts_paginated($offset, $limit, $search, $order_column, $order_direction)
+    {
+        $count = $this->dao->count_contacts_paginated($search)['count'];
+        $rows = $this->dao->get_contacts_paginated($offset, $limit, $search, $order_column, $order_direction);
+
+
+        foreach ($rows as $id => $contact) {
+            $rows[$id]['actions'] = '<div class="btn-group" role="group">' .
+                ' <button type="button" class="btn btn-info" onclick="UserService.open_edit_contact_modal(' . $contact['id'] . ')">Info</button> ' .
+                ' <button type="button" class="btn btn-outline-danger" onclick="UserService.delete_contact_admin(' . $contact['id'] . ')">Delete</button> ' .
+                '</div>';
+        }
+        return [
+            'count' => $count,
+            'data' => $rows
+        ];
+    }
 }

@@ -1,0 +1,378 @@
+<body>
+    <!-- Breadcrumb End -->
+    <div class="breadcrumb-option"
+        style="background-image: url('img/breadcrumb-bg.jpg'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Admin Dashboard</h2>
+                        <div class="breadcrumb__links">
+                            <a href="#landing"><i class="fa fa-home" style="color: #0D9FF2;"></i> Home</a>
+                            <span>Admin Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Begin -->
+
+    <div id="layoutSidenav_content" style="margin-top: 50px;">
+        <main>
+            <div class="container-fluid px-6">
+                <h4>Modify users</h4>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Users
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered table-hover" id="admin_users">
+                                <thead>
+                                    <tr>
+                                        <th data-name="id">User ID</th>
+                                        <th data-name="first_name">First Name</th>
+                                        <th data-name="last_name">Last Name</th>
+                                        <th data-name="username">Username</th>
+                                        <th data-name="email">Email</th>
+                                        <th data-name="password">Password</th>
+                                        <th data-name="address">Address</th>
+                                        <th data-name="city">City</th>
+                                        <th data-name="zip_code">Zip Code</th>
+                                        <th data-name="birth_date">Birth Date</th>
+                                        <th data-name="role">Role</th>
+                                        <th data-name="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid px-6">
+                <h4>Modify cars</h4>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Cars
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered table-hover" id="admin_cars">
+                                <thead>
+                                    <tr>
+                                        <th data-name="manufacturer">Manufacturer</th>
+                                        <th data-name="model">Model</th>
+                                        <th data-name="year">Year</th>
+                                        <th data-name="engine">Engine</th>
+                                        <th data-name="user_id">User ID</th>
+                                        <th data-name="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid px-6">
+                <h4>Modify contact messages</h4>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Messages
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered table-hover" id="admin_contacts">
+                                <thead>
+                                    <tr>
+                                        <th data-name="id">Message ID</th>
+                                        <th data-name="full_name">Full name</th>
+                                        <th data-name="email">Email</th>
+                                        <th data-name="subject">Subject</th>
+                                        <th data-name="message">Message</th>
+                                        <th data-name="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid px-6">
+                <h4>Modify forums</h4>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Forums
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-bordered table-hover" id="admin_forums">
+                                <thead>
+                                    <tr>
+                                        <th data-name="id">Forum ID</th>
+                                        <th data-name="title">Title</th>
+                                        <th data-name="description">Descrption</th>
+                                        <th data-name="created_at">Posted at</th>
+                                        <th data-name="user_id">User ID</th>
+                                        <th data-name="actions">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact modal -->
+            <div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="contact-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="contact-label">Contact info </h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="full_name" class="col-form-label">Full Name:</label>
+                                    <input type="text" class="form-control" name="full_name" id="full_name" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="text" class="form-control" name="email" id="email" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="col-form-label">Subject:</label>
+                                    <input type="text" class="form-control" name="subject" id="subject" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="col-form-label">Message:</label>
+                                    <input type="text" class="form-control" name="message" id="message" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit car modal -->
+            <div class="modal fade" id="edit-car-modal" tabindex="-1" aria-labelledby="edit-car-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="edit-car-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit-car-label">Edit Car</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="manufacturer" class="col-form-label">Manufacturer:</label>
+                                    <input type="text" class="form-control" name="manufacturer" id="manufacturer" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Model:</label>
+                                    <input type="text" class="form-control" name="model" id="model" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Year:</label>
+                                    <input type="text" class="form-control" name="year" id="year" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Model" class="col-form-label">Engine:</label>
+                                    <input type="text" class="form-control" name="engine" id="engine" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_id" class="col-form-label">User ID:</label>
+                                    <input type="text" class="form-control" name="user_id" id="user_id" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button class="btn btn-success">Complete edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit users modal-->
+            <div class="modal fade" id="edit-user-modal" tabindex="-1" aria-labelledby="edit-user-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="edit-user-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit-user-label">Edit User</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="first_name" class="col-form-label">First Name:</label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="last_name" class="col-form-label">Last Name:</label>
+                                    <input type="text" class="form-control" name="last_name" id="last_name" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="col-form-label">Username:</label>
+                                    <input type="text" class="form-control" name="username" id="username" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="text" class="form-control" name="email" id="email" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="col-form-label">Address:</label>
+                                    <input type="text" class="form-control" name="address" id="address" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="city" class="col-form-label">City:</label>
+                                    <input type="text" class="form-control" name="city" id="city" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="zip_code" class="col-form-label">Zip Code:</label>
+                                    <input type="text" class="form-control" name="zip_code" id="zip_code" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="birth_date" class="col-form-label">Birth Date:</label>
+                                    <input type="date" class="form-control" name="birth_date" id="birth_date" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role" class="col-form-label">Role:</label>
+                                    <input type="text" class="form-control" name="role" id="role" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button class="btn btn-success">Complete edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit forums modal-->
+            <div class="modal fade" id="edit-forum-modal" tabindex="-1" aria-labelledby="edit-forum-label"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="edit-forum-form">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit-forum-label">Edit forum</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id" />
+                                <div class="mb-3">
+                                    <label for="title" class="col-form-label">Title:</label>
+                                    <input type="text" class="form-control" name="title" id="title" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="col-form-label">Descrption:</label>
+                                    <input type="text" class="form-control" name="description" id="description" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="created_at" class="col-form-label">Posted at:</label>
+                                    <input type="text" class="form-control" name="created_at" id="created_at" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_id" class="col-form-label">User ID:</label>
+                                    <input type="text" class="form-control" name="user_id" id="user_id" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button class="btn btn-success">Complete edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/datatables.min.js"></script>
+    <script src="js/services/car-service.js"></script>
+    <script>
+        const user = Utils.get_from_localstorage("user");
+        console.log(user);
+        UserService.reload_users_datatable();
+        UserService.reload_cars_datatable_admin();
+        UserService.reload_contacts_datatable_admin();
+        UserService.reload_forums_datatable_admin();
+    </script>
+    <script>
+        $("#edit-car-form").submit(function (e) {
+            e.preventDefault();
+
+            const carData = {
+                id: $("#edit-car-form input[name='id']").val(),
+                manufacturer: $("#edit-car-form input[name='manufacturer']").val(),
+                model: $("#edit-car-form input[name='model']").val(),
+                year: $("#edit-car-form input[name='year']").val(),
+                engine: $("#edit-car-form input[name='engine']").val(),
+                user_id: $("#edit-car-form input[name='user_id']").val()
+            };
+
+            RestClient.put("cars/edit_car/" + carData.id, carData, function () {
+                $("#edit-car-modal").modal("toggle");
+                UserService.reload_cars_datatable_admin();
+                toastr.success("Car updated successfully");
+            });
+        })
+    </script>
+    <script>
+        $("#edit-user-form").submit(function (e) {
+            e.preventDefault();
+
+            const userData = {
+                id: $("#edit-user-form input[name='id']").val(),
+                first_name: $("#edit-user-form input[name='first_name']").val(),
+                last_name: $("#edit-user-form input[name='last_name']").val(),
+                username: $("#edit-user-form input[name='username']").val(),
+                email: $("#edit-user-form input[name='email']").val(),
+                address: $("#edit-user-form input[name='address']").val(),
+                city: $("#edit-user-form input[name='city']").val(),
+                zip_code: $("#edit-user-form input[name='zip_code']").val(),
+                birth_date: $("#edit-user-form input[name='birth_date']").val(),
+                role: $("#edit-user-form input[name='role']").val()
+            };
+
+            RestClient.put("users/edit_user/" + userData.id, userData, function () {
+                $("#edit-user-modal").modal("toggle");
+                UserService.reload_users_datatable();
+                toastr.success("User updated successfully");
+            });
+        })
+    </script>
+    <script>
+        $("#edit-forum-form").submit(function (e) {
+            e.preventDefault();
+
+            const forumData = {
+                id: $("#edit-forum-form input[name='id']").val(),
+                title: $("#edit-forum-form input[name='title']").val(),
+                description: $("#edit-forum-form input[name='description']").val(),
+                created_at: $("#edit-forum-form input[name='created_at']").val(),
+                user_id: $("#edit-forum-form input[name='user_id']").val()
+            };
+            console.log(forumData);
+            RestClient.put("forums/edit_forum/" + forumData.id, forumData, function () {
+                $("#edit-forum-modal").modal("toggle");
+                UserService.reload_forums_datatable_admin();
+                toastr.success("Forum updated successfully");
+            });
+        })
+    </script>
+</body>
