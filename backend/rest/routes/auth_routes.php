@@ -28,7 +28,7 @@ Flight::group("/auth", function () {
      */
     Flight::route("POST /login", function () {
         // Add CORS headers first
-        Flight::response()->header('Access-Control-Allow-Origin', 'https://seal-app-qfrpl.ondigitalocean.app/');
+        Flight::response()->header('Access-Control-Allow-Origin', 'https://starfish-app-c8yuv.ondigitalocean.app/');
         Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authentication, X-Requested-With');
         Flight::response()->header('Access-Control-Allow-Credentials', 'true');
