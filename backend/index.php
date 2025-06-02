@@ -33,7 +33,7 @@ Flight::register("carMaintenanceService", "CarMaintenanceService");
 Flight::register("forumService", "ForumService");
 Flight::register("auth_middleware", "AuthMiddleware");
 Flight::route('OPTIONS /*', function () {
-    Flight::response()->header('Access-Control-Allow-Origin', 'https://carcare-rspd8.ondigitalocean.app');
+    Flight::response()->header('Access-Control-Allow-Origin', 'https://carcar-hw8hi.ondigitalocean.app/');
     Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
     Flight::response()->header('Access-Control-Allow-Credentials', 'true');
