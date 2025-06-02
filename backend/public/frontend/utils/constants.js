@@ -6,7 +6,7 @@ var Constants = {
         if (location.hostname == "localhost") {
             return "http://localhost/intro-to-web-2025/backend/";
         } else {
-            return "";
+            return "https://intro-to-web-svmcv.ondigitalocean.app/";
         }
     },
 };
