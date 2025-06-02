@@ -107,7 +107,7 @@
     <script src="../utils/utils.js"></script>
     <script>
         FormValidation.validate("#signup_form1", {}, function (data) {
-            $.post(Constants.API_BASE_URL + "users/add_user", data)
+            $.post(Constants.api_base_url() + "users/add_user", data)
                 .done(function (data) {
                     toastr.success("You have successfully registered to CarCare!");
                     $("#signup_form1")[0].reset();

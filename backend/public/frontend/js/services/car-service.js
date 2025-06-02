@@ -1,7 +1,7 @@
 var CarService = {
     reload_cars_datatable: function () {
         Utils.get_datatable(
-            "tbl_cars", Constants.API_BASE_URL + "cars/",
+            "tbl_cars", Constants.get_api_base_url() + "cars/",
             [
                 { data: "number" },
                 { data: "manufacturer" },
