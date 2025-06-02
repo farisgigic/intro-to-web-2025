@@ -27,6 +27,11 @@ Flight::group("/auth", function () {
      * )
      */
     Flight::route("POST /login", function () {
+        // Add CORS headers first
+        Flight::response()->header('Access-Control-Allow-Origin', 'https://carcar-hw8hi.ondigitalocean.app/');
+        Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authentication, X-Requested-With');
+        Flight::response()->header('Access-Control-Allow-Credentials', 'true');
         $payload = Flight::request()->data->getData();
 
         $user = Flight::get('auth_service')->get_user_by_email($payload['email']);
@@ -68,11 +73,6 @@ Flight::group("/auth", function () {
      * )
      */
     Flight::route('POST /logout', function () {
-        // Add CORS headers first
-        Flight::response()->header('Access-Control-Allow-Origin', 'https://carcar-hw8hi.ondigitalocean.app/');
-        Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authentication, X-Requested-With');
-        Flight::response()->header('Access-Control-Allow-Credentials', 'true');
         try {
             $token = Flight::request()->getHeader("Authentication");
             if (!$token)
