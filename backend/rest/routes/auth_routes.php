@@ -88,4 +88,7 @@ Flight::group("/auth", function () {
             Flight::halt(401, $e->getMessage());
         }
     });
+    Flight::route('GET /auth/test', function () {
+        Flight::json(['message' => 'Routing works', 'method' => $_SERVER['REQUEST_METHOD']]);
+    });
 });
