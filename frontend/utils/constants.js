@@ -6,7 +6,7 @@ var Constants = {
         if (location.hostname == "localhost") {
             return "http://localhost/intro-to-web-2025/backend/";
         } else {
-            return "https://carcar-hw8hi.ondigitalocean.app/backend/";
+            return "https://fareweb-dc3pk.ondigitalocean.app/backend/";
         }
     },
 };
