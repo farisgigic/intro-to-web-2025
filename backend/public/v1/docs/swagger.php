@@ -6,7 +6,7 @@ require __DIR__ . '/../../../vendor/autoload.php';
 if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') {
     define('BASE_URL', 'http://localhost/intro-to-web-2025/backend/');
 } else {
-    define('BASE_URL', 'https://intro-to-web-svmcv.ondigitalocean.app/backend/');
+    define('BASE_URL', 'https://carcare-rspd8.ondigitalocean.app/login');
 }
 
 error_reporting(0);
