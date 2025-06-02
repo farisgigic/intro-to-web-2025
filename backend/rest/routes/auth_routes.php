@@ -71,7 +71,7 @@ Flight::group("/auth", function () {
         // Add CORS headers first
         Flight::response()->header('Access-Control-Allow-Origin', 'https://carcar-hw8hi.ondigitalocean.app/');
         Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-        Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+        Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authentication, X-Requested-With');
         Flight::response()->header('Access-Control-Allow-Credentials', 'true');
         try {
             $token = Flight::request()->getHeader("Authentication");
