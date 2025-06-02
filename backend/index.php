@@ -33,7 +33,7 @@ Flight::register("carMaintenanceService", "CarMaintenanceService");
 Flight::register("forumService", "ForumService");
 Flight::register("auth_middleware", "AuthMiddleware");
 Flight::route('OPTIONS *', function () {
-    header('Access-Control-Allow-Origin: https://carcar-hw8hi.ondigitalocean.app');
+    header('Access-Control-Allow-Origin: https://carcar-hw8hi.ondigitalocean.app/');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, Authentication, X-Requested-With');
     header('Access-Control-Allow-Credentials: true');
@@ -66,6 +66,12 @@ require_once __DIR__ . "/rest/routes/user_routes.php";
 require_once __DIR__ . "/rest/routes/car_routes.php";
 require_once __DIR__ . "/rest/routes/contact_routes.php";
 
+Flight::route('/test', function () {
+    Flight::json([
+        'method' => $_SERVER['REQUEST_METHOD'],
+        'url' => $_SERVER['REQUEST_URI']
+    ]);
+});
 
 
 Flight::start();
