@@ -32,13 +32,12 @@ Flight::register("contactService", "ContactService");
 Flight::register("carMaintenanceService", "CarMaintenanceService");
 Flight::register("forumService", "ForumService");
 Flight::register("auth_middleware", "AuthMiddleware");
-Flight::route('OPTIONS *', function () {
-    header('Access-Control-Allow-Origin: https://intro-to-web-backend-uyhp4.ondigitalocean.app');
-    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-    header('Access-Control-Allow-Headers: Content-Type, Authentication, X-Requested-With');
-    header('Access-Control-Allow-Credentials: true');
-    Flight::halt(200);
-});
+
+header('Access-Control-Allow-Origin: https://intro-to-web-frontend-b3wd3.ondigitalocean.app');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authentication, X-Requested-With');
+header('Access-Control-Allow-Credentials: true');
+
 
 
 // Flight::route('/', function () {
