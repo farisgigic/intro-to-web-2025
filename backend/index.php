@@ -41,10 +41,10 @@ Flight::register("auth_middleware", "AuthMiddleware");
 // });
 
 
-Flight::route('/', function () {
-    echo "Welcome to the backend API!";
-});
-/* Flight::route('/*', function () {
+// Flight::route('/', function () {
+//     echo "Welcome to the backend API!";
+// });
+Flight::route('/*', function () {
     if (
         strpos(Flight::request()->url, '/auth/login') === 0 ||
         strpos(Flight::request()->url, '/users/add_user') === 0
@@ -59,7 +59,7 @@ Flight::route('/', function () {
             Flight::halt(401, $e->getMessage());
         }
     }
-}); */
+});
 
 
 require_once __DIR__ . "/rest/routes/auth_routes.php";
