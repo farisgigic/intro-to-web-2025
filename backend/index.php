@@ -44,21 +44,29 @@ header('Access-Control-Allow-Credentials: true');
 //     echo "Welcome to the backend API!";
 // });
 Flight::route('/*', function () {
+    // Skip authentication for preflight (OPTIONS) requests
+    if (Flight::request()->method == 'OPTIONS') {
+        Flight::halt(200); // Just exit successfully
+    }
+
+    // Skip auth for login and registration
     if (
         strpos(Flight::request()->url, '/auth/login') === 0 ||
         strpos(Flight::request()->url, '/users/add_user') === 0
     ) {
         return TRUE;
-    } else {
-        try {
-            $token = Flight::request()->getHeader("Authentication");
-            if (Flight::auth_middleware()->verifyToken($token))
-                return TRUE;
-        } catch (\Exception $e) {
-            Flight::halt(401, $e->getMessage());
-        }
+    }
+
+    // Authenticate all other requests
+    try {
+        $token = Flight::request()->getHeader("Authentication");
+        if (Flight::auth_middleware()->verifyToken($token))
+            return TRUE;
+    } catch (\Exception $e) {
+        Flight::halt(401, $e->getMessage());
     }
 });
+
 
 
 require_once __DIR__ . "/rest/routes/auth_routes.php";
