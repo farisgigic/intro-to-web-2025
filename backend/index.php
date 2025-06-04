@@ -38,18 +38,11 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authentication, X-Requested-With');
 header('Access-Control-Allow-Credentials: true');
 
-
-
-// Flight::route('/', function () {
-//     echo "Welcome to the backend API!";
-// });
 Flight::route('/*', function () {
-    // Skip authentication for preflight (OPTIONS) requests
     if (Flight::request()->method == 'OPTIONS') {
-        Flight::halt(200); // Just exit successfully
+        Flight::halt(200);
     }
 
-    // Skip auth for login and registration
     if (
         strpos(Flight::request()->url, '/auth/login') === 0 ||
         strpos(Flight::request()->url, '/users/add_user') === 0
@@ -63,7 +56,7 @@ Flight::route('/*', function () {
         if (Flight::auth_middleware()->verifyToken($token))
             return TRUE;
     } catch (\Exception $e) {
-        Flight::halt(401, $e->getMessage());
+        Flight::halt(401, "fare" . $e->getMessage());
     }
 });
 
@@ -76,12 +69,6 @@ require_once __DIR__ . "/rest/routes/user_routes.php";
 require_once __DIR__ . "/rest/routes/car_routes.php";
 require_once __DIR__ . "/rest/routes/contact_routes.php";
 
-Flight::route('/test', function () {
-    Flight::json([
-        'method' => $_SERVER['REQUEST_METHOD'],
-        'url' => $_SERVER['REQUEST_URI']
-    ]);
-});
 
 
 Flight::start();
