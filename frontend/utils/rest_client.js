@@ -1,7 +1,7 @@
 var RestClient = {
     get: function (url, callback, error_callback) {
         $.ajax({
-            url: "http://localhost/intro-to-web-2025/backend/" + url,
+            url: Constants.get_api_base_url() + url,
             type: "GET",
             beforeSend: function (xhr) {
                 console.log(Utils.get_from_localstorage("user").token);
@@ -23,7 +23,7 @@ var RestClient = {
     },
     request: function (url, method, data, callback, error_callback) {
         $.ajax({
-            url: "http://localhost/intro-to-web-2025/backend/" + url,
+            url: Constants.get_api_base_url() + url,
             type: method,
             data: data,
             beforeSend: function (xhr) {

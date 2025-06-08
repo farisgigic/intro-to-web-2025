@@ -45,7 +45,7 @@ Flight::group("/forums", function () {
      * )
      */
     Flight::route("GET /all", function () {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        Flight::auth_middleware()->authorizeRoles([Roles::USER, Roles::ADMIN]);
         $data = Flight::get('forumService')->getAllForums();
         Flight::json($data, 200);
     });

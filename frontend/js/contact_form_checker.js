@@ -36,7 +36,7 @@ $("#contact_form").validate({
         console.log(JSON.stringify(contact));
         contacts.push(contact);
 
-        $.post(Constants.API_BASE_URL + "add_message.php", contact).done(function (data) {
+        $.post(Constants.get_api_base_url() + "add_message.php", contact).done(function (data) {
             toastr.success("You have successfully sent your question!");
             $("#contact_form")[0].reset();
         }).fail(function (xhr, status, error) {

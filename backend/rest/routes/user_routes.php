@@ -98,12 +98,13 @@ Flight::group("/users", function () {
      *              @OA\Property(property="city", type="string", example="Sarajevo", description="User's city"),
      *              @OA\Property(property="zip_code", type="string", example="71000", description="User's zip code"),
      *              @OA\Property(property="birth_date", type="string", example="1990-01-01", description="User's birth date"),
+     *              @OA\Property(property="role", type="string", example="user", description="User's role"),   
      *          )
      *      )
      * )
      */
     Flight::route('POST /add_user', function () {
-        Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+        // Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
         $data = Flight::request()->data->getData();
 
         // Validate email format

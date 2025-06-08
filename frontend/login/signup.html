@@ -72,6 +72,7 @@
                             </label>
                             <input type="date" class="form-control" name="birth_date" id="birth_date" required>
                         </div>
+                        <input type="text" class="form-control" name="role" id="role" value="user" readonly>
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -106,8 +107,12 @@
     <script src="../utils/rest_client.js"></script>
     <script src="../utils/utils.js"></script>
     <script>
+        document.getElementById('role').value = 'user';
+
+    </script>
+    <script>
         FormValidation.validate("#signup_form1", {}, function (data) {
-            $.post(Constants.API_BASE_URL + "users/add_user", data)
+            $.post(Constants.get_api_base_url() + "users/add_user", data)
                 .done(function (data) {
                     toastr.success("You have successfully registered to CarCare!");
                     $("#signup_form1")[0].reset();

@@ -1,5 +1,7 @@
-
 # 🚗 CarCare Web Application
+
+**Live Application Demo:**  
+🔗 [https://intro-to-web-frontend-b3wd3.ondigitalocean.app](https://intro-to-web-frontend-b3wd3.ondigitalocean.app)
 
 Welcome to **CarCare**, a web application built to help car owners manage their vehicles, keep track of maintenance, and access car-related services — all in one place!
 
@@ -18,18 +20,18 @@ Welcome to **CarCare**, a web application built to help car owners manage their 
 
 ## 🧰 Tech Stack
 
-**Frontend:**
-- HTML5
-- CSS3
-- JavaScript
-- jQuery
+**Frontend:**  
+- HTML5  
+- CSS3  
+- JavaScript  
+- jQuery  
 - Bootstrap 5
 
-**Backend:**
-- PHP
+**Backend:**  
+- PHP  
 - Flight PHP (Micro-framework)
 
-**API Documentation:**
+**API Documentation:**  
 - Swagger (OpenAPI Specification)
 
 ---
@@ -41,10 +43,10 @@ We’ve integrated **Swagger UI** to make our API easy to explore and test.
 🔗 **Access the documentation at:**  
 [http://localhost/intro-to-web-2025/backend/public/v1/docs/](http://localhost/intro-to-web-2025/backend/public/v1/docs/) 
 
-With Swagger, you can:
-- View all available API endpoints
-- See input/output schemas
-- Interactively test requests and responses
+With Swagger, you can:  
+- View all available API endpoints  
+- See input/output schemas  
+- Interactively test requests and responses  
 - Understand required parameters, responses, and error handling
 
 ---
@@ -53,12 +55,12 @@ With Swagger, you can:
 
 ### 🔧 Prerequisites
 
-- PHP 7.4+
-- A web server (e.g., Apache or Nginx)
+- PHP 7.4+  
+- A web server (e.g., Apache or Nginx)  
 - Composer (for managing PHP dependencies)
 
 ### 🛠️ Installation
 
-1. Clone this repository:
+1. Clone this repository:  
    ```bash
    git clone https://github.com/farisgigic/intro-to-web-2025.git

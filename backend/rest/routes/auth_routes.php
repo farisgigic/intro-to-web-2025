@@ -27,6 +27,11 @@ Flight::group("/auth", function () {
      * )
      */
     Flight::route("POST /login", function () {
+        // Add CORS headers first
+        Flight::response()->header('Access-Control-Allow-Origin', 'https://intro-to-web-frontend-b3wd3.ondigitalocean.app');
+        Flight::response()->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        Flight::response()->header('Access-Control-Allow-Headers', 'Content-Type, Authentication, X-Requested-With');
+        Flight::response()->header('Access-Control-Allow-Credentials', 'true');
         $payload = Flight::request()->data->getData();
 
         $user = Flight::get('auth_service')->get_user_by_email($payload['email']);
@@ -44,7 +49,7 @@ Flight::group("/auth", function () {
 
         $token = JWT::encode(
             $jwt_payload,
-            JWT_SECRET,
+            Config::JWT_SECRET(),
             'HS256'
         );
         Flight::response()->header('Authentication', $token);
@@ -73,7 +78,7 @@ Flight::group("/auth", function () {
             if (!$token)
                 Flight::halt(401, "Missing authentication header");
 
-            $decoded_token = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+            $decoded_token = JWT::decode($token, new Key(Config::JWT_SECRET(), 'HS256'));
 
             Flight::json([
                 'jwt_decoded' => $decoded_token,
@@ -82,5 +87,8 @@ Flight::group("/auth", function () {
         } catch (\Exception $e) {
             Flight::halt(401, $e->getMessage());
         }
+    });
+    Flight::route('GET /auth/test', function () {
+        Flight::json(['message' => 'Routing works', 'method' => $_SERVER['REQUEST_METHOD']]);
     });
 });

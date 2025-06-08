@@ -1,7 +1,7 @@
 var UserService = {
     reload_users_datatable: function () {
         Utils.get_datatable(
-            "admin_users", "http://localhost/intro-to-web-2025/backend/users/",
+            "admin_users", Constants.get_api_base_url() + "users/",
             [
                 { data: "id" },
                 { data: "first_name" },
@@ -24,7 +24,7 @@ var UserService = {
     },
     reload_cars_datatable_admin: function () {
         Utils.get_datatable(
-            "admin_cars", "http://localhost/intro-to-web-2025/backend/cars/all/admin",
+            "admin_cars", Constants.get_api_base_url() + "cars/all/admin",
             [
                 { data: "manufacturer" },
                 { data: "model" },
@@ -40,7 +40,7 @@ var UserService = {
     },
     reload_contacts_datatable_admin: function () {
         Utils.get_datatable(
-            "admin_contacts", "http://localhost/intro-to-web-2025/backend/contacts/all/admin",
+            "admin_contacts", Constants.get_api_base_url() + "contacts/all/admin",
             [
                 { data: "id" },
                 { data: "full_name" },
@@ -141,7 +141,7 @@ var UserService = {
     },
     reload_forums_datatable_admin: function () {
         Utils.get_datatable(
-            "admin_forums", "http://localhost/intro-to-web-2025/backend/forums/",
+            "admin_forums", Constants.get_api_base_url() + "forums/",
             [
                 { data: "id" },
                 { data: "title" },
